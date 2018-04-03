@@ -126,7 +126,19 @@ def find_column(input,token):
 
 # Build the lexer
 import ply.lex as lex
-lexer = lex.lex()
+lexer = lex.lex(debug=0)
+
+# Keep running
+
+def lexer(data):
+    lex.input(data)
+
+    while True:
+        tok = lex.token()
+        print(tok)
+        if not tok:
+            break
+
 
 # Build the yacc
 # import ply.yacc as yacc
