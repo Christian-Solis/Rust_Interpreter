@@ -1,3 +1,2 @@
-# Rust_Interpreter
-Christian Solís
+# Rust Interpreter
 A Rust interpreter in Python
