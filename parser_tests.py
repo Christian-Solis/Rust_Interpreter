@@ -2,7 +2,7 @@
 # Parser Tests
 # -----------------------------------------------------------------------------
 
-from parser import *
+from rust_lex import *
 
 # Success
 # Variable definition
@@ -88,34 +88,34 @@ variable2;
 
 # Run Tests
 print("\n Test 1:")
-lex.runmain(data = TestNo1)
+yacc.parse(TestNo1)
 
 print("\n Test 2:")
-lex.runmain(data = TestNo2)
+yacc.parse(TestNo2)
 
 print("\n Test 3:")
-lex.runmain(data = TestNo3)
+yacc.parse(TestNo3)
 
 print("\n Test 4:")
-lex.runmain(data = TestNo4)
+yacc.parse(TestNo4)
 
 print("\n Test 5:")
-lex.runmain(data = TestNo5)
+yacc.parse(TestNo5)
 
 print("\n Test 6:")
-lex.runmain(data = TestNo6)
+yacc.parse(TestNo6)
 
 print("\n Test 7:")
-lex.runmain(data = TestNo7)
+yacc.parse(TestNo7)
 
 print("\n Test 8:")
-lex.runmain(data = TestNo8)
+yacc.parse(TestNo8)
 
 print("\n Test 9:")
-lex.runmain(data = TestNo9)
+yacc.parse(TestNo9)
 
 print("\n Test 10:")
-lex.runmain(data = TestNo10)
+yacc.parse(TestNo10)
 
 print("\n Test 11:")
-lex.runmain(data = TestNo11)
+yacc.parse(TestNo11)
