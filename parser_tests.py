@@ -2,7 +2,7 @@
 # Parser Tests
 # -----------------------------------------------------------------------------
 
-from rust_lex import *
+from rust_parser import *
 
 # Success
 # Variable definition

@@ -6,6 +6,8 @@
 # Rust interpreter with Python
 # -----------------------------------------------------------------------------
 
+import rust_lex as lexer
+
 # Node class to manage the nodes and children
 class Node:
     def __init__(self, token, value=None, node_type=None, children=None):
@@ -29,7 +31,7 @@ class Node:
                 child.debug()
 
 # Bring the tokens from the lexer
-tokens = rust_lex.tokens
+tokens = lexer.tokens
 
 # -----------------------------------------------------------------------------
 # Parsing Rules
