@@ -133,7 +133,7 @@ lexer = lex.lex(debug=0)
 
 # Import yacc
 import ply.yacc as yacc
-yacc = yacc.yacc()
+yacc.yacc()
 
 import profile
 
