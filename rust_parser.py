@@ -100,6 +100,7 @@ def p_declaration(p):
     declaration : varDeclaration
                 | constDeclaration
                 | staticDeclaration
+                | funcDeclaration
     """
     p[0] = Node("declaration", None, None, [p[1]])
 
@@ -128,6 +129,48 @@ def p_staticDeclaration(p):
     staticDeclaration : STATIC IDVAR EQUAL IDVAR SEMCL
     """
     pass
+
+# Rule to implement function declarations
+def p_funcDeclaration(p):
+    """
+    funcDeclaration : FN function
+    """
+    T = Node("FN")
+    p[0] = Node("function-declaration", None, None, [T, p[2]])
+
+# Rule to implement functions
+def p_function(p):
+    """
+    function : FN parameters block
+    """
+    T = Node("FN", p[1])
+    p[0] = Node("function", None, None, [T, p[2], p[3]])
+
+# Rule to implement parameters for functions
+def p_parameters(p):
+    """
+    parameters : OPENP CLOSP
+               | OPEN paramList CLOSP
+    """
+    T1 = Node("OPENP", p[1])
+    if (len(p) == 3):  # First case
+        T2 = Node("CLOSP", p[2])
+        p[0] = Node("parameters", None, None, [T1, T2])
+    else:
+        T2 = Node("RPAREN", p[3])
+        p[0] = Node("parameters", None, None, [T1, T2, p[2]])
+
+# Rule to implement parameter list
+def p_paramList(p):
+    """
+    paramList : parameter
+              | parameter COMMA paramList
+    """
+    if len(p) == 2:
+        p[0] = Node('parameter-list', None, None, [p[1]])
+    else:
+        T = Node('COMMA', p[2])
+        p[0] = Node('parameter-list', None, None, [p[1], T, p[3]])
 
 # Rule to implement expressions
 def p_expressionStmt(p):
