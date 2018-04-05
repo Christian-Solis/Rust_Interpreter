@@ -19,7 +19,6 @@ reserved = {
     'const' : 'CONST',
     'stdin' : 'STDIN',
     'println!' : 'PRINTLN',
-    'iter' : 'ITER',
     'true' : 'TRUE',
     'false' : 'FALSE',
     'concat' : 'CONCAT',
