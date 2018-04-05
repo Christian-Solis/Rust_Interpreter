@@ -7,13 +7,13 @@ from rust_parser import *
 # Success
 # Variable definition
 TestNo1 = '''
-let FIVE = 5
+let FIVE = 5;
 '''
 
 # Constants definition
 TestNo2 = '''
-static NINE = 9
-const TEN = 10
+static NINE = 9;
+const TEN = 10;
 '''
 
 # Loop and conditional
