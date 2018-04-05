@@ -126,7 +126,7 @@ def p_staticDeclaration(p):
 # Rule to implement function declarations
 def p_funcDeclaration(p):
     """
-    funcDeclaration : FN function
+    funcDeclaration : FN function 
     """
     pass
     # T = Node("FN")
