@@ -48,6 +48,7 @@ tokens = list(reserved.values()) + [
     'OPENP','CLOSP',
     'LBCKT','RBCKT',
     'SEMCL',
+    'COMMA',
     ]
 
 # Tokens
@@ -74,6 +75,7 @@ t_CLOSP = r'\)'
 t_LBCKT = r'{'
 t_RBCKT = r'}'
 t_SEMCL = r';'
+t_COMMA = r','
 
 # -----------------------------------------------------------------------------
 # Lexer Rules
