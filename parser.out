@@ -32,8 +32,8 @@ Rule 7     stmt -> selectionStmt
 Rule 8     stmt -> iterationStmt
 Rule 9     stmt -> inputStmt
 Rule 10    stmt -> outputStmt
-Rule 11    declarationList -> declarationList declaration
-Rule 12    declarationList -> declaration
+Rule 11    declarationList -> declaration
+Rule 12    declarationList -> declaration declarationList
 Rule 13    declaration -> varDeclaration
 Rule 14    declaration -> constDeclaration
 Rule 15    declaration -> staticDeclaration
@@ -131,7 +131,7 @@ andExpr              : 28 29 30
 booleans             : 
 constDeclaration     : 14
 declaration          : 6 11 12
-declarationList      : 2 11
+declarationList      : 2 12
 expression           : 21 22 23 24 25 26 27 28
 expressionStmt       : 5 18
 foo                  : 0
@@ -159,8 +159,8 @@ state 0
     (0) S' -> . foo
     (1) foo -> . program
     (2) program -> . declarationList
-    (11) declarationList -> . declarationList declaration
-    (12) declarationList -> . declaration
+    (11) declarationList -> . declaration
+    (12) declarationList -> . declaration declarationList
     (13) declaration -> . varDeclaration
     (14) declaration -> . constDeclaration
     (15) declaration -> . staticDeclaration
@@ -198,7 +198,16 @@ state 2
 state 3
 
     (2) program -> declarationList .
-    (11) declarationList -> declarationList . declaration
+
+    $end            reduce using rule 2 (program -> declarationList .)
+
+
+state 4
+
+    (11) declarationList -> declaration .
+    (12) declarationList -> declaration . declarationList
+    (11) declarationList -> . declaration
+    (12) declarationList -> . declaration declarationList
     (13) declaration -> . varDeclaration
     (14) declaration -> . constDeclaration
     (15) declaration -> . staticDeclaration
@@ -208,25 +217,16 @@ state 3
     (19) constDeclaration -> . CONST IDVAR EQUAL IDVAR SEMCL
     (20) staticDeclaration -> . STATIC IDVAR EQUAL IDVAR SEMCL
 
-    $end            reduce using rule 2 (program -> declarationList .)
+    $end            reduce using rule 11 (declarationList -> declaration .)
     LET             shift and go to state 8
     CONST           shift and go to state 9
     STATIC          shift and go to state 10
 
-    declaration                    shift and go to state 11
+    declaration                    shift and go to state 4
+    declarationList                shift and go to state 11
     varDeclaration                 shift and go to state 5
     constDeclaration               shift and go to state 6
     staticDeclaration              shift and go to state 7
-
-state 4
-
-    (12) declarationList -> declaration .
-
-    LET             reduce using rule 12 (declarationList -> declaration .)
-    CONST           reduce using rule 12 (declarationList -> declaration .)
-    STATIC          reduce using rule 12 (declarationList -> declaration .)
-    $end            reduce using rule 12 (declarationList -> declaration .)
-
 
 state 5
 
@@ -283,12 +283,9 @@ state 10
 
 state 11
 
-    (11) declarationList -> declarationList declaration .
+    (12) declarationList -> declaration declarationList .
 
-    LET             reduce using rule 11 (declarationList -> declarationList declaration .)
-    CONST           reduce using rule 11 (declarationList -> declarationList declaration .)
-    STATIC          reduce using rule 11 (declarationList -> declarationList declaration .)
-    $end            reduce using rule 11 (declarationList -> declarationList declaration .)
+    $end            reduce using rule 12 (declarationList -> declaration declarationList .)
 
 
 state 12
