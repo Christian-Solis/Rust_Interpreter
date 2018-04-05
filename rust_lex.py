@@ -6,7 +6,10 @@
 # Rust interpreter with Python
 # -----------------------------------------------------------------------------
 
+import sys
 
+if sys.version_info[0] >= 3:
+    raw_input = input
 
 # Reserved words
 # 'reserved word' :'given name'
@@ -216,12 +219,16 @@ def p_expressionStmt(p):
 # Rule to implement iterations
 def p_iterationStmt(p):
     """iterationStmt : FOR IDVAR IN expression
+                     | WHILE expression EQLTO general
+                     | WHILE expression LESST general
+                     | WHILE expression GREAT general
     """
     pass
 
 # Rule to implement iterations
 def p_selectionStmt(p):
-    """iterationStmt : FOR IDVAR IN expression
+    """selectionStmt : IF expression EQUAL general
+                     | IF expression EQUAL general ELSE
     """
     pass
 
@@ -312,9 +319,10 @@ def p_booleans(p):
 
 
 # -----------------------------------------------------------------------------
-# Tests
+# Lexer Tests
 # -----------------------------------------------------------------------------
 
+'''
 # One word comment
 TestNo1 = '''
 // This
@@ -468,6 +476,8 @@ lex.runmain(data = ExtraTestNo2)
 
 print("\n Test 3 Variable Definition on the Wrong Place:")
 lex.runmain(data = ExtraTestNo3)
+'''
+
 
 #while True:
 #    try:
