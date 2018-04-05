@@ -1,1 +1,813 @@
 Created by PLY version 3.10 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ITER
+    CONCAT
+    STRING
+    NEW
+    THEN
+    LOOP
+    DOTOP
+    LOOPC
+    FORCN
+    INCON
+    REMOP
+    STRNG
+    SLCOM
+    BLCOM
+    LBCKT
+    RBCKT
+
+Grammar
+
+Rule 0     S' -> foo
+Rule 1     foo -> program
+Rule 2     program -> declarationList
+Rule 3     general -> stmt
+Rule 4     general -> stmt general
+Rule 5     stmt -> expressionStmt
+Rule 6     stmt -> declaration
+Rule 7     stmt -> selectionStmt
+Rule 8     stmt -> iterationStmt
+Rule 9     stmt -> inputStmt
+Rule 10    stmt -> outputStmt
+Rule 11    declarationList -> declarationList declaration
+Rule 12    declarationList -> declaration
+Rule 13    declaration -> varDeclaration
+Rule 14    declaration -> constDeclaration
+Rule 15    declaration -> staticDeclaration
+Rule 16    varDeclaration -> LET IDVAR EQUAL IDVAR
+Rule 17    varDeclaration -> LET IDVAR EQUAL INTVR
+Rule 18    varDeclaration -> LET IDVAR EQUAL expressionStmt
+Rule 19    constDeclaration -> CONST IDVAR EQUAL IDVAR SEMCL
+Rule 20    staticDeclaration -> STATIC IDVAR EQUAL IDVAR SEMCL
+Rule 21    expressionStmt -> expression
+Rule 22    iterationStmt -> FOR IDVAR IN expression
+Rule 23    iterationStmt -> WHILE expression EQLTO general
+Rule 24    iterationStmt -> WHILE expression LESST general
+Rule 25    iterationStmt -> WHILE expression GREAT general
+Rule 26    selectionStmt -> IF expression EQUAL general
+Rule 27    selectionStmt -> IF expression EQUAL general ELSE
+Rule 28    expression -> expression OROPE andExpr
+Rule 29    expression -> andExpr
+Rule 30    andExpr -> andExpr ANDOP relExpr
+Rule 31    andExpr -> relExpr
+Rule 32    relExpr -> sumExpr relop sumExpr
+Rule 33    relop -> LESST
+Rule 34    relop -> LSSEQ
+Rule 35    relop -> GREAT
+Rule 36    relop -> GRTEQ
+Rule 37    relop -> EQUAL
+Rule 38    relop -> UNEQL
+Rule 39    relop -> EQLTO
+Rule 40    sumExpr -> sumExpr sumOp term
+Rule 41    sumExpr -> term
+Rule 42    sumOp -> ADDOP
+Rule 43    sumOp -> SUBOP
+Rule 44    term -> term mulOp number
+Rule 45    term -> number
+Rule 46    number -> INTVR
+Rule 47    mulOp -> DEROP
+Rule 48    mulOp -> QUOOP
+Rule 49    inputStmt -> STDIN OPENP stmt CLOSP
+Rule 50    outputStmt -> PRINTLN OPENP stmt CLOSP
+Rule 51    booleans -> LET IDVAR EQUAL TRUE
+Rule 52    booleans -> LET IDVAR EQUAL FALSE
+
+Terminals, with rules where they appear
+
+ADDOP                : 42
+ANDOP                : 30
+BLCOM                : 
+CLOSP                : 49 50
+CONCAT               : 
+CONST                : 19
+DEROP                : 47
+DOTOP                : 
+ELSE                 : 27
+EQLTO                : 23 39
+EQUAL                : 16 17 18 19 20 26 27 37 51 52
+FALSE                : 52
+FOR                  : 22
+FORCN                : 
+GREAT                : 25 35
+GRTEQ                : 36
+IDVAR                : 16 16 17 18 19 19 20 20 22 51 52
+IF                   : 26 27
+IN                   : 22
+INCON                : 
+INTVR                : 17 46
+ITER                 : 
+LBCKT                : 
+LESST                : 24 33
+LET                  : 16 17 18 51 52
+LOOP                 : 
+LOOPC                : 
+LSSEQ                : 34
+NEW                  : 
+OPENP                : 49 50
+OROPE                : 28
+PRINTLN              : 50
+QUOOP                : 48
+RBCKT                : 
+REMOP                : 
+SEMCL                : 19 20
+SLCOM                : 
+STATIC               : 20
+STDIN                : 49
+STRING               : 
+STRNG                : 
+SUBOP                : 43
+THEN                 : 
+TRUE                 : 51
+UNEQL                : 38
+WHILE                : 23 24 25
+error                : 
+
+Nonterminals, with rules where they appear
+
+andExpr              : 28 29 30
+booleans             : 
+constDeclaration     : 14
+declaration          : 6 11 12
+declarationList      : 2 11
+expression           : 21 22 23 24 25 26 27 28
+expressionStmt       : 5 18
+foo                  : 0
+general              : 4 23 24 25 26 27
+inputStmt            : 9
+iterationStmt        : 8
+mulOp                : 44
+number               : 44 45
+outputStmt           : 10
+program              : 1
+relExpr              : 30 31
+relop                : 32
+selectionStmt        : 7
+staticDeclaration    : 15
+stmt                 : 3 4 49 50
+sumExpr              : 32 32 40
+sumOp                : 40
+term                 : 40 41 44
+varDeclaration       : 13
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . foo
+    (1) foo -> . program
+    (2) program -> . declarationList
+    (11) declarationList -> . declarationList declaration
+    (12) declarationList -> . declaration
+    (13) declaration -> . varDeclaration
+    (14) declaration -> . constDeclaration
+    (15) declaration -> . staticDeclaration
+    (16) varDeclaration -> . LET IDVAR EQUAL IDVAR
+    (17) varDeclaration -> . LET IDVAR EQUAL INTVR
+    (18) varDeclaration -> . LET IDVAR EQUAL expressionStmt
+    (19) constDeclaration -> . CONST IDVAR EQUAL IDVAR SEMCL
+    (20) staticDeclaration -> . STATIC IDVAR EQUAL IDVAR SEMCL
+
+    LET             shift and go to state 8
+    CONST           shift and go to state 9
+    STATIC          shift and go to state 10
+
+    foo                            shift and go to state 1
+    program                        shift and go to state 2
+    declarationList                shift and go to state 3
+    declaration                    shift and go to state 4
+    varDeclaration                 shift and go to state 5
+    constDeclaration               shift and go to state 6
+    staticDeclaration              shift and go to state 7
+
+state 1
+
+    (0) S' -> foo .
+
+
+
+state 2
+
+    (1) foo -> program .
+
+    $end            reduce using rule 1 (foo -> program .)
+
+
+state 3
+
+    (2) program -> declarationList .
+    (11) declarationList -> declarationList . declaration
+    (13) declaration -> . varDeclaration
+    (14) declaration -> . constDeclaration
+    (15) declaration -> . staticDeclaration
+    (16) varDeclaration -> . LET IDVAR EQUAL IDVAR
+    (17) varDeclaration -> . LET IDVAR EQUAL INTVR
+    (18) varDeclaration -> . LET IDVAR EQUAL expressionStmt
+    (19) constDeclaration -> . CONST IDVAR EQUAL IDVAR SEMCL
+    (20) staticDeclaration -> . STATIC IDVAR EQUAL IDVAR SEMCL
+
+    $end            reduce using rule 2 (program -> declarationList .)
+    LET             shift and go to state 8
+    CONST           shift and go to state 9
+    STATIC          shift and go to state 10
+
+    declaration                    shift and go to state 11
+    varDeclaration                 shift and go to state 5
+    constDeclaration               shift and go to state 6
+    staticDeclaration              shift and go to state 7
+
+state 4
+
+    (12) declarationList -> declaration .
+
+    LET             reduce using rule 12 (declarationList -> declaration .)
+    CONST           reduce using rule 12 (declarationList -> declaration .)
+    STATIC          reduce using rule 12 (declarationList -> declaration .)
+    $end            reduce using rule 12 (declarationList -> declaration .)
+
+
+state 5
+
+    (13) declaration -> varDeclaration .
+
+    LET             reduce using rule 13 (declaration -> varDeclaration .)
+    CONST           reduce using rule 13 (declaration -> varDeclaration .)
+    STATIC          reduce using rule 13 (declaration -> varDeclaration .)
+    $end            reduce using rule 13 (declaration -> varDeclaration .)
+
+
+state 6
+
+    (14) declaration -> constDeclaration .
+
+    LET             reduce using rule 14 (declaration -> constDeclaration .)
+    CONST           reduce using rule 14 (declaration -> constDeclaration .)
+    STATIC          reduce using rule 14 (declaration -> constDeclaration .)
+    $end            reduce using rule 14 (declaration -> constDeclaration .)
+
+
+state 7
+
+    (15) declaration -> staticDeclaration .
+
+    LET             reduce using rule 15 (declaration -> staticDeclaration .)
+    CONST           reduce using rule 15 (declaration -> staticDeclaration .)
+    STATIC          reduce using rule 15 (declaration -> staticDeclaration .)
+    $end            reduce using rule 15 (declaration -> staticDeclaration .)
+
+
+state 8
+
+    (16) varDeclaration -> LET . IDVAR EQUAL IDVAR
+    (17) varDeclaration -> LET . IDVAR EQUAL INTVR
+    (18) varDeclaration -> LET . IDVAR EQUAL expressionStmt
+
+    IDVAR           shift and go to state 12
+
+
+state 9
+
+    (19) constDeclaration -> CONST . IDVAR EQUAL IDVAR SEMCL
+
+    IDVAR           shift and go to state 13
+
+
+state 10
+
+    (20) staticDeclaration -> STATIC . IDVAR EQUAL IDVAR SEMCL
+
+    IDVAR           shift and go to state 14
+
+
+state 11
+
+    (11) declarationList -> declarationList declaration .
+
+    LET             reduce using rule 11 (declarationList -> declarationList declaration .)
+    CONST           reduce using rule 11 (declarationList -> declarationList declaration .)
+    STATIC          reduce using rule 11 (declarationList -> declarationList declaration .)
+    $end            reduce using rule 11 (declarationList -> declarationList declaration .)
+
+
+state 12
+
+    (16) varDeclaration -> LET IDVAR . EQUAL IDVAR
+    (17) varDeclaration -> LET IDVAR . EQUAL INTVR
+    (18) varDeclaration -> LET IDVAR . EQUAL expressionStmt
+
+    EQUAL           shift and go to state 15
+
+
+state 13
+
+    (19) constDeclaration -> CONST IDVAR . EQUAL IDVAR SEMCL
+
+    EQUAL           shift and go to state 16
+
+
+state 14
+
+    (20) staticDeclaration -> STATIC IDVAR . EQUAL IDVAR SEMCL
+
+    EQUAL           shift and go to state 17
+
+
+state 15
+
+    (16) varDeclaration -> LET IDVAR EQUAL . IDVAR
+    (17) varDeclaration -> LET IDVAR EQUAL . INTVR
+    (18) varDeclaration -> LET IDVAR EQUAL . expressionStmt
+    (21) expressionStmt -> . expression
+    (28) expression -> . expression OROPE andExpr
+    (29) expression -> . andExpr
+    (30) andExpr -> . andExpr ANDOP relExpr
+    (31) andExpr -> . relExpr
+    (32) relExpr -> . sumExpr relop sumExpr
+    (40) sumExpr -> . sumExpr sumOp term
+    (41) sumExpr -> . term
+    (44) term -> . term mulOp number
+    (45) term -> . number
+    (46) number -> . INTVR
+
+    IDVAR           shift and go to state 18
+    INTVR           shift and go to state 19
+
+    expressionStmt                 shift and go to state 20
+    expression                     shift and go to state 21
+    andExpr                        shift and go to state 22
+    relExpr                        shift and go to state 23
+    sumExpr                        shift and go to state 24
+    term                           shift and go to state 25
+    number                         shift and go to state 26
+
+state 16
+
+    (19) constDeclaration -> CONST IDVAR EQUAL . IDVAR SEMCL
+
+    IDVAR           shift and go to state 27
+
+
+state 17
+
+    (20) staticDeclaration -> STATIC IDVAR EQUAL . IDVAR SEMCL
+
+    IDVAR           shift and go to state 28
+
+
+state 18
+
+    (16) varDeclaration -> LET IDVAR EQUAL IDVAR .
+
+    LET             reduce using rule 16 (varDeclaration -> LET IDVAR EQUAL IDVAR .)
+    CONST           reduce using rule 16 (varDeclaration -> LET IDVAR EQUAL IDVAR .)
+    STATIC          reduce using rule 16 (varDeclaration -> LET IDVAR EQUAL IDVAR .)
+    $end            reduce using rule 16 (varDeclaration -> LET IDVAR EQUAL IDVAR .)
+
+
+state 19
+
+    (17) varDeclaration -> LET IDVAR EQUAL INTVR .
+    (46) number -> INTVR .
+
+    LET             reduce using rule 17 (varDeclaration -> LET IDVAR EQUAL INTVR .)
+    CONST           reduce using rule 17 (varDeclaration -> LET IDVAR EQUAL INTVR .)
+    STATIC          reduce using rule 17 (varDeclaration -> LET IDVAR EQUAL INTVR .)
+    $end            reduce using rule 17 (varDeclaration -> LET IDVAR EQUAL INTVR .)
+    DEROP           reduce using rule 46 (number -> INTVR .)
+    QUOOP           reduce using rule 46 (number -> INTVR .)
+    LESST           reduce using rule 46 (number -> INTVR .)
+    LSSEQ           reduce using rule 46 (number -> INTVR .)
+    GREAT           reduce using rule 46 (number -> INTVR .)
+    GRTEQ           reduce using rule 46 (number -> INTVR .)
+    EQUAL           reduce using rule 46 (number -> INTVR .)
+    UNEQL           reduce using rule 46 (number -> INTVR .)
+    EQLTO           reduce using rule 46 (number -> INTVR .)
+    ADDOP           reduce using rule 46 (number -> INTVR .)
+    SUBOP           reduce using rule 46 (number -> INTVR .)
+
+
+state 20
+
+    (18) varDeclaration -> LET IDVAR EQUAL expressionStmt .
+
+    LET             reduce using rule 18 (varDeclaration -> LET IDVAR EQUAL expressionStmt .)
+    CONST           reduce using rule 18 (varDeclaration -> LET IDVAR EQUAL expressionStmt .)
+    STATIC          reduce using rule 18 (varDeclaration -> LET IDVAR EQUAL expressionStmt .)
+    $end            reduce using rule 18 (varDeclaration -> LET IDVAR EQUAL expressionStmt .)
+
+
+state 21
+
+    (21) expressionStmt -> expression .
+    (28) expression -> expression . OROPE andExpr
+
+    LET             reduce using rule 21 (expressionStmt -> expression .)
+    CONST           reduce using rule 21 (expressionStmt -> expression .)
+    STATIC          reduce using rule 21 (expressionStmt -> expression .)
+    $end            reduce using rule 21 (expressionStmt -> expression .)
+    OROPE           shift and go to state 29
+
+
+state 22
+
+    (29) expression -> andExpr .
+    (30) andExpr -> andExpr . ANDOP relExpr
+
+    OROPE           reduce using rule 29 (expression -> andExpr .)
+    LET             reduce using rule 29 (expression -> andExpr .)
+    CONST           reduce using rule 29 (expression -> andExpr .)
+    STATIC          reduce using rule 29 (expression -> andExpr .)
+    $end            reduce using rule 29 (expression -> andExpr .)
+    ANDOP           shift and go to state 30
+
+
+state 23
+
+    (31) andExpr -> relExpr .
+
+    ANDOP           reduce using rule 31 (andExpr -> relExpr .)
+    OROPE           reduce using rule 31 (andExpr -> relExpr .)
+    LET             reduce using rule 31 (andExpr -> relExpr .)
+    CONST           reduce using rule 31 (andExpr -> relExpr .)
+    STATIC          reduce using rule 31 (andExpr -> relExpr .)
+    $end            reduce using rule 31 (andExpr -> relExpr .)
+
+
+state 24
+
+    (32) relExpr -> sumExpr . relop sumExpr
+    (40) sumExpr -> sumExpr . sumOp term
+    (33) relop -> . LESST
+    (34) relop -> . LSSEQ
+    (35) relop -> . GREAT
+    (36) relop -> . GRTEQ
+    (37) relop -> . EQUAL
+    (38) relop -> . UNEQL
+    (39) relop -> . EQLTO
+    (42) sumOp -> . ADDOP
+    (43) sumOp -> . SUBOP
+
+    LESST           shift and go to state 33
+    LSSEQ           shift and go to state 34
+    GREAT           shift and go to state 35
+    GRTEQ           shift and go to state 36
+    EQUAL           shift and go to state 37
+    UNEQL           shift and go to state 38
+    EQLTO           shift and go to state 39
+    ADDOP           shift and go to state 40
+    SUBOP           shift and go to state 41
+
+    relop                          shift and go to state 31
+    sumOp                          shift and go to state 32
+
+state 25
+
+    (41) sumExpr -> term .
+    (44) term -> term . mulOp number
+    (47) mulOp -> . DEROP
+    (48) mulOp -> . QUOOP
+
+    LESST           reduce using rule 41 (sumExpr -> term .)
+    LSSEQ           reduce using rule 41 (sumExpr -> term .)
+    GREAT           reduce using rule 41 (sumExpr -> term .)
+    GRTEQ           reduce using rule 41 (sumExpr -> term .)
+    EQUAL           reduce using rule 41 (sumExpr -> term .)
+    UNEQL           reduce using rule 41 (sumExpr -> term .)
+    EQLTO           reduce using rule 41 (sumExpr -> term .)
+    ADDOP           reduce using rule 41 (sumExpr -> term .)
+    SUBOP           reduce using rule 41 (sumExpr -> term .)
+    ANDOP           reduce using rule 41 (sumExpr -> term .)
+    OROPE           reduce using rule 41 (sumExpr -> term .)
+    LET             reduce using rule 41 (sumExpr -> term .)
+    CONST           reduce using rule 41 (sumExpr -> term .)
+    STATIC          reduce using rule 41 (sumExpr -> term .)
+    $end            reduce using rule 41 (sumExpr -> term .)
+    DEROP           shift and go to state 43
+    QUOOP           shift and go to state 44
+
+    mulOp                          shift and go to state 42
+
+state 26
+
+    (45) term -> number .
+
+    DEROP           reduce using rule 45 (term -> number .)
+    QUOOP           reduce using rule 45 (term -> number .)
+    LESST           reduce using rule 45 (term -> number .)
+    LSSEQ           reduce using rule 45 (term -> number .)
+    GREAT           reduce using rule 45 (term -> number .)
+    GRTEQ           reduce using rule 45 (term -> number .)
+    EQUAL           reduce using rule 45 (term -> number .)
+    UNEQL           reduce using rule 45 (term -> number .)
+    EQLTO           reduce using rule 45 (term -> number .)
+    ADDOP           reduce using rule 45 (term -> number .)
+    SUBOP           reduce using rule 45 (term -> number .)
+    ANDOP           reduce using rule 45 (term -> number .)
+    OROPE           reduce using rule 45 (term -> number .)
+    LET             reduce using rule 45 (term -> number .)
+    CONST           reduce using rule 45 (term -> number .)
+    STATIC          reduce using rule 45 (term -> number .)
+    $end            reduce using rule 45 (term -> number .)
+
+
+state 27
+
+    (19) constDeclaration -> CONST IDVAR EQUAL IDVAR . SEMCL
+
+    SEMCL           shift and go to state 45
+
+
+state 28
+
+    (20) staticDeclaration -> STATIC IDVAR EQUAL IDVAR . SEMCL
+
+    SEMCL           shift and go to state 46
+
+
+state 29
+
+    (28) expression -> expression OROPE . andExpr
+    (30) andExpr -> . andExpr ANDOP relExpr
+    (31) andExpr -> . relExpr
+    (32) relExpr -> . sumExpr relop sumExpr
+    (40) sumExpr -> . sumExpr sumOp term
+    (41) sumExpr -> . term
+    (44) term -> . term mulOp number
+    (45) term -> . number
+    (46) number -> . INTVR
+
+    INTVR           shift and go to state 48
+
+    andExpr                        shift and go to state 47
+    relExpr                        shift and go to state 23
+    sumExpr                        shift and go to state 24
+    term                           shift and go to state 25
+    number                         shift and go to state 26
+
+state 30
+
+    (30) andExpr -> andExpr ANDOP . relExpr
+    (32) relExpr -> . sumExpr relop sumExpr
+    (40) sumExpr -> . sumExpr sumOp term
+    (41) sumExpr -> . term
+    (44) term -> . term mulOp number
+    (45) term -> . number
+    (46) number -> . INTVR
+
+    INTVR           shift and go to state 48
+
+    relExpr                        shift and go to state 49
+    sumExpr                        shift and go to state 24
+    term                           shift and go to state 25
+    number                         shift and go to state 26
+
+state 31
+
+    (32) relExpr -> sumExpr relop . sumExpr
+    (40) sumExpr -> . sumExpr sumOp term
+    (41) sumExpr -> . term
+    (44) term -> . term mulOp number
+    (45) term -> . number
+    (46) number -> . INTVR
+
+    INTVR           shift and go to state 48
+
+    sumExpr                        shift and go to state 50
+    term                           shift and go to state 25
+    number                         shift and go to state 26
+
+state 32
+
+    (40) sumExpr -> sumExpr sumOp . term
+    (44) term -> . term mulOp number
+    (45) term -> . number
+    (46) number -> . INTVR
+
+    INTVR           shift and go to state 48
+
+    term                           shift and go to state 51
+    number                         shift and go to state 26
+
+state 33
+
+    (33) relop -> LESST .
+
+    INTVR           reduce using rule 33 (relop -> LESST .)
+
+
+state 34
+
+    (34) relop -> LSSEQ .
+
+    INTVR           reduce using rule 34 (relop -> LSSEQ .)
+
+
+state 35
+
+    (35) relop -> GREAT .
+
+    INTVR           reduce using rule 35 (relop -> GREAT .)
+
+
+state 36
+
+    (36) relop -> GRTEQ .
+
+    INTVR           reduce using rule 36 (relop -> GRTEQ .)
+
+
+state 37
+
+    (37) relop -> EQUAL .
+
+    INTVR           reduce using rule 37 (relop -> EQUAL .)
+
+
+state 38
+
+    (38) relop -> UNEQL .
+
+    INTVR           reduce using rule 38 (relop -> UNEQL .)
+
+
+state 39
+
+    (39) relop -> EQLTO .
+
+    INTVR           reduce using rule 39 (relop -> EQLTO .)
+
+
+state 40
+
+    (42) sumOp -> ADDOP .
+
+    INTVR           reduce using rule 42 (sumOp -> ADDOP .)
+
+
+state 41
+
+    (43) sumOp -> SUBOP .
+
+    INTVR           reduce using rule 43 (sumOp -> SUBOP .)
+
+
+state 42
+
+    (44) term -> term mulOp . number
+    (46) number -> . INTVR
+
+    INTVR           shift and go to state 48
+
+    number                         shift and go to state 52
+
+state 43
+
+    (47) mulOp -> DEROP .
+
+    INTVR           reduce using rule 47 (mulOp -> DEROP .)
+
+
+state 44
+
+    (48) mulOp -> QUOOP .
+
+    INTVR           reduce using rule 48 (mulOp -> QUOOP .)
+
+
+state 45
+
+    (19) constDeclaration -> CONST IDVAR EQUAL IDVAR SEMCL .
+
+    LET             reduce using rule 19 (constDeclaration -> CONST IDVAR EQUAL IDVAR SEMCL .)
+    CONST           reduce using rule 19 (constDeclaration -> CONST IDVAR EQUAL IDVAR SEMCL .)
+    STATIC          reduce using rule 19 (constDeclaration -> CONST IDVAR EQUAL IDVAR SEMCL .)
+    $end            reduce using rule 19 (constDeclaration -> CONST IDVAR EQUAL IDVAR SEMCL .)
+
+
+state 46
+
+    (20) staticDeclaration -> STATIC IDVAR EQUAL IDVAR SEMCL .
+
+    LET             reduce using rule 20 (staticDeclaration -> STATIC IDVAR EQUAL IDVAR SEMCL .)
+    CONST           reduce using rule 20 (staticDeclaration -> STATIC IDVAR EQUAL IDVAR SEMCL .)
+    STATIC          reduce using rule 20 (staticDeclaration -> STATIC IDVAR EQUAL IDVAR SEMCL .)
+    $end            reduce using rule 20 (staticDeclaration -> STATIC IDVAR EQUAL IDVAR SEMCL .)
+
+
+state 47
+
+    (28) expression -> expression OROPE andExpr .
+    (30) andExpr -> andExpr . ANDOP relExpr
+
+    OROPE           reduce using rule 28 (expression -> expression OROPE andExpr .)
+    LET             reduce using rule 28 (expression -> expression OROPE andExpr .)
+    CONST           reduce using rule 28 (expression -> expression OROPE andExpr .)
+    STATIC          reduce using rule 28 (expression -> expression OROPE andExpr .)
+    $end            reduce using rule 28 (expression -> expression OROPE andExpr .)
+    ANDOP           shift and go to state 30
+
+
+state 48
+
+    (46) number -> INTVR .
+
+    DEROP           reduce using rule 46 (number -> INTVR .)
+    QUOOP           reduce using rule 46 (number -> INTVR .)
+    LESST           reduce using rule 46 (number -> INTVR .)
+    LSSEQ           reduce using rule 46 (number -> INTVR .)
+    GREAT           reduce using rule 46 (number -> INTVR .)
+    GRTEQ           reduce using rule 46 (number -> INTVR .)
+    EQUAL           reduce using rule 46 (number -> INTVR .)
+    UNEQL           reduce using rule 46 (number -> INTVR .)
+    EQLTO           reduce using rule 46 (number -> INTVR .)
+    ADDOP           reduce using rule 46 (number -> INTVR .)
+    SUBOP           reduce using rule 46 (number -> INTVR .)
+    ANDOP           reduce using rule 46 (number -> INTVR .)
+    OROPE           reduce using rule 46 (number -> INTVR .)
+    LET             reduce using rule 46 (number -> INTVR .)
+    CONST           reduce using rule 46 (number -> INTVR .)
+    STATIC          reduce using rule 46 (number -> INTVR .)
+    $end            reduce using rule 46 (number -> INTVR .)
+
+
+state 49
+
+    (30) andExpr -> andExpr ANDOP relExpr .
+
+    ANDOP           reduce using rule 30 (andExpr -> andExpr ANDOP relExpr .)
+    OROPE           reduce using rule 30 (andExpr -> andExpr ANDOP relExpr .)
+    LET             reduce using rule 30 (andExpr -> andExpr ANDOP relExpr .)
+    CONST           reduce using rule 30 (andExpr -> andExpr ANDOP relExpr .)
+    STATIC          reduce using rule 30 (andExpr -> andExpr ANDOP relExpr .)
+    $end            reduce using rule 30 (andExpr -> andExpr ANDOP relExpr .)
+
+
+state 50
+
+    (32) relExpr -> sumExpr relop sumExpr .
+    (40) sumExpr -> sumExpr . sumOp term
+    (42) sumOp -> . ADDOP
+    (43) sumOp -> . SUBOP
+
+    ANDOP           reduce using rule 32 (relExpr -> sumExpr relop sumExpr .)
+    OROPE           reduce using rule 32 (relExpr -> sumExpr relop sumExpr .)
+    LET             reduce using rule 32 (relExpr -> sumExpr relop sumExpr .)
+    CONST           reduce using rule 32 (relExpr -> sumExpr relop sumExpr .)
+    STATIC          reduce using rule 32 (relExpr -> sumExpr relop sumExpr .)
+    $end            reduce using rule 32 (relExpr -> sumExpr relop sumExpr .)
+    ADDOP           shift and go to state 40
+    SUBOP           shift and go to state 41
+
+    sumOp                          shift and go to state 32
+
+state 51
+
+    (40) sumExpr -> sumExpr sumOp term .
+    (44) term -> term . mulOp number
+    (47) mulOp -> . DEROP
+    (48) mulOp -> . QUOOP
+
+    LESST           reduce using rule 40 (sumExpr -> sumExpr sumOp term .)
+    LSSEQ           reduce using rule 40 (sumExpr -> sumExpr sumOp term .)
+    GREAT           reduce using rule 40 (sumExpr -> sumExpr sumOp term .)
+    GRTEQ           reduce using rule 40 (sumExpr -> sumExpr sumOp term .)
+    EQUAL           reduce using rule 40 (sumExpr -> sumExpr sumOp term .)
+    UNEQL           reduce using rule 40 (sumExpr -> sumExpr sumOp term .)
+    EQLTO           reduce using rule 40 (sumExpr -> sumExpr sumOp term .)
+    ADDOP           reduce using rule 40 (sumExpr -> sumExpr sumOp term .)
+    SUBOP           reduce using rule 40 (sumExpr -> sumExpr sumOp term .)
+    ANDOP           reduce using rule 40 (sumExpr -> sumExpr sumOp term .)
+    OROPE           reduce using rule 40 (sumExpr -> sumExpr sumOp term .)
+    LET             reduce using rule 40 (sumExpr -> sumExpr sumOp term .)
+    CONST           reduce using rule 40 (sumExpr -> sumExpr sumOp term .)
+    STATIC          reduce using rule 40 (sumExpr -> sumExpr sumOp term .)
+    $end            reduce using rule 40 (sumExpr -> sumExpr sumOp term .)
+    DEROP           shift and go to state 43
+    QUOOP           shift and go to state 44
+
+    mulOp                          shift and go to state 42
+
+state 52
+
+    (44) term -> term mulOp number .
+
+    DEROP           reduce using rule 44 (term -> term mulOp number .)
+    QUOOP           reduce using rule 44 (term -> term mulOp number .)
+    LESST           reduce using rule 44 (term -> term mulOp number .)
+    LSSEQ           reduce using rule 44 (term -> term mulOp number .)
+    GREAT           reduce using rule 44 (term -> term mulOp number .)
+    GRTEQ           reduce using rule 44 (term -> term mulOp number .)
+    EQUAL           reduce using rule 44 (term -> term mulOp number .)
+    UNEQL           reduce using rule 44 (term -> term mulOp number .)
+    EQLTO           reduce using rule 44 (term -> term mulOp number .)
+    ADDOP           reduce using rule 44 (term -> term mulOp number .)
+    SUBOP           reduce using rule 44 (term -> term mulOp number .)
+    ANDOP           reduce using rule 44 (term -> term mulOp number .)
+    OROPE           reduce using rule 44 (term -> term mulOp number .)
+    LET             reduce using rule 44 (term -> term mulOp number .)
+    CONST           reduce using rule 44 (term -> term mulOp number .)
+    STATIC          reduce using rule 44 (term -> term mulOp number .)
+    $end            reduce using rule 44 (term -> term mulOp number .)
+
