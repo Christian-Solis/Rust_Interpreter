@@ -312,10 +312,10 @@ def p_selectionStmt(p):
 # Rule to implement iterations
 def p_iterationStmt(p):
     """
-    iterationStmt : FOR basicExp IN expression
-                  | WHILE basicExp EQLTO expression
-                  | WHILE basicExp LESST expression
-                  | WHILE basicExp GREAT expression
+    iterationStmt : FOR expression IN expression
+                  | WHILE expression EQUAL expression
+                  | WHILE expression LESST expression
+                  | WHILE expression GREAT expression
     """
     pass
     # T = Node('FOR', p[1])
