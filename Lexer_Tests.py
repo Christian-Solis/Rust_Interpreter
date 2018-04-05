@@ -2,7 +2,6 @@
 # Lexer Tests
 # -----------------------------------------------------------------------------
 
-'''
 # One word comment
 TestNo1 = '''
 // This
@@ -156,4 +155,3 @@ lex.runmain(data = ExtraTestNo2)
 
 print("\n Test 3 Variable Definition on the Wrong Place:")
 lex.runmain(data = ExtraTestNo3)
-'''
