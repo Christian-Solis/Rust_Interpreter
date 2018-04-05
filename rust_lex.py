@@ -32,6 +32,7 @@ reserved = {
     'while' : 'WHILE',
     'for' : 'FOR',
     'in' : 'IN',
+    'fn' : 'FN',
 }
 
 tokens = list(reserved.values()) + [
@@ -113,6 +114,11 @@ def t_BLCOM(t):
     r'///(.|\n)?///'
     # No return value. Token discarded
     pass
+
+# Rule to define functions
+def t_FN(t):
+    r'fn'
+    return t
 
 # Compute column for error handling
 #   input is the input text string
