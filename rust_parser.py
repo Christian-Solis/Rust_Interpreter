@@ -63,25 +63,13 @@ def p_program(p):
     p[0].debug()
     print("\n")
 
-# Rule for general statement
-def p_general(p):
-    """
-    general : stmt
-            | stmt general
-    """
-    pass
-
-# Rule to implement statements
-def p_stmt(p):
-    """
-    stmt : expressionStmt
-         | declaration
-         | selectionStmt
-         | iterationStmt
-         | inputStmt
-         | outputStmt
-    """
-    pass
+# # Rule for general statement
+# def p_general(p):
+#     """
+#     general : stmt
+#             | stmt general
+#     """
+#     pass
 
 # Rule to implement several declarations
 def p_declarationList(p):
@@ -172,52 +160,98 @@ def p_paramList(p):
         T = Node('COMMA', p[2])
         p[0] = Node('parameter-list', None, None, [p[1], T, p[3]])
 
+# Rule for general parameters
+def p_parameter(p):
+    """
+    parameter : IDVAR
+    """
+    T = Node('IDVAR', p[1])
+    p[0] = Node('parameter', None, None, [T])
+
+# Rule for block of code
+def p_block(p):
+    """
+    block : LBCKT RBCKT
+          | LBCKT statement-list RBCKT
+    """
+    T1 = Node("LBCKT", p[1])
+
+    if (len(p) == 3):  # First case
+        T2 = Node("RBCKT", p[2])
+        p[0] = Node("block", None, None, [T1, T2])
+    else:
+        T2 = Node("RBCKT", p[3])
+        p[0] = Node("block", None, None, [T1, T2, p[2]])
+
+# Rule for statement list
+def p_statement_list(p):
+    """
+    statement-list : stmt
+                   | stmt statement-list
+    """
+    if len(p) == 2:
+        p[0] = Node('statement-list', None, None, [p[1]])
+    else:
+        p[0] = Node('statement-list', None, None, [p[1], p[2]])
+
+# Rule to implement statements
+def p_stmt(p):
+    """
+    stmt : expressionStmt
+         | declaration
+         | selectionStmt
+         | iterationStmt
+         | inputStmt
+         | outputStmt
+    """
+    p[0] = Node('stmt', None, None, [p[1]])
+
 # Rule to implement expressions
 def p_expressionStmt(p):
-    """expressionStmt : expression
     """
-    pass
+    expressionStmt : basicExp
+                   | assignmentExp SEMCL
+                   | comparisonExp
+    """
+    p[0] = Node('expression', None, None, [p[1]])
 
-# Rule to implement iterations
-def p_iterationStmt(p):
+# Rule for basic expressions
+def p_basic(p):
     """
-    iterationStmt : FOR IDVAR IN expression
-                  | WHILE expression EQLTO general
-                  | WHILE expression LESST general
-                  | WHILE expression GREAT general
+    basicExp : IDVAR
+             | INTVR
+             | STRING
     """
-    pass
+    v = Node('BASIC', p[1])
+    p[0] = Node('basicExp', None, None, [v])
 
-# Rule to implement iterations
-def p_selectionStmt(p):
+# Rule for general variables
+def p_id(p):
     """
-    selectionStmt : IF expression EQUAL general
-                  | IF expression EQUAL general ELSE
+    identifier : IDVAR
+               | NUMBER
     """
-    pass
+    T = Node('ID', p[1])
+    p[0] = Node('intvariable', None, None, [T])
 
-# Rule for general expression
-def p_expression(p):
+# Rule to implement assignment expressions
+def p_assignment_expression(p):
     """
-    expression : expression OROPE andExpr
-               | andExpr
+    assignmentExp : identifier sumOp basicExp
+                  | identifier sumOp assignmentExp
     """
-    pass
+    if len(p) == 4:
+        p[0] = Node('assignment-expr', None, None, [p[1], p[2], p[3]])
+    else:
+        p[0] = Node('assignment-expr', None, None, [p[1], p[2]])
 
-# Rule for AND expression
-def p_andExpr(p):
+# Rule to implement comparison expressions
+def p_compExp(p):
     """
-    andExpr : andExpr ANDOP relExpr
-            | relExpr
+    comparisonExp : basicExp relop basicExp
+                  | basicExp relop comparisonExp
     """
-    pass
-
-# Rule for regular expression
-def p_rel_expr(p):
-    """
-    relExpr : sumExpr relop sumExpr
-    """
-    pass
+    p[0] = Node('comparisonExp', None, None, [p[1], p[2], p[3]])
 
 # Rule for operators
 def p_relop(p):
@@ -230,46 +264,47 @@ def p_relop(p):
           | UNEQL
           | EQLTO
     """
-    pass
+    T = Node(p[1], p[1])
+    p[0] = Node('relop', None, None, [T])
 
-# Rule for sum expression
-def p_sumExpr(p):
-    """
-    sumExpr : sumExpr sumOp term
-            | term
-    """
-    pass
-
-# Rule for sum operator
+# Rule for arithmetic operators
 def p_sumOp(p):
     """
     sumOp : ADDOP
           | SUBOP
-    """
-    pass
-
-# Rule for terms
-def p_term(p):
-    """
-    term : term mulOp number
-         | number
-    """
-    pass
-
-# Rule to implement numbers
-def p_number(p):
-    """
-    number : INTVR
-    """
-    pass
-
-# Rule for multiplication and division operator
-def p_mulOp(p):
-    """
-    mulOp : DEROP
+          | DEROP
           | QUOOP
+          | EQUAL
     """
-    pass
+    T = Node(p[1], p[1])
+    p[0] = Node('sumOp', None, None, [T])
+
+# Rule to implement if statements
+def p_selectionStmt(p):
+    """
+    selectionStmt : IF expression EQUAL block
+                  | IF expression EQUAL block ELSE
+    """
+    T = Node('IF', p[1])
+    p[0] = Node('selectionStmt', None, None, [T, p[3], p[5]])
+
+# Rule to implement iterations
+def p_iterationStmt(p):
+    """
+    iterationStmt : FOR basicExp IN expression
+                  | WHILE basicExp EQLTO expression
+                  | WHILE basicExp LESST expression
+                  | WHILE basicExp GREAT expression
+    """
+    T = Node('FOR', p[1])
+    p[0] = Node('iterationStmt', None, None, [T, p[2], p[3]])
+
+# Rule for general expression
+def p_expression(p):
+    """
+    expression : expression OROPE expression
+    """
+    p[0] = Node('expression', None, None, [p[1]])
 
 # Rule for inputs
 def p_input_stmt(p):
