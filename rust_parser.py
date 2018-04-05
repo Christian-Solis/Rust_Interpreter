@@ -225,6 +225,7 @@ def p_expression(p):
     expression : basicExp
                | assignmentExp SEMCL
                | comparisonExp
+               | boolExp
     """
     pass
     # p[0] = Node('expression', None, None, [p[1]])
@@ -294,6 +295,7 @@ def p_sumOp(p):
           | DEROP
           | QUOOP
           | EQUAL
+          | REMOP
     """
     pass
     # T = Node(p[1], p[1])
@@ -340,6 +342,14 @@ def p_input_stmt(p):
 def p_output_stmt(p):
     """
     outputStmt : PRINTLN OPENP stmt CLOSP
+    """
+    pass
+
+# Rule for boolean expressions
+def p_boolExp(p):
+    """
+    boolExp : TRUE
+            | FALSE
     """
     pass
 

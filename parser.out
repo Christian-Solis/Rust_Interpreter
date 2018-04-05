@@ -2,23 +2,13 @@ Created by PLY version 3.10 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    ITER
-    TRUE
-    FALSE
-    CONCAT
-    STRING
-    NEW
-    THEN
     LOOP
     DOTOP
-    LOOPC
-    FORCN
-    INCON
-    REMOP
     ANDOP
     OROPE
     SLCOM
     BLCOM
+    COLON
 
 Grammar
 
@@ -57,102 +47,100 @@ Rule 31    stmt -> outputStmt
 Rule 32    expression -> basicExp
 Rule 33    expression -> assignmentExp SEMCL
 Rule 34    expression -> comparisonExp
-Rule 35    basicExp -> IDVAR
-Rule 36    basicExp -> INTVR
-Rule 37    basicExp -> STRNG
-Rule 38    identifier -> IDVAR
-Rule 39    identifier -> INTVR
-Rule 40    assignmentExp -> identifier sumOp basicExp
-Rule 41    assignmentExp -> identifier sumOp assignmentExp
-Rule 42    comparisonExp -> basicExp relop basicExp
-Rule 43    comparisonExp -> basicExp relop comparisonExp
-Rule 44    relop -> LESST
-Rule 45    relop -> LSSEQ
-Rule 46    relop -> GREAT
-Rule 47    relop -> GRTEQ
-Rule 48    relop -> EQUAL
-Rule 49    relop -> UNEQL
-Rule 50    relop -> EQLTO
-Rule 51    sumOp -> ADDOP
-Rule 52    sumOp -> SUBOP
-Rule 53    sumOp -> DEROP
-Rule 54    sumOp -> QUOOP
-Rule 55    sumOp -> EQUAL
-Rule 56    selectionStmt -> IF expression EQUAL block
-Rule 57    selectionStmt -> IF expression EQUAL block ELSE
-Rule 58    iterationStmt -> FOR expression IN expression
-Rule 59    iterationStmt -> WHILE expression EQUAL expression
-Rule 60    iterationStmt -> WHILE expression LESST expression
-Rule 61    iterationStmt -> WHILE expression GREAT expression
-Rule 62    inputStmt -> STDIN OPENP stmt CLOSP
-Rule 63    outputStmt -> PRINTLN OPENP stmt CLOSP
+Rule 35    expression -> boolExp
+Rule 36    basicExp -> IDVAR
+Rule 37    basicExp -> INTVR
+Rule 38    basicExp -> STRNG
+Rule 39    identifier -> IDVAR
+Rule 40    identifier -> INTVR
+Rule 41    assignmentExp -> identifier sumOp basicExp
+Rule 42    assignmentExp -> identifier sumOp assignmentExp
+Rule 43    comparisonExp -> basicExp relop basicExp
+Rule 44    comparisonExp -> basicExp relop comparisonExp
+Rule 45    relop -> LESST
+Rule 46    relop -> LSSEQ
+Rule 47    relop -> GREAT
+Rule 48    relop -> GRTEQ
+Rule 49    relop -> EQUAL
+Rule 50    relop -> UNEQL
+Rule 51    relop -> EQLTO
+Rule 52    sumOp -> ADDOP
+Rule 53    sumOp -> SUBOP
+Rule 54    sumOp -> DEROP
+Rule 55    sumOp -> QUOOP
+Rule 56    sumOp -> EQUAL
+Rule 57    sumOp -> REMOP
+Rule 58    selectionStmt -> IF expression EQUAL block
+Rule 59    selectionStmt -> IF expression EQUAL block ELSE
+Rule 60    iterationStmt -> FOR expression IN expression
+Rule 61    iterationStmt -> WHILE expression EQUAL expression
+Rule 62    iterationStmt -> WHILE expression LESST expression
+Rule 63    iterationStmt -> WHILE expression GREAT expression
+Rule 64    inputStmt -> STDIN OPENP stmt CLOSP
+Rule 65    outputStmt -> PRINTLN OPENP stmt CLOSP
+Rule 66    boolExp -> TRUE
+Rule 67    boolExp -> FALSE
 
 Terminals, with rules where they appear
 
-ADDOP                : 51
+ADDOP                : 52
 ANDOP                : 
 BLCOM                : 
-CLOSP                : 17 18 62 63
+CLOSP                : 17 18 64 65
+COLON                : 
 COMMA                : 20
-CONCAT               : 
 CONST                : 13
-DEROP                : 53
+DEROP                : 54
 DOTOP                : 
-ELSE                 : 57
-EQLTO                : 50
-EQUAL                : 9 10 11 12 13 14 48 55 56 57 59
-FALSE                : 
+ELSE                 : 59
+EQLTO                : 51
+EQUAL                : 9 10 11 12 13 14 49 56 58 59 61
+FALSE                : 67
 FN                   : 15 16
-FOR                  : 58
-FORCN                : 
-GREAT                : 46 61
-GRTEQ                : 47
-IDVAR                : 9 9 10 11 12 13 13 14 14 21 35 38
-IF                   : 56 57
-IN                   : 58
-INCON                : 
-INTVR                : 10 36 39
-ITER                 : 
+FOR                  : 60
+GREAT                : 47 63
+GRTEQ                : 48
+IDVAR                : 9 9 10 11 12 13 13 14 14 21 36 39
+IF                   : 58 59
+IN                   : 60
+INTVR                : 10 37 40
 LBCKT                : 22 23
-LESST                : 44 60
+LESST                : 45 62
 LET                  : 9 10 11 12
 LOOP                 : 
-LOOPC                : 
-LSSEQ                : 45
-NEW                  : 
-OPENP                : 17 18 62 63
+LSSEQ                : 46
+OPENP                : 17 18 64 65
 OROPE                : 
-PRINTLN              : 63
-QUOOP                : 54
+PRINTLN              : 65
+QUOOP                : 55
 RBCKT                : 22 23
-REMOP                : 
+REMOP                : 57
 SEMCL                : 9 10 11 12 13 14 33
 SLCOM                : 
 STATIC               : 14
-STDIN                : 62
-STRING               : 
-STRNG                : 11 37
-SUBOP                : 52
-THEN                 : 
-TRUE                 : 
-UNEQL                : 49
-WHILE                : 59 60 61
+STDIN                : 64
+STRNG                : 11 38
+SUBOP                : 53
+TRUE                 : 66
+UNEQL                : 50
+WHILE                : 61 62 63
 error                : 
 
 Nonterminals, with rules where they appear
 
-assignmentExp        : 33 41
-basicExp             : 32 40 42 42 43
-block                : 16 56 57
-comparisonExp        : 34 43
+assignmentExp        : 33 42
+basicExp             : 32 41 43 43 44
+block                : 16 58 59
+boolExp              : 35
+comparisonExp        : 34 44
 constDeclaration     : 6
 declaration          : 3 4 27
 declarationList      : 2 4
-expression           : 12 26 56 57 58 58 59 59 60 60 61 61
+expression           : 12 26 58 59 60 60 61 61 62 62 63 63
 foo                  : 0
 funcDeclaration      : 8
 function             : 15
-identifier           : 40 41
+identifier           : 41 42
 inputStmt            : 30
 iterationStmt        : 29
 outputStmt           : 31
@@ -160,12 +148,12 @@ paramList            : 18 20
 parameter            : 19 20
 parameters           : 16
 program              : 1
-relop                : 42 43
+relop                : 43 44
 selectionStmt        : 28
 statement-list       : 23 25
 staticDeclaration    : 7
-stmt                 : 24 25 62 63
-sumOp                : 40 41
+stmt                 : 24 25 64 65
+sumOp                : 41 42
 varDeclaration       : 5
 
 Parsing method: LALR
@@ -271,6 +259,8 @@ state 5
     IDVAR           reduce using rule 5 (declaration -> varDeclaration .)
     INTVR           reduce using rule 5 (declaration -> varDeclaration .)
     STRNG           reduce using rule 5 (declaration -> varDeclaration .)
+    TRUE            reduce using rule 5 (declaration -> varDeclaration .)
+    FALSE           reduce using rule 5 (declaration -> varDeclaration .)
     RBCKT           reduce using rule 5 (declaration -> varDeclaration .)
     CLOSP           reduce using rule 5 (declaration -> varDeclaration .)
 
@@ -292,6 +282,8 @@ state 6
     IDVAR           reduce using rule 6 (declaration -> constDeclaration .)
     INTVR           reduce using rule 6 (declaration -> constDeclaration .)
     STRNG           reduce using rule 6 (declaration -> constDeclaration .)
+    TRUE            reduce using rule 6 (declaration -> constDeclaration .)
+    FALSE           reduce using rule 6 (declaration -> constDeclaration .)
     RBCKT           reduce using rule 6 (declaration -> constDeclaration .)
     CLOSP           reduce using rule 6 (declaration -> constDeclaration .)
 
@@ -313,6 +305,8 @@ state 7
     IDVAR           reduce using rule 7 (declaration -> staticDeclaration .)
     INTVR           reduce using rule 7 (declaration -> staticDeclaration .)
     STRNG           reduce using rule 7 (declaration -> staticDeclaration .)
+    TRUE            reduce using rule 7 (declaration -> staticDeclaration .)
+    FALSE           reduce using rule 7 (declaration -> staticDeclaration .)
     RBCKT           reduce using rule 7 (declaration -> staticDeclaration .)
     CLOSP           reduce using rule 7 (declaration -> staticDeclaration .)
 
@@ -334,6 +328,8 @@ state 8
     IDVAR           reduce using rule 8 (declaration -> funcDeclaration .)
     INTVR           reduce using rule 8 (declaration -> funcDeclaration .)
     STRNG           reduce using rule 8 (declaration -> funcDeclaration .)
+    TRUE            reduce using rule 8 (declaration -> funcDeclaration .)
+    FALSE           reduce using rule 8 (declaration -> funcDeclaration .)
     RBCKT           reduce using rule 8 (declaration -> funcDeclaration .)
     CLOSP           reduce using rule 8 (declaration -> funcDeclaration .)
 
@@ -429,6 +425,8 @@ state 18
     IDVAR           reduce using rule 15 (funcDeclaration -> FN function .)
     INTVR           reduce using rule 15 (funcDeclaration -> FN function .)
     STRNG           reduce using rule 15 (funcDeclaration -> FN function .)
+    TRUE            reduce using rule 15 (funcDeclaration -> FN function .)
+    FALSE           reduce using rule 15 (funcDeclaration -> FN function .)
     RBCKT           reduce using rule 15 (funcDeclaration -> FN function .)
     CLOSP           reduce using rule 15 (funcDeclaration -> FN function .)
 
@@ -442,38 +440,44 @@ state 19
     (32) expression -> . basicExp
     (33) expression -> . assignmentExp SEMCL
     (34) expression -> . comparisonExp
-    (35) basicExp -> . IDVAR
-    (36) basicExp -> . INTVR
-    (37) basicExp -> . STRNG
-    (40) assignmentExp -> . identifier sumOp basicExp
-    (41) assignmentExp -> . identifier sumOp assignmentExp
-    (42) comparisonExp -> . basicExp relop basicExp
-    (43) comparisonExp -> . basicExp relop comparisonExp
-    (38) identifier -> . IDVAR
-    (39) identifier -> . INTVR
+    (35) expression -> . boolExp
+    (36) basicExp -> . IDVAR
+    (37) basicExp -> . INTVR
+    (38) basicExp -> . STRNG
+    (41) assignmentExp -> . identifier sumOp basicExp
+    (42) assignmentExp -> . identifier sumOp assignmentExp
+    (43) comparisonExp -> . basicExp relop basicExp
+    (44) comparisonExp -> . basicExp relop comparisonExp
+    (66) boolExp -> . TRUE
+    (67) boolExp -> . FALSE
+    (39) identifier -> . IDVAR
+    (40) identifier -> . INTVR
 
     IDVAR           shift and go to state 24
     INTVR           shift and go to state 25
     STRNG           shift and go to state 26
+    TRUE            shift and go to state 33
+    FALSE           shift and go to state 34
 
     expression                     shift and go to state 27
     basicExp                       shift and go to state 28
     assignmentExp                  shift and go to state 29
     comparisonExp                  shift and go to state 30
-    identifier                     shift and go to state 31
+    boolExp                        shift and go to state 31
+    identifier                     shift and go to state 32
 
 state 20
 
     (13) constDeclaration -> CONST IDVAR EQUAL . IDVAR SEMCL
 
-    IDVAR           shift and go to state 32
+    IDVAR           shift and go to state 35
 
 
 state 21
 
     (14) staticDeclaration -> STATIC IDVAR EQUAL . IDVAR SEMCL
 
-    IDVAR           shift and go to state 33
+    IDVAR           shift and go to state 36
 
 
 state 22
@@ -482,9 +486,9 @@ state 22
     (22) block -> . LBCKT RBCKT
     (23) block -> . LBCKT statement-list RBCKT
 
-    LBCKT           shift and go to state 35
+    LBCKT           shift and go to state 38
 
-    block                          shift and go to state 34
+    block                          shift and go to state 37
 
 state 23
 
@@ -494,99 +498,101 @@ state 23
     (20) paramList -> . parameter COMMA paramList
     (21) parameter -> . IDVAR
 
-    CLOSP           shift and go to state 36
-    IDVAR           shift and go to state 39
+    CLOSP           shift and go to state 39
+    IDVAR           shift and go to state 42
 
-    paramList                      shift and go to state 37
-    parameter                      shift and go to state 38
+    paramList                      shift and go to state 40
+    parameter                      shift and go to state 41
 
 state 24
 
     (9) varDeclaration -> LET IDVAR EQUAL IDVAR . SEMCL
-    (35) basicExp -> IDVAR .
-    (38) identifier -> IDVAR .
+    (36) basicExp -> IDVAR .
+    (39) identifier -> IDVAR .
 
   ! shift/reduce conflict for SEMCL resolved as shift
-  ! reduce/reduce conflict for EQUAL resolved using rule 35 (basicExp -> IDVAR .)
-    SEMCL           shift and go to state 40
-    LESST           reduce using rule 35 (basicExp -> IDVAR .)
-    LSSEQ           reduce using rule 35 (basicExp -> IDVAR .)
-    GREAT           reduce using rule 35 (basicExp -> IDVAR .)
-    GRTEQ           reduce using rule 35 (basicExp -> IDVAR .)
-    EQUAL           reduce using rule 35 (basicExp -> IDVAR .)
-    UNEQL           reduce using rule 35 (basicExp -> IDVAR .)
-    EQLTO           reduce using rule 35 (basicExp -> IDVAR .)
-    ADDOP           reduce using rule 38 (identifier -> IDVAR .)
-    SUBOP           reduce using rule 38 (identifier -> IDVAR .)
-    DEROP           reduce using rule 38 (identifier -> IDVAR .)
-    QUOOP           reduce using rule 38 (identifier -> IDVAR .)
+  ! reduce/reduce conflict for EQUAL resolved using rule 36 (basicExp -> IDVAR .)
+    SEMCL           shift and go to state 43
+    LESST           reduce using rule 36 (basicExp -> IDVAR .)
+    LSSEQ           reduce using rule 36 (basicExp -> IDVAR .)
+    GREAT           reduce using rule 36 (basicExp -> IDVAR .)
+    GRTEQ           reduce using rule 36 (basicExp -> IDVAR .)
+    EQUAL           reduce using rule 36 (basicExp -> IDVAR .)
+    UNEQL           reduce using rule 36 (basicExp -> IDVAR .)
+    EQLTO           reduce using rule 36 (basicExp -> IDVAR .)
+    ADDOP           reduce using rule 39 (identifier -> IDVAR .)
+    SUBOP           reduce using rule 39 (identifier -> IDVAR .)
+    DEROP           reduce using rule 39 (identifier -> IDVAR .)
+    QUOOP           reduce using rule 39 (identifier -> IDVAR .)
+    REMOP           reduce using rule 39 (identifier -> IDVAR .)
 
-  ! SEMCL           [ reduce using rule 35 (basicExp -> IDVAR .) ]
-  ! EQUAL           [ reduce using rule 38 (identifier -> IDVAR .) ]
+  ! SEMCL           [ reduce using rule 36 (basicExp -> IDVAR .) ]
+  ! EQUAL           [ reduce using rule 39 (identifier -> IDVAR .) ]
 
 
 state 25
 
     (10) varDeclaration -> LET IDVAR EQUAL INTVR . SEMCL
-    (36) basicExp -> INTVR .
-    (39) identifier -> INTVR .
+    (37) basicExp -> INTVR .
+    (40) identifier -> INTVR .
 
   ! shift/reduce conflict for SEMCL resolved as shift
-  ! reduce/reduce conflict for EQUAL resolved using rule 36 (basicExp -> INTVR .)
-    SEMCL           shift and go to state 41
-    LESST           reduce using rule 36 (basicExp -> INTVR .)
-    LSSEQ           reduce using rule 36 (basicExp -> INTVR .)
-    GREAT           reduce using rule 36 (basicExp -> INTVR .)
-    GRTEQ           reduce using rule 36 (basicExp -> INTVR .)
-    EQUAL           reduce using rule 36 (basicExp -> INTVR .)
-    UNEQL           reduce using rule 36 (basicExp -> INTVR .)
-    EQLTO           reduce using rule 36 (basicExp -> INTVR .)
-    ADDOP           reduce using rule 39 (identifier -> INTVR .)
-    SUBOP           reduce using rule 39 (identifier -> INTVR .)
-    DEROP           reduce using rule 39 (identifier -> INTVR .)
-    QUOOP           reduce using rule 39 (identifier -> INTVR .)
+  ! reduce/reduce conflict for EQUAL resolved using rule 37 (basicExp -> INTVR .)
+    SEMCL           shift and go to state 44
+    LESST           reduce using rule 37 (basicExp -> INTVR .)
+    LSSEQ           reduce using rule 37 (basicExp -> INTVR .)
+    GREAT           reduce using rule 37 (basicExp -> INTVR .)
+    GRTEQ           reduce using rule 37 (basicExp -> INTVR .)
+    EQUAL           reduce using rule 37 (basicExp -> INTVR .)
+    UNEQL           reduce using rule 37 (basicExp -> INTVR .)
+    EQLTO           reduce using rule 37 (basicExp -> INTVR .)
+    ADDOP           reduce using rule 40 (identifier -> INTVR .)
+    SUBOP           reduce using rule 40 (identifier -> INTVR .)
+    DEROP           reduce using rule 40 (identifier -> INTVR .)
+    QUOOP           reduce using rule 40 (identifier -> INTVR .)
+    REMOP           reduce using rule 40 (identifier -> INTVR .)
 
-  ! SEMCL           [ reduce using rule 36 (basicExp -> INTVR .) ]
-  ! EQUAL           [ reduce using rule 39 (identifier -> INTVR .) ]
+  ! SEMCL           [ reduce using rule 37 (basicExp -> INTVR .) ]
+  ! EQUAL           [ reduce using rule 40 (identifier -> INTVR .) ]
 
 
 state 26
 
     (11) varDeclaration -> LET IDVAR EQUAL STRNG . SEMCL
-    (37) basicExp -> STRNG .
+    (38) basicExp -> STRNG .
 
   ! shift/reduce conflict for SEMCL resolved as shift
-    SEMCL           shift and go to state 42
-    LESST           reduce using rule 37 (basicExp -> STRNG .)
-    LSSEQ           reduce using rule 37 (basicExp -> STRNG .)
-    GREAT           reduce using rule 37 (basicExp -> STRNG .)
-    GRTEQ           reduce using rule 37 (basicExp -> STRNG .)
-    EQUAL           reduce using rule 37 (basicExp -> STRNG .)
-    UNEQL           reduce using rule 37 (basicExp -> STRNG .)
-    EQLTO           reduce using rule 37 (basicExp -> STRNG .)
+    SEMCL           shift and go to state 45
+    LESST           reduce using rule 38 (basicExp -> STRNG .)
+    LSSEQ           reduce using rule 38 (basicExp -> STRNG .)
+    GREAT           reduce using rule 38 (basicExp -> STRNG .)
+    GRTEQ           reduce using rule 38 (basicExp -> STRNG .)
+    EQUAL           reduce using rule 38 (basicExp -> STRNG .)
+    UNEQL           reduce using rule 38 (basicExp -> STRNG .)
+    EQLTO           reduce using rule 38 (basicExp -> STRNG .)
 
-  ! SEMCL           [ reduce using rule 37 (basicExp -> STRNG .) ]
+  ! SEMCL           [ reduce using rule 38 (basicExp -> STRNG .) ]
 
 
 state 27
 
     (12) varDeclaration -> LET IDVAR EQUAL expression . SEMCL
 
-    SEMCL           shift and go to state 43
+    SEMCL           shift and go to state 46
 
 
 state 28
 
     (32) expression -> basicExp .
-    (42) comparisonExp -> basicExp . relop basicExp
-    (43) comparisonExp -> basicExp . relop comparisonExp
-    (44) relop -> . LESST
-    (45) relop -> . LSSEQ
-    (46) relop -> . GREAT
-    (47) relop -> . GRTEQ
-    (48) relop -> . EQUAL
-    (49) relop -> . UNEQL
-    (50) relop -> . EQLTO
+    (43) comparisonExp -> basicExp . relop basicExp
+    (44) comparisonExp -> basicExp . relop comparisonExp
+    (45) relop -> . LESST
+    (46) relop -> . LSSEQ
+    (47) relop -> . GREAT
+    (48) relop -> . GRTEQ
+    (49) relop -> . EQUAL
+    (50) relop -> . UNEQL
+    (51) relop -> . EQLTO
 
   ! shift/reduce conflict for LESST resolved as shift
   ! shift/reduce conflict for GREAT resolved as shift
@@ -600,6 +606,8 @@ state 28
     IDVAR           reduce using rule 32 (expression -> basicExp .)
     INTVR           reduce using rule 32 (expression -> basicExp .)
     STRNG           reduce using rule 32 (expression -> basicExp .)
+    TRUE            reduce using rule 32 (expression -> basicExp .)
+    FALSE           reduce using rule 32 (expression -> basicExp .)
     LET             reduce using rule 32 (expression -> basicExp .)
     CONST           reduce using rule 32 (expression -> basicExp .)
     STATIC          reduce using rule 32 (expression -> basicExp .)
@@ -607,25 +615,25 @@ state 28
     RBCKT           reduce using rule 32 (expression -> basicExp .)
     IN              reduce using rule 32 (expression -> basicExp .)
     CLOSP           reduce using rule 32 (expression -> basicExp .)
-    LESST           shift and go to state 45
-    LSSEQ           shift and go to state 46
-    GREAT           shift and go to state 47
-    GRTEQ           shift and go to state 48
-    EQUAL           shift and go to state 49
-    UNEQL           shift and go to state 50
-    EQLTO           shift and go to state 51
+    LESST           shift and go to state 48
+    LSSEQ           shift and go to state 49
+    GREAT           shift and go to state 50
+    GRTEQ           shift and go to state 51
+    EQUAL           shift and go to state 52
+    UNEQL           shift and go to state 53
+    EQLTO           shift and go to state 54
 
   ! EQUAL           [ reduce using rule 32 (expression -> basicExp .) ]
   ! LESST           [ reduce using rule 32 (expression -> basicExp .) ]
   ! GREAT           [ reduce using rule 32 (expression -> basicExp .) ]
 
-    relop                          shift and go to state 44
+    relop                          shift and go to state 47
 
 state 29
 
     (33) expression -> assignmentExp . SEMCL
 
-    SEMCL           shift and go to state 52
+    SEMCL           shift and go to state 55
 
 
 state 30
@@ -641,6 +649,8 @@ state 30
     IDVAR           reduce using rule 34 (expression -> comparisonExp .)
     INTVR           reduce using rule 34 (expression -> comparisonExp .)
     STRNG           reduce using rule 34 (expression -> comparisonExp .)
+    TRUE            reduce using rule 34 (expression -> comparisonExp .)
+    FALSE           reduce using rule 34 (expression -> comparisonExp .)
     LET             reduce using rule 34 (expression -> comparisonExp .)
     CONST           reduce using rule 34 (expression -> comparisonExp .)
     STATIC          reduce using rule 34 (expression -> comparisonExp .)
@@ -655,37 +665,120 @@ state 30
 
 state 31
 
-    (40) assignmentExp -> identifier . sumOp basicExp
-    (41) assignmentExp -> identifier . sumOp assignmentExp
-    (51) sumOp -> . ADDOP
-    (52) sumOp -> . SUBOP
-    (53) sumOp -> . DEROP
-    (54) sumOp -> . QUOOP
-    (55) sumOp -> . EQUAL
+    (35) expression -> boolExp .
 
-    ADDOP           shift and go to state 54
-    SUBOP           shift and go to state 55
-    DEROP           shift and go to state 56
-    QUOOP           shift and go to state 57
-    EQUAL           shift and go to state 58
+    SEMCL           reduce using rule 35 (expression -> boolExp .)
+    IF              reduce using rule 35 (expression -> boolExp .)
+    FOR             reduce using rule 35 (expression -> boolExp .)
+    WHILE           reduce using rule 35 (expression -> boolExp .)
+    STDIN           reduce using rule 35 (expression -> boolExp .)
+    PRINTLN         reduce using rule 35 (expression -> boolExp .)
+    IDVAR           reduce using rule 35 (expression -> boolExp .)
+    INTVR           reduce using rule 35 (expression -> boolExp .)
+    STRNG           reduce using rule 35 (expression -> boolExp .)
+    TRUE            reduce using rule 35 (expression -> boolExp .)
+    FALSE           reduce using rule 35 (expression -> boolExp .)
+    LET             reduce using rule 35 (expression -> boolExp .)
+    CONST           reduce using rule 35 (expression -> boolExp .)
+    STATIC          reduce using rule 35 (expression -> boolExp .)
+    FN              reduce using rule 35 (expression -> boolExp .)
+    RBCKT           reduce using rule 35 (expression -> boolExp .)
+    EQUAL           reduce using rule 35 (expression -> boolExp .)
+    IN              reduce using rule 35 (expression -> boolExp .)
+    LESST           reduce using rule 35 (expression -> boolExp .)
+    GREAT           reduce using rule 35 (expression -> boolExp .)
+    CLOSP           reduce using rule 35 (expression -> boolExp .)
 
-    sumOp                          shift and go to state 53
 
 state 32
 
-    (13) constDeclaration -> CONST IDVAR EQUAL IDVAR . SEMCL
+    (41) assignmentExp -> identifier . sumOp basicExp
+    (42) assignmentExp -> identifier . sumOp assignmentExp
+    (52) sumOp -> . ADDOP
+    (53) sumOp -> . SUBOP
+    (54) sumOp -> . DEROP
+    (55) sumOp -> . QUOOP
+    (56) sumOp -> . EQUAL
+    (57) sumOp -> . REMOP
 
-    SEMCL           shift and go to state 59
+    ADDOP           shift and go to state 57
+    SUBOP           shift and go to state 58
+    DEROP           shift and go to state 59
+    QUOOP           shift and go to state 60
+    EQUAL           shift and go to state 61
+    REMOP           shift and go to state 62
 
+    sumOp                          shift and go to state 56
 
 state 33
 
-    (14) staticDeclaration -> STATIC IDVAR EQUAL IDVAR . SEMCL
+    (66) boolExp -> TRUE .
 
-    SEMCL           shift and go to state 60
+    SEMCL           reduce using rule 66 (boolExp -> TRUE .)
+    IF              reduce using rule 66 (boolExp -> TRUE .)
+    FOR             reduce using rule 66 (boolExp -> TRUE .)
+    WHILE           reduce using rule 66 (boolExp -> TRUE .)
+    STDIN           reduce using rule 66 (boolExp -> TRUE .)
+    PRINTLN         reduce using rule 66 (boolExp -> TRUE .)
+    IDVAR           reduce using rule 66 (boolExp -> TRUE .)
+    INTVR           reduce using rule 66 (boolExp -> TRUE .)
+    STRNG           reduce using rule 66 (boolExp -> TRUE .)
+    TRUE            reduce using rule 66 (boolExp -> TRUE .)
+    FALSE           reduce using rule 66 (boolExp -> TRUE .)
+    LET             reduce using rule 66 (boolExp -> TRUE .)
+    CONST           reduce using rule 66 (boolExp -> TRUE .)
+    STATIC          reduce using rule 66 (boolExp -> TRUE .)
+    FN              reduce using rule 66 (boolExp -> TRUE .)
+    RBCKT           reduce using rule 66 (boolExp -> TRUE .)
+    EQUAL           reduce using rule 66 (boolExp -> TRUE .)
+    IN              reduce using rule 66 (boolExp -> TRUE .)
+    LESST           reduce using rule 66 (boolExp -> TRUE .)
+    GREAT           reduce using rule 66 (boolExp -> TRUE .)
+    CLOSP           reduce using rule 66 (boolExp -> TRUE .)
 
 
 state 34
+
+    (67) boolExp -> FALSE .
+
+    SEMCL           reduce using rule 67 (boolExp -> FALSE .)
+    IF              reduce using rule 67 (boolExp -> FALSE .)
+    FOR             reduce using rule 67 (boolExp -> FALSE .)
+    WHILE           reduce using rule 67 (boolExp -> FALSE .)
+    STDIN           reduce using rule 67 (boolExp -> FALSE .)
+    PRINTLN         reduce using rule 67 (boolExp -> FALSE .)
+    IDVAR           reduce using rule 67 (boolExp -> FALSE .)
+    INTVR           reduce using rule 67 (boolExp -> FALSE .)
+    STRNG           reduce using rule 67 (boolExp -> FALSE .)
+    TRUE            reduce using rule 67 (boolExp -> FALSE .)
+    FALSE           reduce using rule 67 (boolExp -> FALSE .)
+    LET             reduce using rule 67 (boolExp -> FALSE .)
+    CONST           reduce using rule 67 (boolExp -> FALSE .)
+    STATIC          reduce using rule 67 (boolExp -> FALSE .)
+    FN              reduce using rule 67 (boolExp -> FALSE .)
+    RBCKT           reduce using rule 67 (boolExp -> FALSE .)
+    EQUAL           reduce using rule 67 (boolExp -> FALSE .)
+    IN              reduce using rule 67 (boolExp -> FALSE .)
+    LESST           reduce using rule 67 (boolExp -> FALSE .)
+    GREAT           reduce using rule 67 (boolExp -> FALSE .)
+    CLOSP           reduce using rule 67 (boolExp -> FALSE .)
+
+
+state 35
+
+    (13) constDeclaration -> CONST IDVAR EQUAL IDVAR . SEMCL
+
+    SEMCL           shift and go to state 63
+
+
+state 36
+
+    (14) staticDeclaration -> STATIC IDVAR EQUAL IDVAR . SEMCL
+
+    SEMCL           shift and go to state 64
+
+
+state 37
 
     (16) function -> FN parameters block .
 
@@ -702,11 +795,13 @@ state 34
     IDVAR           reduce using rule 16 (function -> FN parameters block .)
     INTVR           reduce using rule 16 (function -> FN parameters block .)
     STRNG           reduce using rule 16 (function -> FN parameters block .)
+    TRUE            reduce using rule 16 (function -> FN parameters block .)
+    FALSE           reduce using rule 16 (function -> FN parameters block .)
     RBCKT           reduce using rule 16 (function -> FN parameters block .)
     CLOSP           reduce using rule 16 (function -> FN parameters block .)
 
 
-state 35
+state 38
 
     (22) block -> LBCKT . RBCKT
     (23) block -> LBCKT . statement-list RBCKT
@@ -721,25 +816,28 @@ state 35
     (32) expression -> . basicExp
     (33) expression -> . assignmentExp SEMCL
     (34) expression -> . comparisonExp
+    (35) expression -> . boolExp
     (5) declaration -> . varDeclaration
     (6) declaration -> . constDeclaration
     (7) declaration -> . staticDeclaration
     (8) declaration -> . funcDeclaration
-    (56) selectionStmt -> . IF expression EQUAL block
-    (57) selectionStmt -> . IF expression EQUAL block ELSE
-    (58) iterationStmt -> . FOR expression IN expression
-    (59) iterationStmt -> . WHILE expression EQUAL expression
-    (60) iterationStmt -> . WHILE expression LESST expression
-    (61) iterationStmt -> . WHILE expression GREAT expression
-    (62) inputStmt -> . STDIN OPENP stmt CLOSP
-    (63) outputStmt -> . PRINTLN OPENP stmt CLOSP
-    (35) basicExp -> . IDVAR
-    (36) basicExp -> . INTVR
-    (37) basicExp -> . STRNG
-    (40) assignmentExp -> . identifier sumOp basicExp
-    (41) assignmentExp -> . identifier sumOp assignmentExp
-    (42) comparisonExp -> . basicExp relop basicExp
-    (43) comparisonExp -> . basicExp relop comparisonExp
+    (58) selectionStmt -> . IF expression EQUAL block
+    (59) selectionStmt -> . IF expression EQUAL block ELSE
+    (60) iterationStmt -> . FOR expression IN expression
+    (61) iterationStmt -> . WHILE expression EQUAL expression
+    (62) iterationStmt -> . WHILE expression LESST expression
+    (63) iterationStmt -> . WHILE expression GREAT expression
+    (64) inputStmt -> . STDIN OPENP stmt CLOSP
+    (65) outputStmt -> . PRINTLN OPENP stmt CLOSP
+    (36) basicExp -> . IDVAR
+    (37) basicExp -> . INTVR
+    (38) basicExp -> . STRNG
+    (41) assignmentExp -> . identifier sumOp basicExp
+    (42) assignmentExp -> . identifier sumOp assignmentExp
+    (43) comparisonExp -> . basicExp relop basicExp
+    (44) comparisonExp -> . basicExp relop comparisonExp
+    (66) boolExp -> . TRUE
+    (67) boolExp -> . FALSE
     (9) varDeclaration -> . LET IDVAR EQUAL IDVAR SEMCL
     (10) varDeclaration -> . LET IDVAR EQUAL INTVR SEMCL
     (11) varDeclaration -> . LET IDVAR EQUAL STRNG SEMCL
@@ -747,64 +845,67 @@ state 35
     (13) constDeclaration -> . CONST IDVAR EQUAL IDVAR SEMCL
     (14) staticDeclaration -> . STATIC IDVAR EQUAL IDVAR SEMCL
     (15) funcDeclaration -> . FN function
-    (38) identifier -> . IDVAR
-    (39) identifier -> . INTVR
+    (39) identifier -> . IDVAR
+    (40) identifier -> . INTVR
 
-    RBCKT           shift and go to state 61
-    IF              shift and go to state 70
-    FOR             shift and go to state 71
-    WHILE           shift and go to state 72
-    STDIN           shift and go to state 73
-    PRINTLN         shift and go to state 74
-    IDVAR           shift and go to state 75
-    INTVR           shift and go to state 76
-    STRNG           shift and go to state 77
+    RBCKT           shift and go to state 65
+    IF              shift and go to state 74
+    FOR             shift and go to state 75
+    WHILE           shift and go to state 76
+    STDIN           shift and go to state 77
+    PRINTLN         shift and go to state 78
+    IDVAR           shift and go to state 79
+    INTVR           shift and go to state 80
+    STRNG           shift and go to state 81
+    TRUE            shift and go to state 33
+    FALSE           shift and go to state 34
     LET             shift and go to state 9
     CONST           shift and go to state 10
     STATIC          shift and go to state 11
     FN              shift and go to state 12
 
-    statement-list                 shift and go to state 62
-    stmt                           shift and go to state 63
-    expression                     shift and go to state 64
-    declaration                    shift and go to state 65
-    selectionStmt                  shift and go to state 66
-    iterationStmt                  shift and go to state 67
-    inputStmt                      shift and go to state 68
-    outputStmt                     shift and go to state 69
+    statement-list                 shift and go to state 66
+    stmt                           shift and go to state 67
+    expression                     shift and go to state 68
+    declaration                    shift and go to state 69
+    selectionStmt                  shift and go to state 70
+    iterationStmt                  shift and go to state 71
+    inputStmt                      shift and go to state 72
+    outputStmt                     shift and go to state 73
     basicExp                       shift and go to state 28
     assignmentExp                  shift and go to state 29
     comparisonExp                  shift and go to state 30
+    boolExp                        shift and go to state 31
     varDeclaration                 shift and go to state 5
     constDeclaration               shift and go to state 6
     staticDeclaration              shift and go to state 7
     funcDeclaration                shift and go to state 8
-    identifier                     shift and go to state 31
+    identifier                     shift and go to state 32
 
-state 36
+state 39
 
     (17) parameters -> OPENP CLOSP .
 
     LBCKT           reduce using rule 17 (parameters -> OPENP CLOSP .)
 
 
-state 37
+state 40
 
     (18) parameters -> OPENP paramList . CLOSP
 
-    CLOSP           shift and go to state 78
+    CLOSP           shift and go to state 82
 
 
-state 38
+state 41
 
     (19) paramList -> parameter .
     (20) paramList -> parameter . COMMA paramList
 
     CLOSP           reduce using rule 19 (paramList -> parameter .)
-    COMMA           shift and go to state 79
+    COMMA           shift and go to state 83
 
 
-state 39
+state 42
 
     (21) parameter -> IDVAR .
 
@@ -812,7 +913,7 @@ state 39
     CLOSP           reduce using rule 21 (parameter -> IDVAR .)
 
 
-state 40
+state 43
 
     (9) varDeclaration -> LET IDVAR EQUAL IDVAR SEMCL .
 
@@ -829,11 +930,13 @@ state 40
     IDVAR           reduce using rule 9 (varDeclaration -> LET IDVAR EQUAL IDVAR SEMCL .)
     INTVR           reduce using rule 9 (varDeclaration -> LET IDVAR EQUAL IDVAR SEMCL .)
     STRNG           reduce using rule 9 (varDeclaration -> LET IDVAR EQUAL IDVAR SEMCL .)
+    TRUE            reduce using rule 9 (varDeclaration -> LET IDVAR EQUAL IDVAR SEMCL .)
+    FALSE           reduce using rule 9 (varDeclaration -> LET IDVAR EQUAL IDVAR SEMCL .)
     RBCKT           reduce using rule 9 (varDeclaration -> LET IDVAR EQUAL IDVAR SEMCL .)
     CLOSP           reduce using rule 9 (varDeclaration -> LET IDVAR EQUAL IDVAR SEMCL .)
 
 
-state 41
+state 44
 
     (10) varDeclaration -> LET IDVAR EQUAL INTVR SEMCL .
 
@@ -850,11 +953,13 @@ state 41
     IDVAR           reduce using rule 10 (varDeclaration -> LET IDVAR EQUAL INTVR SEMCL .)
     INTVR           reduce using rule 10 (varDeclaration -> LET IDVAR EQUAL INTVR SEMCL .)
     STRNG           reduce using rule 10 (varDeclaration -> LET IDVAR EQUAL INTVR SEMCL .)
+    TRUE            reduce using rule 10 (varDeclaration -> LET IDVAR EQUAL INTVR SEMCL .)
+    FALSE           reduce using rule 10 (varDeclaration -> LET IDVAR EQUAL INTVR SEMCL .)
     RBCKT           reduce using rule 10 (varDeclaration -> LET IDVAR EQUAL INTVR SEMCL .)
     CLOSP           reduce using rule 10 (varDeclaration -> LET IDVAR EQUAL INTVR SEMCL .)
 
 
-state 42
+state 45
 
     (11) varDeclaration -> LET IDVAR EQUAL STRNG SEMCL .
 
@@ -871,11 +976,13 @@ state 42
     IDVAR           reduce using rule 11 (varDeclaration -> LET IDVAR EQUAL STRNG SEMCL .)
     INTVR           reduce using rule 11 (varDeclaration -> LET IDVAR EQUAL STRNG SEMCL .)
     STRNG           reduce using rule 11 (varDeclaration -> LET IDVAR EQUAL STRNG SEMCL .)
+    TRUE            reduce using rule 11 (varDeclaration -> LET IDVAR EQUAL STRNG SEMCL .)
+    FALSE           reduce using rule 11 (varDeclaration -> LET IDVAR EQUAL STRNG SEMCL .)
     RBCKT           reduce using rule 11 (varDeclaration -> LET IDVAR EQUAL STRNG SEMCL .)
     CLOSP           reduce using rule 11 (varDeclaration -> LET IDVAR EQUAL STRNG SEMCL .)
 
 
-state 43
+state 46
 
     (12) varDeclaration -> LET IDVAR EQUAL expression SEMCL .
 
@@ -892,91 +999,93 @@ state 43
     IDVAR           reduce using rule 12 (varDeclaration -> LET IDVAR EQUAL expression SEMCL .)
     INTVR           reduce using rule 12 (varDeclaration -> LET IDVAR EQUAL expression SEMCL .)
     STRNG           reduce using rule 12 (varDeclaration -> LET IDVAR EQUAL expression SEMCL .)
+    TRUE            reduce using rule 12 (varDeclaration -> LET IDVAR EQUAL expression SEMCL .)
+    FALSE           reduce using rule 12 (varDeclaration -> LET IDVAR EQUAL expression SEMCL .)
     RBCKT           reduce using rule 12 (varDeclaration -> LET IDVAR EQUAL expression SEMCL .)
     CLOSP           reduce using rule 12 (varDeclaration -> LET IDVAR EQUAL expression SEMCL .)
 
 
-state 44
-
-    (42) comparisonExp -> basicExp relop . basicExp
-    (43) comparisonExp -> basicExp relop . comparisonExp
-    (35) basicExp -> . IDVAR
-    (36) basicExp -> . INTVR
-    (37) basicExp -> . STRNG
-    (42) comparisonExp -> . basicExp relop basicExp
-    (43) comparisonExp -> . basicExp relop comparisonExp
-
-    IDVAR           shift and go to state 82
-    INTVR           shift and go to state 83
-    STRNG           shift and go to state 77
-
-    basicExp                       shift and go to state 80
-    comparisonExp                  shift and go to state 81
-
-state 45
-
-    (44) relop -> LESST .
-
-    IDVAR           reduce using rule 44 (relop -> LESST .)
-    INTVR           reduce using rule 44 (relop -> LESST .)
-    STRNG           reduce using rule 44 (relop -> LESST .)
-
-
-state 46
-
-    (45) relop -> LSSEQ .
-
-    IDVAR           reduce using rule 45 (relop -> LSSEQ .)
-    INTVR           reduce using rule 45 (relop -> LSSEQ .)
-    STRNG           reduce using rule 45 (relop -> LSSEQ .)
-
-
 state 47
 
-    (46) relop -> GREAT .
+    (43) comparisonExp -> basicExp relop . basicExp
+    (44) comparisonExp -> basicExp relop . comparisonExp
+    (36) basicExp -> . IDVAR
+    (37) basicExp -> . INTVR
+    (38) basicExp -> . STRNG
+    (43) comparisonExp -> . basicExp relop basicExp
+    (44) comparisonExp -> . basicExp relop comparisonExp
 
-    IDVAR           reduce using rule 46 (relop -> GREAT .)
-    INTVR           reduce using rule 46 (relop -> GREAT .)
-    STRNG           reduce using rule 46 (relop -> GREAT .)
+    IDVAR           shift and go to state 86
+    INTVR           shift and go to state 87
+    STRNG           shift and go to state 81
 
+    basicExp                       shift and go to state 84
+    comparisonExp                  shift and go to state 85
 
 state 48
 
-    (47) relop -> GRTEQ .
+    (45) relop -> LESST .
 
-    IDVAR           reduce using rule 47 (relop -> GRTEQ .)
-    INTVR           reduce using rule 47 (relop -> GRTEQ .)
-    STRNG           reduce using rule 47 (relop -> GRTEQ .)
+    IDVAR           reduce using rule 45 (relop -> LESST .)
+    INTVR           reduce using rule 45 (relop -> LESST .)
+    STRNG           reduce using rule 45 (relop -> LESST .)
 
 
 state 49
 
-    (48) relop -> EQUAL .
+    (46) relop -> LSSEQ .
 
-    IDVAR           reduce using rule 48 (relop -> EQUAL .)
-    INTVR           reduce using rule 48 (relop -> EQUAL .)
-    STRNG           reduce using rule 48 (relop -> EQUAL .)
+    IDVAR           reduce using rule 46 (relop -> LSSEQ .)
+    INTVR           reduce using rule 46 (relop -> LSSEQ .)
+    STRNG           reduce using rule 46 (relop -> LSSEQ .)
 
 
 state 50
 
-    (49) relop -> UNEQL .
+    (47) relop -> GREAT .
 
-    IDVAR           reduce using rule 49 (relop -> UNEQL .)
-    INTVR           reduce using rule 49 (relop -> UNEQL .)
-    STRNG           reduce using rule 49 (relop -> UNEQL .)
+    IDVAR           reduce using rule 47 (relop -> GREAT .)
+    INTVR           reduce using rule 47 (relop -> GREAT .)
+    STRNG           reduce using rule 47 (relop -> GREAT .)
 
 
 state 51
 
-    (50) relop -> EQLTO .
+    (48) relop -> GRTEQ .
 
-    IDVAR           reduce using rule 50 (relop -> EQLTO .)
-    INTVR           reduce using rule 50 (relop -> EQLTO .)
-    STRNG           reduce using rule 50 (relop -> EQLTO .)
+    IDVAR           reduce using rule 48 (relop -> GRTEQ .)
+    INTVR           reduce using rule 48 (relop -> GRTEQ .)
+    STRNG           reduce using rule 48 (relop -> GRTEQ .)
 
 
 state 52
+
+    (49) relop -> EQUAL .
+
+    IDVAR           reduce using rule 49 (relop -> EQUAL .)
+    INTVR           reduce using rule 49 (relop -> EQUAL .)
+    STRNG           reduce using rule 49 (relop -> EQUAL .)
+
+
+state 53
+
+    (50) relop -> UNEQL .
+
+    IDVAR           reduce using rule 50 (relop -> UNEQL .)
+    INTVR           reduce using rule 50 (relop -> UNEQL .)
+    STRNG           reduce using rule 50 (relop -> UNEQL .)
+
+
+state 54
+
+    (51) relop -> EQLTO .
+
+    IDVAR           reduce using rule 51 (relop -> EQLTO .)
+    INTVR           reduce using rule 51 (relop -> EQLTO .)
+    STRNG           reduce using rule 51 (relop -> EQLTO .)
+
+
+state 55
 
     (33) expression -> assignmentExp SEMCL .
 
@@ -989,6 +1098,8 @@ state 52
     IDVAR           reduce using rule 33 (expression -> assignmentExp SEMCL .)
     INTVR           reduce using rule 33 (expression -> assignmentExp SEMCL .)
     STRNG           reduce using rule 33 (expression -> assignmentExp SEMCL .)
+    TRUE            reduce using rule 33 (expression -> assignmentExp SEMCL .)
+    FALSE           reduce using rule 33 (expression -> assignmentExp SEMCL .)
     LET             reduce using rule 33 (expression -> assignmentExp SEMCL .)
     CONST           reduce using rule 33 (expression -> assignmentExp SEMCL .)
     STATIC          reduce using rule 33 (expression -> assignmentExp SEMCL .)
@@ -1001,72 +1112,81 @@ state 52
     CLOSP           reduce using rule 33 (expression -> assignmentExp SEMCL .)
 
 
-state 53
-
-    (40) assignmentExp -> identifier sumOp . basicExp
-    (41) assignmentExp -> identifier sumOp . assignmentExp
-    (35) basicExp -> . IDVAR
-    (36) basicExp -> . INTVR
-    (37) basicExp -> . STRNG
-    (40) assignmentExp -> . identifier sumOp basicExp
-    (41) assignmentExp -> . identifier sumOp assignmentExp
-    (38) identifier -> . IDVAR
-    (39) identifier -> . INTVR
-
-    IDVAR           shift and go to state 75
-    INTVR           shift and go to state 76
-    STRNG           shift and go to state 77
-
-    identifier                     shift and go to state 31
-    basicExp                       shift and go to state 84
-    assignmentExp                  shift and go to state 85
-
-state 54
-
-    (51) sumOp -> ADDOP .
-
-    IDVAR           reduce using rule 51 (sumOp -> ADDOP .)
-    INTVR           reduce using rule 51 (sumOp -> ADDOP .)
-    STRNG           reduce using rule 51 (sumOp -> ADDOP .)
-
-
-state 55
-
-    (52) sumOp -> SUBOP .
-
-    IDVAR           reduce using rule 52 (sumOp -> SUBOP .)
-    INTVR           reduce using rule 52 (sumOp -> SUBOP .)
-    STRNG           reduce using rule 52 (sumOp -> SUBOP .)
-
-
 state 56
 
-    (53) sumOp -> DEROP .
+    (41) assignmentExp -> identifier sumOp . basicExp
+    (42) assignmentExp -> identifier sumOp . assignmentExp
+    (36) basicExp -> . IDVAR
+    (37) basicExp -> . INTVR
+    (38) basicExp -> . STRNG
+    (41) assignmentExp -> . identifier sumOp basicExp
+    (42) assignmentExp -> . identifier sumOp assignmentExp
+    (39) identifier -> . IDVAR
+    (40) identifier -> . INTVR
 
-    IDVAR           reduce using rule 53 (sumOp -> DEROP .)
-    INTVR           reduce using rule 53 (sumOp -> DEROP .)
-    STRNG           reduce using rule 53 (sumOp -> DEROP .)
+    IDVAR           shift and go to state 79
+    INTVR           shift and go to state 80
+    STRNG           shift and go to state 81
 
+    identifier                     shift and go to state 32
+    basicExp                       shift and go to state 88
+    assignmentExp                  shift and go to state 89
 
 state 57
 
-    (54) sumOp -> QUOOP .
+    (52) sumOp -> ADDOP .
 
-    IDVAR           reduce using rule 54 (sumOp -> QUOOP .)
-    INTVR           reduce using rule 54 (sumOp -> QUOOP .)
-    STRNG           reduce using rule 54 (sumOp -> QUOOP .)
+    IDVAR           reduce using rule 52 (sumOp -> ADDOP .)
+    INTVR           reduce using rule 52 (sumOp -> ADDOP .)
+    STRNG           reduce using rule 52 (sumOp -> ADDOP .)
 
 
 state 58
 
-    (55) sumOp -> EQUAL .
+    (53) sumOp -> SUBOP .
 
-    IDVAR           reduce using rule 55 (sumOp -> EQUAL .)
-    INTVR           reduce using rule 55 (sumOp -> EQUAL .)
-    STRNG           reduce using rule 55 (sumOp -> EQUAL .)
+    IDVAR           reduce using rule 53 (sumOp -> SUBOP .)
+    INTVR           reduce using rule 53 (sumOp -> SUBOP .)
+    STRNG           reduce using rule 53 (sumOp -> SUBOP .)
 
 
 state 59
+
+    (54) sumOp -> DEROP .
+
+    IDVAR           reduce using rule 54 (sumOp -> DEROP .)
+    INTVR           reduce using rule 54 (sumOp -> DEROP .)
+    STRNG           reduce using rule 54 (sumOp -> DEROP .)
+
+
+state 60
+
+    (55) sumOp -> QUOOP .
+
+    IDVAR           reduce using rule 55 (sumOp -> QUOOP .)
+    INTVR           reduce using rule 55 (sumOp -> QUOOP .)
+    STRNG           reduce using rule 55 (sumOp -> QUOOP .)
+
+
+state 61
+
+    (56) sumOp -> EQUAL .
+
+    IDVAR           reduce using rule 56 (sumOp -> EQUAL .)
+    INTVR           reduce using rule 56 (sumOp -> EQUAL .)
+    STRNG           reduce using rule 56 (sumOp -> EQUAL .)
+
+
+state 62
+
+    (57) sumOp -> REMOP .
+
+    IDVAR           reduce using rule 57 (sumOp -> REMOP .)
+    INTVR           reduce using rule 57 (sumOp -> REMOP .)
+    STRNG           reduce using rule 57 (sumOp -> REMOP .)
+
+
+state 63
 
     (13) constDeclaration -> CONST IDVAR EQUAL IDVAR SEMCL .
 
@@ -1083,11 +1203,13 @@ state 59
     IDVAR           reduce using rule 13 (constDeclaration -> CONST IDVAR EQUAL IDVAR SEMCL .)
     INTVR           reduce using rule 13 (constDeclaration -> CONST IDVAR EQUAL IDVAR SEMCL .)
     STRNG           reduce using rule 13 (constDeclaration -> CONST IDVAR EQUAL IDVAR SEMCL .)
+    TRUE            reduce using rule 13 (constDeclaration -> CONST IDVAR EQUAL IDVAR SEMCL .)
+    FALSE           reduce using rule 13 (constDeclaration -> CONST IDVAR EQUAL IDVAR SEMCL .)
     RBCKT           reduce using rule 13 (constDeclaration -> CONST IDVAR EQUAL IDVAR SEMCL .)
     CLOSP           reduce using rule 13 (constDeclaration -> CONST IDVAR EQUAL IDVAR SEMCL .)
 
 
-state 60
+state 64
 
     (14) staticDeclaration -> STATIC IDVAR EQUAL IDVAR SEMCL .
 
@@ -1104,11 +1226,13 @@ state 60
     IDVAR           reduce using rule 14 (staticDeclaration -> STATIC IDVAR EQUAL IDVAR SEMCL .)
     INTVR           reduce using rule 14 (staticDeclaration -> STATIC IDVAR EQUAL IDVAR SEMCL .)
     STRNG           reduce using rule 14 (staticDeclaration -> STATIC IDVAR EQUAL IDVAR SEMCL .)
+    TRUE            reduce using rule 14 (staticDeclaration -> STATIC IDVAR EQUAL IDVAR SEMCL .)
+    FALSE           reduce using rule 14 (staticDeclaration -> STATIC IDVAR EQUAL IDVAR SEMCL .)
     RBCKT           reduce using rule 14 (staticDeclaration -> STATIC IDVAR EQUAL IDVAR SEMCL .)
     CLOSP           reduce using rule 14 (staticDeclaration -> STATIC IDVAR EQUAL IDVAR SEMCL .)
 
 
-state 61
+state 65
 
     (22) block -> LBCKT RBCKT .
 
@@ -1125,19 +1249,21 @@ state 61
     IDVAR           reduce using rule 22 (block -> LBCKT RBCKT .)
     INTVR           reduce using rule 22 (block -> LBCKT RBCKT .)
     STRNG           reduce using rule 22 (block -> LBCKT RBCKT .)
+    TRUE            reduce using rule 22 (block -> LBCKT RBCKT .)
+    FALSE           reduce using rule 22 (block -> LBCKT RBCKT .)
     RBCKT           reduce using rule 22 (block -> LBCKT RBCKT .)
     CLOSP           reduce using rule 22 (block -> LBCKT RBCKT .)
     ELSE            reduce using rule 22 (block -> LBCKT RBCKT .)
 
 
-state 62
+state 66
 
     (23) block -> LBCKT statement-list . RBCKT
 
-    RBCKT           shift and go to state 86
+    RBCKT           shift and go to state 90
 
 
-state 63
+state 67
 
     (24) statement-list -> stmt .
     (25) statement-list -> stmt . statement-list
@@ -1152,25 +1278,28 @@ state 63
     (32) expression -> . basicExp
     (33) expression -> . assignmentExp SEMCL
     (34) expression -> . comparisonExp
+    (35) expression -> . boolExp
     (5) declaration -> . varDeclaration
     (6) declaration -> . constDeclaration
     (7) declaration -> . staticDeclaration
     (8) declaration -> . funcDeclaration
-    (56) selectionStmt -> . IF expression EQUAL block
-    (57) selectionStmt -> . IF expression EQUAL block ELSE
-    (58) iterationStmt -> . FOR expression IN expression
-    (59) iterationStmt -> . WHILE expression EQUAL expression
-    (60) iterationStmt -> . WHILE expression LESST expression
-    (61) iterationStmt -> . WHILE expression GREAT expression
-    (62) inputStmt -> . STDIN OPENP stmt CLOSP
-    (63) outputStmt -> . PRINTLN OPENP stmt CLOSP
-    (35) basicExp -> . IDVAR
-    (36) basicExp -> . INTVR
-    (37) basicExp -> . STRNG
-    (40) assignmentExp -> . identifier sumOp basicExp
-    (41) assignmentExp -> . identifier sumOp assignmentExp
-    (42) comparisonExp -> . basicExp relop basicExp
-    (43) comparisonExp -> . basicExp relop comparisonExp
+    (58) selectionStmt -> . IF expression EQUAL block
+    (59) selectionStmt -> . IF expression EQUAL block ELSE
+    (60) iterationStmt -> . FOR expression IN expression
+    (61) iterationStmt -> . WHILE expression EQUAL expression
+    (62) iterationStmt -> . WHILE expression LESST expression
+    (63) iterationStmt -> . WHILE expression GREAT expression
+    (64) inputStmt -> . STDIN OPENP stmt CLOSP
+    (65) outputStmt -> . PRINTLN OPENP stmt CLOSP
+    (36) basicExp -> . IDVAR
+    (37) basicExp -> . INTVR
+    (38) basicExp -> . STRNG
+    (41) assignmentExp -> . identifier sumOp basicExp
+    (42) assignmentExp -> . identifier sumOp assignmentExp
+    (43) comparisonExp -> . basicExp relop basicExp
+    (44) comparisonExp -> . basicExp relop comparisonExp
+    (66) boolExp -> . TRUE
+    (67) boolExp -> . FALSE
     (9) varDeclaration -> . LET IDVAR EQUAL IDVAR SEMCL
     (10) varDeclaration -> . LET IDVAR EQUAL INTVR SEMCL
     (11) varDeclaration -> . LET IDVAR EQUAL STRNG SEMCL
@@ -1178,41 +1307,44 @@ state 63
     (13) constDeclaration -> . CONST IDVAR EQUAL IDVAR SEMCL
     (14) staticDeclaration -> . STATIC IDVAR EQUAL IDVAR SEMCL
     (15) funcDeclaration -> . FN function
-    (38) identifier -> . IDVAR
-    (39) identifier -> . INTVR
+    (39) identifier -> . IDVAR
+    (40) identifier -> . INTVR
 
     RBCKT           reduce using rule 24 (statement-list -> stmt .)
-    IF              shift and go to state 70
-    FOR             shift and go to state 71
-    WHILE           shift and go to state 72
-    STDIN           shift and go to state 73
-    PRINTLN         shift and go to state 74
-    IDVAR           shift and go to state 75
-    INTVR           shift and go to state 76
-    STRNG           shift and go to state 77
+    IF              shift and go to state 74
+    FOR             shift and go to state 75
+    WHILE           shift and go to state 76
+    STDIN           shift and go to state 77
+    PRINTLN         shift and go to state 78
+    IDVAR           shift and go to state 79
+    INTVR           shift and go to state 80
+    STRNG           shift and go to state 81
+    TRUE            shift and go to state 33
+    FALSE           shift and go to state 34
     LET             shift and go to state 9
     CONST           shift and go to state 10
     STATIC          shift and go to state 11
     FN              shift and go to state 12
 
-    stmt                           shift and go to state 63
-    statement-list                 shift and go to state 87
-    expression                     shift and go to state 64
-    declaration                    shift and go to state 65
-    selectionStmt                  shift and go to state 66
-    iterationStmt                  shift and go to state 67
-    inputStmt                      shift and go to state 68
-    outputStmt                     shift and go to state 69
+    stmt                           shift and go to state 67
+    statement-list                 shift and go to state 91
+    expression                     shift and go to state 68
+    declaration                    shift and go to state 69
+    selectionStmt                  shift and go to state 70
+    iterationStmt                  shift and go to state 71
+    inputStmt                      shift and go to state 72
+    outputStmt                     shift and go to state 73
     basicExp                       shift and go to state 28
     assignmentExp                  shift and go to state 29
     comparisonExp                  shift and go to state 30
+    boolExp                        shift and go to state 31
     varDeclaration                 shift and go to state 5
     constDeclaration               shift and go to state 6
     staticDeclaration              shift and go to state 7
     funcDeclaration                shift and go to state 8
-    identifier                     shift and go to state 31
+    identifier                     shift and go to state 32
 
-state 64
+state 68
 
     (26) stmt -> expression .
 
@@ -1224,6 +1356,8 @@ state 64
     IDVAR           reduce using rule 26 (stmt -> expression .)
     INTVR           reduce using rule 26 (stmt -> expression .)
     STRNG           reduce using rule 26 (stmt -> expression .)
+    TRUE            reduce using rule 26 (stmt -> expression .)
+    FALSE           reduce using rule 26 (stmt -> expression .)
     LET             reduce using rule 26 (stmt -> expression .)
     CONST           reduce using rule 26 (stmt -> expression .)
     STATIC          reduce using rule 26 (stmt -> expression .)
@@ -1232,7 +1366,7 @@ state 64
     CLOSP           reduce using rule 26 (stmt -> expression .)
 
 
-state 65
+state 69
 
     (27) stmt -> declaration .
 
@@ -1244,6 +1378,8 @@ state 65
     IDVAR           reduce using rule 27 (stmt -> declaration .)
     INTVR           reduce using rule 27 (stmt -> declaration .)
     STRNG           reduce using rule 27 (stmt -> declaration .)
+    TRUE            reduce using rule 27 (stmt -> declaration .)
+    FALSE           reduce using rule 27 (stmt -> declaration .)
     LET             reduce using rule 27 (stmt -> declaration .)
     CONST           reduce using rule 27 (stmt -> declaration .)
     STATIC          reduce using rule 27 (stmt -> declaration .)
@@ -1252,7 +1388,7 @@ state 65
     CLOSP           reduce using rule 27 (stmt -> declaration .)
 
 
-state 66
+state 70
 
     (28) stmt -> selectionStmt .
 
@@ -1264,6 +1400,8 @@ state 66
     IDVAR           reduce using rule 28 (stmt -> selectionStmt .)
     INTVR           reduce using rule 28 (stmt -> selectionStmt .)
     STRNG           reduce using rule 28 (stmt -> selectionStmt .)
+    TRUE            reduce using rule 28 (stmt -> selectionStmt .)
+    FALSE           reduce using rule 28 (stmt -> selectionStmt .)
     LET             reduce using rule 28 (stmt -> selectionStmt .)
     CONST           reduce using rule 28 (stmt -> selectionStmt .)
     STATIC          reduce using rule 28 (stmt -> selectionStmt .)
@@ -1272,7 +1410,7 @@ state 66
     CLOSP           reduce using rule 28 (stmt -> selectionStmt .)
 
 
-state 67
+state 71
 
     (29) stmt -> iterationStmt .
 
@@ -1284,6 +1422,8 @@ state 67
     IDVAR           reduce using rule 29 (stmt -> iterationStmt .)
     INTVR           reduce using rule 29 (stmt -> iterationStmt .)
     STRNG           reduce using rule 29 (stmt -> iterationStmt .)
+    TRUE            reduce using rule 29 (stmt -> iterationStmt .)
+    FALSE           reduce using rule 29 (stmt -> iterationStmt .)
     LET             reduce using rule 29 (stmt -> iterationStmt .)
     CONST           reduce using rule 29 (stmt -> iterationStmt .)
     STATIC          reduce using rule 29 (stmt -> iterationStmt .)
@@ -1292,7 +1432,7 @@ state 67
     CLOSP           reduce using rule 29 (stmt -> iterationStmt .)
 
 
-state 68
+state 72
 
     (30) stmt -> inputStmt .
 
@@ -1304,6 +1444,8 @@ state 68
     IDVAR           reduce using rule 30 (stmt -> inputStmt .)
     INTVR           reduce using rule 30 (stmt -> inputStmt .)
     STRNG           reduce using rule 30 (stmt -> inputStmt .)
+    TRUE            reduce using rule 30 (stmt -> inputStmt .)
+    FALSE           reduce using rule 30 (stmt -> inputStmt .)
     LET             reduce using rule 30 (stmt -> inputStmt .)
     CONST           reduce using rule 30 (stmt -> inputStmt .)
     STATIC          reduce using rule 30 (stmt -> inputStmt .)
@@ -1312,7 +1454,7 @@ state 68
     CLOSP           reduce using rule 30 (stmt -> inputStmt .)
 
 
-state 69
+state 73
 
     (31) stmt -> outputStmt .
 
@@ -1324,6 +1466,8 @@ state 69
     IDVAR           reduce using rule 31 (stmt -> outputStmt .)
     INTVR           reduce using rule 31 (stmt -> outputStmt .)
     STRNG           reduce using rule 31 (stmt -> outputStmt .)
+    TRUE            reduce using rule 31 (stmt -> outputStmt .)
+    FALSE           reduce using rule 31 (stmt -> outputStmt .)
     LET             reduce using rule 31 (stmt -> outputStmt .)
     CONST           reduce using rule 31 (stmt -> outputStmt .)
     STATIC          reduce using rule 31 (stmt -> outputStmt .)
@@ -1332,367 +1476,401 @@ state 69
     CLOSP           reduce using rule 31 (stmt -> outputStmt .)
 
 
-state 70
-
-    (56) selectionStmt -> IF . expression EQUAL block
-    (57) selectionStmt -> IF . expression EQUAL block ELSE
-    (32) expression -> . basicExp
-    (33) expression -> . assignmentExp SEMCL
-    (34) expression -> . comparisonExp
-    (35) basicExp -> . IDVAR
-    (36) basicExp -> . INTVR
-    (37) basicExp -> . STRNG
-    (40) assignmentExp -> . identifier sumOp basicExp
-    (41) assignmentExp -> . identifier sumOp assignmentExp
-    (42) comparisonExp -> . basicExp relop basicExp
-    (43) comparisonExp -> . basicExp relop comparisonExp
-    (38) identifier -> . IDVAR
-    (39) identifier -> . INTVR
-
-    IDVAR           shift and go to state 75
-    INTVR           shift and go to state 76
-    STRNG           shift and go to state 77
-
-    expression                     shift and go to state 88
-    basicExp                       shift and go to state 28
-    assignmentExp                  shift and go to state 29
-    comparisonExp                  shift and go to state 30
-    identifier                     shift and go to state 31
-
-state 71
-
-    (58) iterationStmt -> FOR . expression IN expression
-    (32) expression -> . basicExp
-    (33) expression -> . assignmentExp SEMCL
-    (34) expression -> . comparisonExp
-    (35) basicExp -> . IDVAR
-    (36) basicExp -> . INTVR
-    (37) basicExp -> . STRNG
-    (40) assignmentExp -> . identifier sumOp basicExp
-    (41) assignmentExp -> . identifier sumOp assignmentExp
-    (42) comparisonExp -> . basicExp relop basicExp
-    (43) comparisonExp -> . basicExp relop comparisonExp
-    (38) identifier -> . IDVAR
-    (39) identifier -> . INTVR
-
-    IDVAR           shift and go to state 75
-    INTVR           shift and go to state 76
-    STRNG           shift and go to state 77
-
-    expression                     shift and go to state 89
-    basicExp                       shift and go to state 28
-    assignmentExp                  shift and go to state 29
-    comparisonExp                  shift and go to state 30
-    identifier                     shift and go to state 31
-
-state 72
-
-    (59) iterationStmt -> WHILE . expression EQUAL expression
-    (60) iterationStmt -> WHILE . expression LESST expression
-    (61) iterationStmt -> WHILE . expression GREAT expression
-    (32) expression -> . basicExp
-    (33) expression -> . assignmentExp SEMCL
-    (34) expression -> . comparisonExp
-    (35) basicExp -> . IDVAR
-    (36) basicExp -> . INTVR
-    (37) basicExp -> . STRNG
-    (40) assignmentExp -> . identifier sumOp basicExp
-    (41) assignmentExp -> . identifier sumOp assignmentExp
-    (42) comparisonExp -> . basicExp relop basicExp
-    (43) comparisonExp -> . basicExp relop comparisonExp
-    (38) identifier -> . IDVAR
-    (39) identifier -> . INTVR
-
-    IDVAR           shift and go to state 75
-    INTVR           shift and go to state 76
-    STRNG           shift and go to state 77
-
-    expression                     shift and go to state 90
-    basicExp                       shift and go to state 28
-    assignmentExp                  shift and go to state 29
-    comparisonExp                  shift and go to state 30
-    identifier                     shift and go to state 31
-
-state 73
-
-    (62) inputStmt -> STDIN . OPENP stmt CLOSP
-
-    OPENP           shift and go to state 91
-
-
 state 74
 
-    (63) outputStmt -> PRINTLN . OPENP stmt CLOSP
+    (58) selectionStmt -> IF . expression EQUAL block
+    (59) selectionStmt -> IF . expression EQUAL block ELSE
+    (32) expression -> . basicExp
+    (33) expression -> . assignmentExp SEMCL
+    (34) expression -> . comparisonExp
+    (35) expression -> . boolExp
+    (36) basicExp -> . IDVAR
+    (37) basicExp -> . INTVR
+    (38) basicExp -> . STRNG
+    (41) assignmentExp -> . identifier sumOp basicExp
+    (42) assignmentExp -> . identifier sumOp assignmentExp
+    (43) comparisonExp -> . basicExp relop basicExp
+    (44) comparisonExp -> . basicExp relop comparisonExp
+    (66) boolExp -> . TRUE
+    (67) boolExp -> . FALSE
+    (39) identifier -> . IDVAR
+    (40) identifier -> . INTVR
 
-    OPENP           shift and go to state 92
+    IDVAR           shift and go to state 79
+    INTVR           shift and go to state 80
+    STRNG           shift and go to state 81
+    TRUE            shift and go to state 33
+    FALSE           shift and go to state 34
 
+    expression                     shift and go to state 92
+    basicExp                       shift and go to state 28
+    assignmentExp                  shift and go to state 29
+    comparisonExp                  shift and go to state 30
+    boolExp                        shift and go to state 31
+    identifier                     shift and go to state 32
 
 state 75
 
-    (35) basicExp -> IDVAR .
-    (38) identifier -> IDVAR .
+    (60) iterationStmt -> FOR . expression IN expression
+    (32) expression -> . basicExp
+    (33) expression -> . assignmentExp SEMCL
+    (34) expression -> . comparisonExp
+    (35) expression -> . boolExp
+    (36) basicExp -> . IDVAR
+    (37) basicExp -> . INTVR
+    (38) basicExp -> . STRNG
+    (41) assignmentExp -> . identifier sumOp basicExp
+    (42) assignmentExp -> . identifier sumOp assignmentExp
+    (43) comparisonExp -> . basicExp relop basicExp
+    (44) comparisonExp -> . basicExp relop comparisonExp
+    (66) boolExp -> . TRUE
+    (67) boolExp -> . FALSE
+    (39) identifier -> . IDVAR
+    (40) identifier -> . INTVR
 
-  ! reduce/reduce conflict for EQUAL resolved using rule 35 (basicExp -> IDVAR .)
-    LESST           reduce using rule 35 (basicExp -> IDVAR .)
-    LSSEQ           reduce using rule 35 (basicExp -> IDVAR .)
-    GREAT           reduce using rule 35 (basicExp -> IDVAR .)
-    GRTEQ           reduce using rule 35 (basicExp -> IDVAR .)
-    EQUAL           reduce using rule 35 (basicExp -> IDVAR .)
-    UNEQL           reduce using rule 35 (basicExp -> IDVAR .)
-    EQLTO           reduce using rule 35 (basicExp -> IDVAR .)
-    IF              reduce using rule 35 (basicExp -> IDVAR .)
-    FOR             reduce using rule 35 (basicExp -> IDVAR .)
-    WHILE           reduce using rule 35 (basicExp -> IDVAR .)
-    STDIN           reduce using rule 35 (basicExp -> IDVAR .)
-    PRINTLN         reduce using rule 35 (basicExp -> IDVAR .)
-    IDVAR           reduce using rule 35 (basicExp -> IDVAR .)
-    INTVR           reduce using rule 35 (basicExp -> IDVAR .)
-    STRNG           reduce using rule 35 (basicExp -> IDVAR .)
-    LET             reduce using rule 35 (basicExp -> IDVAR .)
-    CONST           reduce using rule 35 (basicExp -> IDVAR .)
-    STATIC          reduce using rule 35 (basicExp -> IDVAR .)
-    FN              reduce using rule 35 (basicExp -> IDVAR .)
-    RBCKT           reduce using rule 35 (basicExp -> IDVAR .)
-    SEMCL           reduce using rule 35 (basicExp -> IDVAR .)
-    IN              reduce using rule 35 (basicExp -> IDVAR .)
-    CLOSP           reduce using rule 35 (basicExp -> IDVAR .)
-    ADDOP           reduce using rule 38 (identifier -> IDVAR .)
-    SUBOP           reduce using rule 38 (identifier -> IDVAR .)
-    DEROP           reduce using rule 38 (identifier -> IDVAR .)
-    QUOOP           reduce using rule 38 (identifier -> IDVAR .)
+    IDVAR           shift and go to state 79
+    INTVR           shift and go to state 80
+    STRNG           shift and go to state 81
+    TRUE            shift and go to state 33
+    FALSE           shift and go to state 34
 
-  ! EQUAL           [ reduce using rule 38 (identifier -> IDVAR .) ]
-
+    expression                     shift and go to state 93
+    basicExp                       shift and go to state 28
+    assignmentExp                  shift and go to state 29
+    comparisonExp                  shift and go to state 30
+    boolExp                        shift and go to state 31
+    identifier                     shift and go to state 32
 
 state 76
 
-    (36) basicExp -> INTVR .
-    (39) identifier -> INTVR .
+    (61) iterationStmt -> WHILE . expression EQUAL expression
+    (62) iterationStmt -> WHILE . expression LESST expression
+    (63) iterationStmt -> WHILE . expression GREAT expression
+    (32) expression -> . basicExp
+    (33) expression -> . assignmentExp SEMCL
+    (34) expression -> . comparisonExp
+    (35) expression -> . boolExp
+    (36) basicExp -> . IDVAR
+    (37) basicExp -> . INTVR
+    (38) basicExp -> . STRNG
+    (41) assignmentExp -> . identifier sumOp basicExp
+    (42) assignmentExp -> . identifier sumOp assignmentExp
+    (43) comparisonExp -> . basicExp relop basicExp
+    (44) comparisonExp -> . basicExp relop comparisonExp
+    (66) boolExp -> . TRUE
+    (67) boolExp -> . FALSE
+    (39) identifier -> . IDVAR
+    (40) identifier -> . INTVR
 
-  ! reduce/reduce conflict for EQUAL resolved using rule 36 (basicExp -> INTVR .)
-    LESST           reduce using rule 36 (basicExp -> INTVR .)
-    LSSEQ           reduce using rule 36 (basicExp -> INTVR .)
-    GREAT           reduce using rule 36 (basicExp -> INTVR .)
-    GRTEQ           reduce using rule 36 (basicExp -> INTVR .)
-    EQUAL           reduce using rule 36 (basicExp -> INTVR .)
-    UNEQL           reduce using rule 36 (basicExp -> INTVR .)
-    EQLTO           reduce using rule 36 (basicExp -> INTVR .)
-    IF              reduce using rule 36 (basicExp -> INTVR .)
-    FOR             reduce using rule 36 (basicExp -> INTVR .)
-    WHILE           reduce using rule 36 (basicExp -> INTVR .)
-    STDIN           reduce using rule 36 (basicExp -> INTVR .)
-    PRINTLN         reduce using rule 36 (basicExp -> INTVR .)
-    IDVAR           reduce using rule 36 (basicExp -> INTVR .)
-    INTVR           reduce using rule 36 (basicExp -> INTVR .)
-    STRNG           reduce using rule 36 (basicExp -> INTVR .)
-    LET             reduce using rule 36 (basicExp -> INTVR .)
-    CONST           reduce using rule 36 (basicExp -> INTVR .)
-    STATIC          reduce using rule 36 (basicExp -> INTVR .)
-    FN              reduce using rule 36 (basicExp -> INTVR .)
-    RBCKT           reduce using rule 36 (basicExp -> INTVR .)
-    SEMCL           reduce using rule 36 (basicExp -> INTVR .)
-    IN              reduce using rule 36 (basicExp -> INTVR .)
-    CLOSP           reduce using rule 36 (basicExp -> INTVR .)
-    ADDOP           reduce using rule 39 (identifier -> INTVR .)
-    SUBOP           reduce using rule 39 (identifier -> INTVR .)
-    DEROP           reduce using rule 39 (identifier -> INTVR .)
-    QUOOP           reduce using rule 39 (identifier -> INTVR .)
+    IDVAR           shift and go to state 79
+    INTVR           shift and go to state 80
+    STRNG           shift and go to state 81
+    TRUE            shift and go to state 33
+    FALSE           shift and go to state 34
 
-  ! EQUAL           [ reduce using rule 39 (identifier -> INTVR .) ]
-
+    expression                     shift and go to state 94
+    basicExp                       shift and go to state 28
+    assignmentExp                  shift and go to state 29
+    comparisonExp                  shift and go to state 30
+    boolExp                        shift and go to state 31
+    identifier                     shift and go to state 32
 
 state 77
 
-    (37) basicExp -> STRNG .
+    (64) inputStmt -> STDIN . OPENP stmt CLOSP
 
-    LESST           reduce using rule 37 (basicExp -> STRNG .)
-    LSSEQ           reduce using rule 37 (basicExp -> STRNG .)
-    GREAT           reduce using rule 37 (basicExp -> STRNG .)
-    GRTEQ           reduce using rule 37 (basicExp -> STRNG .)
-    EQUAL           reduce using rule 37 (basicExp -> STRNG .)
-    UNEQL           reduce using rule 37 (basicExp -> STRNG .)
-    EQLTO           reduce using rule 37 (basicExp -> STRNG .)
-    IF              reduce using rule 37 (basicExp -> STRNG .)
-    FOR             reduce using rule 37 (basicExp -> STRNG .)
-    WHILE           reduce using rule 37 (basicExp -> STRNG .)
-    STDIN           reduce using rule 37 (basicExp -> STRNG .)
-    PRINTLN         reduce using rule 37 (basicExp -> STRNG .)
-    IDVAR           reduce using rule 37 (basicExp -> STRNG .)
-    INTVR           reduce using rule 37 (basicExp -> STRNG .)
-    STRNG           reduce using rule 37 (basicExp -> STRNG .)
-    LET             reduce using rule 37 (basicExp -> STRNG .)
-    CONST           reduce using rule 37 (basicExp -> STRNG .)
-    STATIC          reduce using rule 37 (basicExp -> STRNG .)
-    FN              reduce using rule 37 (basicExp -> STRNG .)
-    RBCKT           reduce using rule 37 (basicExp -> STRNG .)
-    SEMCL           reduce using rule 37 (basicExp -> STRNG .)
-    IN              reduce using rule 37 (basicExp -> STRNG .)
-    CLOSP           reduce using rule 37 (basicExp -> STRNG .)
+    OPENP           shift and go to state 95
 
 
 state 78
+
+    (65) outputStmt -> PRINTLN . OPENP stmt CLOSP
+
+    OPENP           shift and go to state 96
+
+
+state 79
+
+    (36) basicExp -> IDVAR .
+    (39) identifier -> IDVAR .
+
+  ! reduce/reduce conflict for EQUAL resolved using rule 36 (basicExp -> IDVAR .)
+    LESST           reduce using rule 36 (basicExp -> IDVAR .)
+    LSSEQ           reduce using rule 36 (basicExp -> IDVAR .)
+    GREAT           reduce using rule 36 (basicExp -> IDVAR .)
+    GRTEQ           reduce using rule 36 (basicExp -> IDVAR .)
+    EQUAL           reduce using rule 36 (basicExp -> IDVAR .)
+    UNEQL           reduce using rule 36 (basicExp -> IDVAR .)
+    EQLTO           reduce using rule 36 (basicExp -> IDVAR .)
+    IF              reduce using rule 36 (basicExp -> IDVAR .)
+    FOR             reduce using rule 36 (basicExp -> IDVAR .)
+    WHILE           reduce using rule 36 (basicExp -> IDVAR .)
+    STDIN           reduce using rule 36 (basicExp -> IDVAR .)
+    PRINTLN         reduce using rule 36 (basicExp -> IDVAR .)
+    IDVAR           reduce using rule 36 (basicExp -> IDVAR .)
+    INTVR           reduce using rule 36 (basicExp -> IDVAR .)
+    STRNG           reduce using rule 36 (basicExp -> IDVAR .)
+    TRUE            reduce using rule 36 (basicExp -> IDVAR .)
+    FALSE           reduce using rule 36 (basicExp -> IDVAR .)
+    LET             reduce using rule 36 (basicExp -> IDVAR .)
+    CONST           reduce using rule 36 (basicExp -> IDVAR .)
+    STATIC          reduce using rule 36 (basicExp -> IDVAR .)
+    FN              reduce using rule 36 (basicExp -> IDVAR .)
+    RBCKT           reduce using rule 36 (basicExp -> IDVAR .)
+    SEMCL           reduce using rule 36 (basicExp -> IDVAR .)
+    IN              reduce using rule 36 (basicExp -> IDVAR .)
+    CLOSP           reduce using rule 36 (basicExp -> IDVAR .)
+    ADDOP           reduce using rule 39 (identifier -> IDVAR .)
+    SUBOP           reduce using rule 39 (identifier -> IDVAR .)
+    DEROP           reduce using rule 39 (identifier -> IDVAR .)
+    QUOOP           reduce using rule 39 (identifier -> IDVAR .)
+    REMOP           reduce using rule 39 (identifier -> IDVAR .)
+
+  ! EQUAL           [ reduce using rule 39 (identifier -> IDVAR .) ]
+
+
+state 80
+
+    (37) basicExp -> INTVR .
+    (40) identifier -> INTVR .
+
+  ! reduce/reduce conflict for EQUAL resolved using rule 37 (basicExp -> INTVR .)
+    LESST           reduce using rule 37 (basicExp -> INTVR .)
+    LSSEQ           reduce using rule 37 (basicExp -> INTVR .)
+    GREAT           reduce using rule 37 (basicExp -> INTVR .)
+    GRTEQ           reduce using rule 37 (basicExp -> INTVR .)
+    EQUAL           reduce using rule 37 (basicExp -> INTVR .)
+    UNEQL           reduce using rule 37 (basicExp -> INTVR .)
+    EQLTO           reduce using rule 37 (basicExp -> INTVR .)
+    IF              reduce using rule 37 (basicExp -> INTVR .)
+    FOR             reduce using rule 37 (basicExp -> INTVR .)
+    WHILE           reduce using rule 37 (basicExp -> INTVR .)
+    STDIN           reduce using rule 37 (basicExp -> INTVR .)
+    PRINTLN         reduce using rule 37 (basicExp -> INTVR .)
+    IDVAR           reduce using rule 37 (basicExp -> INTVR .)
+    INTVR           reduce using rule 37 (basicExp -> INTVR .)
+    STRNG           reduce using rule 37 (basicExp -> INTVR .)
+    TRUE            reduce using rule 37 (basicExp -> INTVR .)
+    FALSE           reduce using rule 37 (basicExp -> INTVR .)
+    LET             reduce using rule 37 (basicExp -> INTVR .)
+    CONST           reduce using rule 37 (basicExp -> INTVR .)
+    STATIC          reduce using rule 37 (basicExp -> INTVR .)
+    FN              reduce using rule 37 (basicExp -> INTVR .)
+    RBCKT           reduce using rule 37 (basicExp -> INTVR .)
+    SEMCL           reduce using rule 37 (basicExp -> INTVR .)
+    IN              reduce using rule 37 (basicExp -> INTVR .)
+    CLOSP           reduce using rule 37 (basicExp -> INTVR .)
+    ADDOP           reduce using rule 40 (identifier -> INTVR .)
+    SUBOP           reduce using rule 40 (identifier -> INTVR .)
+    DEROP           reduce using rule 40 (identifier -> INTVR .)
+    QUOOP           reduce using rule 40 (identifier -> INTVR .)
+    REMOP           reduce using rule 40 (identifier -> INTVR .)
+
+  ! EQUAL           [ reduce using rule 40 (identifier -> INTVR .) ]
+
+
+state 81
+
+    (38) basicExp -> STRNG .
+
+    LESST           reduce using rule 38 (basicExp -> STRNG .)
+    LSSEQ           reduce using rule 38 (basicExp -> STRNG .)
+    GREAT           reduce using rule 38 (basicExp -> STRNG .)
+    GRTEQ           reduce using rule 38 (basicExp -> STRNG .)
+    EQUAL           reduce using rule 38 (basicExp -> STRNG .)
+    UNEQL           reduce using rule 38 (basicExp -> STRNG .)
+    EQLTO           reduce using rule 38 (basicExp -> STRNG .)
+    IF              reduce using rule 38 (basicExp -> STRNG .)
+    FOR             reduce using rule 38 (basicExp -> STRNG .)
+    WHILE           reduce using rule 38 (basicExp -> STRNG .)
+    STDIN           reduce using rule 38 (basicExp -> STRNG .)
+    PRINTLN         reduce using rule 38 (basicExp -> STRNG .)
+    IDVAR           reduce using rule 38 (basicExp -> STRNG .)
+    INTVR           reduce using rule 38 (basicExp -> STRNG .)
+    STRNG           reduce using rule 38 (basicExp -> STRNG .)
+    TRUE            reduce using rule 38 (basicExp -> STRNG .)
+    FALSE           reduce using rule 38 (basicExp -> STRNG .)
+    LET             reduce using rule 38 (basicExp -> STRNG .)
+    CONST           reduce using rule 38 (basicExp -> STRNG .)
+    STATIC          reduce using rule 38 (basicExp -> STRNG .)
+    FN              reduce using rule 38 (basicExp -> STRNG .)
+    RBCKT           reduce using rule 38 (basicExp -> STRNG .)
+    SEMCL           reduce using rule 38 (basicExp -> STRNG .)
+    IN              reduce using rule 38 (basicExp -> STRNG .)
+    CLOSP           reduce using rule 38 (basicExp -> STRNG .)
+
+
+state 82
 
     (18) parameters -> OPENP paramList CLOSP .
 
     LBCKT           reduce using rule 18 (parameters -> OPENP paramList CLOSP .)
 
 
-state 79
+state 83
 
     (20) paramList -> parameter COMMA . paramList
     (19) paramList -> . parameter
     (20) paramList -> . parameter COMMA paramList
     (21) parameter -> . IDVAR
 
-    IDVAR           shift and go to state 39
+    IDVAR           shift and go to state 42
 
-    parameter                      shift and go to state 38
-    paramList                      shift and go to state 93
+    parameter                      shift and go to state 41
+    paramList                      shift and go to state 97
 
-state 80
+state 84
 
-    (42) comparisonExp -> basicExp relop basicExp .
-    (42) comparisonExp -> basicExp . relop basicExp
-    (43) comparisonExp -> basicExp . relop comparisonExp
-    (44) relop -> . LESST
-    (45) relop -> . LSSEQ
-    (46) relop -> . GREAT
-    (47) relop -> . GRTEQ
-    (48) relop -> . EQUAL
-    (49) relop -> . UNEQL
-    (50) relop -> . EQLTO
+    (43) comparisonExp -> basicExp relop basicExp .
+    (43) comparisonExp -> basicExp . relop basicExp
+    (44) comparisonExp -> basicExp . relop comparisonExp
+    (45) relop -> . LESST
+    (46) relop -> . LSSEQ
+    (47) relop -> . GREAT
+    (48) relop -> . GRTEQ
+    (49) relop -> . EQUAL
+    (50) relop -> . UNEQL
+    (51) relop -> . EQLTO
 
   ! shift/reduce conflict for LESST resolved as shift
   ! shift/reduce conflict for GREAT resolved as shift
   ! shift/reduce conflict for EQUAL resolved as shift
-    SEMCL           reduce using rule 42 (comparisonExp -> basicExp relop basicExp .)
-    IF              reduce using rule 42 (comparisonExp -> basicExp relop basicExp .)
-    FOR             reduce using rule 42 (comparisonExp -> basicExp relop basicExp .)
-    WHILE           reduce using rule 42 (comparisonExp -> basicExp relop basicExp .)
-    STDIN           reduce using rule 42 (comparisonExp -> basicExp relop basicExp .)
-    PRINTLN         reduce using rule 42 (comparisonExp -> basicExp relop basicExp .)
-    IDVAR           reduce using rule 42 (comparisonExp -> basicExp relop basicExp .)
-    INTVR           reduce using rule 42 (comparisonExp -> basicExp relop basicExp .)
-    STRNG           reduce using rule 42 (comparisonExp -> basicExp relop basicExp .)
-    LET             reduce using rule 42 (comparisonExp -> basicExp relop basicExp .)
-    CONST           reduce using rule 42 (comparisonExp -> basicExp relop basicExp .)
-    STATIC          reduce using rule 42 (comparisonExp -> basicExp relop basicExp .)
-    FN              reduce using rule 42 (comparisonExp -> basicExp relop basicExp .)
-    RBCKT           reduce using rule 42 (comparisonExp -> basicExp relop basicExp .)
-    IN              reduce using rule 42 (comparisonExp -> basicExp relop basicExp .)
-    CLOSP           reduce using rule 42 (comparisonExp -> basicExp relop basicExp .)
-    LESST           shift and go to state 45
-    LSSEQ           shift and go to state 46
-    GREAT           shift and go to state 47
-    GRTEQ           shift and go to state 48
-    EQUAL           shift and go to state 49
-    UNEQL           shift and go to state 50
-    EQLTO           shift and go to state 51
+    SEMCL           reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    IF              reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    FOR             reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    WHILE           reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    STDIN           reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    PRINTLN         reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    IDVAR           reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    INTVR           reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    STRNG           reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    TRUE            reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    FALSE           reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    LET             reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    CONST           reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    STATIC          reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    FN              reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    RBCKT           reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    IN              reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    CLOSP           reduce using rule 43 (comparisonExp -> basicExp relop basicExp .)
+    LESST           shift and go to state 48
+    LSSEQ           shift and go to state 49
+    GREAT           shift and go to state 50
+    GRTEQ           shift and go to state 51
+    EQUAL           shift and go to state 52
+    UNEQL           shift and go to state 53
+    EQLTO           shift and go to state 54
 
-  ! EQUAL           [ reduce using rule 42 (comparisonExp -> basicExp relop basicExp .) ]
-  ! LESST           [ reduce using rule 42 (comparisonExp -> basicExp relop basicExp .) ]
-  ! GREAT           [ reduce using rule 42 (comparisonExp -> basicExp relop basicExp .) ]
+  ! EQUAL           [ reduce using rule 43 (comparisonExp -> basicExp relop basicExp .) ]
+  ! LESST           [ reduce using rule 43 (comparisonExp -> basicExp relop basicExp .) ]
+  ! GREAT           [ reduce using rule 43 (comparisonExp -> basicExp relop basicExp .) ]
 
-    relop                          shift and go to state 44
-
-state 81
-
-    (43) comparisonExp -> basicExp relop comparisonExp .
-
-    SEMCL           reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    IF              reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    FOR             reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    WHILE           reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    STDIN           reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    PRINTLN         reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    IDVAR           reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    INTVR           reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    STRNG           reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    LET             reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    CONST           reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    STATIC          reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    FN              reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    RBCKT           reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    EQUAL           reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    IN              reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    LESST           reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    GREAT           reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-    CLOSP           reduce using rule 43 (comparisonExp -> basicExp relop comparisonExp .)
-
-
-state 82
-
-    (35) basicExp -> IDVAR .
-
-    LESST           reduce using rule 35 (basicExp -> IDVAR .)
-    LSSEQ           reduce using rule 35 (basicExp -> IDVAR .)
-    GREAT           reduce using rule 35 (basicExp -> IDVAR .)
-    GRTEQ           reduce using rule 35 (basicExp -> IDVAR .)
-    EQUAL           reduce using rule 35 (basicExp -> IDVAR .)
-    UNEQL           reduce using rule 35 (basicExp -> IDVAR .)
-    EQLTO           reduce using rule 35 (basicExp -> IDVAR .)
-    SEMCL           reduce using rule 35 (basicExp -> IDVAR .)
-    IF              reduce using rule 35 (basicExp -> IDVAR .)
-    FOR             reduce using rule 35 (basicExp -> IDVAR .)
-    WHILE           reduce using rule 35 (basicExp -> IDVAR .)
-    STDIN           reduce using rule 35 (basicExp -> IDVAR .)
-    PRINTLN         reduce using rule 35 (basicExp -> IDVAR .)
-    IDVAR           reduce using rule 35 (basicExp -> IDVAR .)
-    INTVR           reduce using rule 35 (basicExp -> IDVAR .)
-    STRNG           reduce using rule 35 (basicExp -> IDVAR .)
-    LET             reduce using rule 35 (basicExp -> IDVAR .)
-    CONST           reduce using rule 35 (basicExp -> IDVAR .)
-    STATIC          reduce using rule 35 (basicExp -> IDVAR .)
-    FN              reduce using rule 35 (basicExp -> IDVAR .)
-    RBCKT           reduce using rule 35 (basicExp -> IDVAR .)
-    IN              reduce using rule 35 (basicExp -> IDVAR .)
-    CLOSP           reduce using rule 35 (basicExp -> IDVAR .)
-
-
-state 83
-
-    (36) basicExp -> INTVR .
-
-    LESST           reduce using rule 36 (basicExp -> INTVR .)
-    LSSEQ           reduce using rule 36 (basicExp -> INTVR .)
-    GREAT           reduce using rule 36 (basicExp -> INTVR .)
-    GRTEQ           reduce using rule 36 (basicExp -> INTVR .)
-    EQUAL           reduce using rule 36 (basicExp -> INTVR .)
-    UNEQL           reduce using rule 36 (basicExp -> INTVR .)
-    EQLTO           reduce using rule 36 (basicExp -> INTVR .)
-    SEMCL           reduce using rule 36 (basicExp -> INTVR .)
-    IF              reduce using rule 36 (basicExp -> INTVR .)
-    FOR             reduce using rule 36 (basicExp -> INTVR .)
-    WHILE           reduce using rule 36 (basicExp -> INTVR .)
-    STDIN           reduce using rule 36 (basicExp -> INTVR .)
-    PRINTLN         reduce using rule 36 (basicExp -> INTVR .)
-    IDVAR           reduce using rule 36 (basicExp -> INTVR .)
-    INTVR           reduce using rule 36 (basicExp -> INTVR .)
-    STRNG           reduce using rule 36 (basicExp -> INTVR .)
-    LET             reduce using rule 36 (basicExp -> INTVR .)
-    CONST           reduce using rule 36 (basicExp -> INTVR .)
-    STATIC          reduce using rule 36 (basicExp -> INTVR .)
-    FN              reduce using rule 36 (basicExp -> INTVR .)
-    RBCKT           reduce using rule 36 (basicExp -> INTVR .)
-    IN              reduce using rule 36 (basicExp -> INTVR .)
-    CLOSP           reduce using rule 36 (basicExp -> INTVR .)
-
-
-state 84
-
-    (40) assignmentExp -> identifier sumOp basicExp .
-
-    SEMCL           reduce using rule 40 (assignmentExp -> identifier sumOp basicExp .)
-
+    relop                          shift and go to state 47
 
 state 85
 
-    (41) assignmentExp -> identifier sumOp assignmentExp .
+    (44) comparisonExp -> basicExp relop comparisonExp .
 
-    SEMCL           reduce using rule 41 (assignmentExp -> identifier sumOp assignmentExp .)
+    SEMCL           reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    IF              reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    FOR             reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    WHILE           reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    STDIN           reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    PRINTLN         reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    IDVAR           reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    INTVR           reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    STRNG           reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    TRUE            reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    FALSE           reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    LET             reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    CONST           reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    STATIC          reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    FN              reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    RBCKT           reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    EQUAL           reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    IN              reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    LESST           reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    GREAT           reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
+    CLOSP           reduce using rule 44 (comparisonExp -> basicExp relop comparisonExp .)
 
 
 state 86
+
+    (36) basicExp -> IDVAR .
+
+    LESST           reduce using rule 36 (basicExp -> IDVAR .)
+    LSSEQ           reduce using rule 36 (basicExp -> IDVAR .)
+    GREAT           reduce using rule 36 (basicExp -> IDVAR .)
+    GRTEQ           reduce using rule 36 (basicExp -> IDVAR .)
+    EQUAL           reduce using rule 36 (basicExp -> IDVAR .)
+    UNEQL           reduce using rule 36 (basicExp -> IDVAR .)
+    EQLTO           reduce using rule 36 (basicExp -> IDVAR .)
+    SEMCL           reduce using rule 36 (basicExp -> IDVAR .)
+    IF              reduce using rule 36 (basicExp -> IDVAR .)
+    FOR             reduce using rule 36 (basicExp -> IDVAR .)
+    WHILE           reduce using rule 36 (basicExp -> IDVAR .)
+    STDIN           reduce using rule 36 (basicExp -> IDVAR .)
+    PRINTLN         reduce using rule 36 (basicExp -> IDVAR .)
+    IDVAR           reduce using rule 36 (basicExp -> IDVAR .)
+    INTVR           reduce using rule 36 (basicExp -> IDVAR .)
+    STRNG           reduce using rule 36 (basicExp -> IDVAR .)
+    TRUE            reduce using rule 36 (basicExp -> IDVAR .)
+    FALSE           reduce using rule 36 (basicExp -> IDVAR .)
+    LET             reduce using rule 36 (basicExp -> IDVAR .)
+    CONST           reduce using rule 36 (basicExp -> IDVAR .)
+    STATIC          reduce using rule 36 (basicExp -> IDVAR .)
+    FN              reduce using rule 36 (basicExp -> IDVAR .)
+    RBCKT           reduce using rule 36 (basicExp -> IDVAR .)
+    IN              reduce using rule 36 (basicExp -> IDVAR .)
+    CLOSP           reduce using rule 36 (basicExp -> IDVAR .)
+
+
+state 87
+
+    (37) basicExp -> INTVR .
+
+    LESST           reduce using rule 37 (basicExp -> INTVR .)
+    LSSEQ           reduce using rule 37 (basicExp -> INTVR .)
+    GREAT           reduce using rule 37 (basicExp -> INTVR .)
+    GRTEQ           reduce using rule 37 (basicExp -> INTVR .)
+    EQUAL           reduce using rule 37 (basicExp -> INTVR .)
+    UNEQL           reduce using rule 37 (basicExp -> INTVR .)
+    EQLTO           reduce using rule 37 (basicExp -> INTVR .)
+    SEMCL           reduce using rule 37 (basicExp -> INTVR .)
+    IF              reduce using rule 37 (basicExp -> INTVR .)
+    FOR             reduce using rule 37 (basicExp -> INTVR .)
+    WHILE           reduce using rule 37 (basicExp -> INTVR .)
+    STDIN           reduce using rule 37 (basicExp -> INTVR .)
+    PRINTLN         reduce using rule 37 (basicExp -> INTVR .)
+    IDVAR           reduce using rule 37 (basicExp -> INTVR .)
+    INTVR           reduce using rule 37 (basicExp -> INTVR .)
+    STRNG           reduce using rule 37 (basicExp -> INTVR .)
+    TRUE            reduce using rule 37 (basicExp -> INTVR .)
+    FALSE           reduce using rule 37 (basicExp -> INTVR .)
+    LET             reduce using rule 37 (basicExp -> INTVR .)
+    CONST           reduce using rule 37 (basicExp -> INTVR .)
+    STATIC          reduce using rule 37 (basicExp -> INTVR .)
+    FN              reduce using rule 37 (basicExp -> INTVR .)
+    RBCKT           reduce using rule 37 (basicExp -> INTVR .)
+    IN              reduce using rule 37 (basicExp -> INTVR .)
+    CLOSP           reduce using rule 37 (basicExp -> INTVR .)
+
+
+state 88
+
+    (41) assignmentExp -> identifier sumOp basicExp .
+
+    SEMCL           reduce using rule 41 (assignmentExp -> identifier sumOp basicExp .)
+
+
+state 89
+
+    (42) assignmentExp -> identifier sumOp assignmentExp .
+
+    SEMCL           reduce using rule 42 (assignmentExp -> identifier sumOp assignmentExp .)
+
+
+state 90
 
     (23) block -> LBCKT statement-list RBCKT .
 
@@ -1709,117 +1887,49 @@ state 86
     IDVAR           reduce using rule 23 (block -> LBCKT statement-list RBCKT .)
     INTVR           reduce using rule 23 (block -> LBCKT statement-list RBCKT .)
     STRNG           reduce using rule 23 (block -> LBCKT statement-list RBCKT .)
+    TRUE            reduce using rule 23 (block -> LBCKT statement-list RBCKT .)
+    FALSE           reduce using rule 23 (block -> LBCKT statement-list RBCKT .)
     RBCKT           reduce using rule 23 (block -> LBCKT statement-list RBCKT .)
     CLOSP           reduce using rule 23 (block -> LBCKT statement-list RBCKT .)
     ELSE            reduce using rule 23 (block -> LBCKT statement-list RBCKT .)
 
 
-state 87
+state 91
 
     (25) statement-list -> stmt statement-list .
 
     RBCKT           reduce using rule 25 (statement-list -> stmt statement-list .)
 
 
-state 88
-
-    (56) selectionStmt -> IF expression . EQUAL block
-    (57) selectionStmt -> IF expression . EQUAL block ELSE
-
-    EQUAL           shift and go to state 94
-
-
-state 89
-
-    (58) iterationStmt -> FOR expression . IN expression
-
-    IN              shift and go to state 95
-
-
-state 90
-
-    (59) iterationStmt -> WHILE expression . EQUAL expression
-    (60) iterationStmt -> WHILE expression . LESST expression
-    (61) iterationStmt -> WHILE expression . GREAT expression
-
-    EQUAL           shift and go to state 96
-    LESST           shift and go to state 97
-    GREAT           shift and go to state 98
-
-
-state 91
-
-    (62) inputStmt -> STDIN OPENP . stmt CLOSP
-    (26) stmt -> . expression
-    (27) stmt -> . declaration
-    (28) stmt -> . selectionStmt
-    (29) stmt -> . iterationStmt
-    (30) stmt -> . inputStmt
-    (31) stmt -> . outputStmt
-    (32) expression -> . basicExp
-    (33) expression -> . assignmentExp SEMCL
-    (34) expression -> . comparisonExp
-    (5) declaration -> . varDeclaration
-    (6) declaration -> . constDeclaration
-    (7) declaration -> . staticDeclaration
-    (8) declaration -> . funcDeclaration
-    (56) selectionStmt -> . IF expression EQUAL block
-    (57) selectionStmt -> . IF expression EQUAL block ELSE
-    (58) iterationStmt -> . FOR expression IN expression
-    (59) iterationStmt -> . WHILE expression EQUAL expression
-    (60) iterationStmt -> . WHILE expression LESST expression
-    (61) iterationStmt -> . WHILE expression GREAT expression
-    (62) inputStmt -> . STDIN OPENP stmt CLOSP
-    (63) outputStmt -> . PRINTLN OPENP stmt CLOSP
-    (35) basicExp -> . IDVAR
-    (36) basicExp -> . INTVR
-    (37) basicExp -> . STRNG
-    (40) assignmentExp -> . identifier sumOp basicExp
-    (41) assignmentExp -> . identifier sumOp assignmentExp
-    (42) comparisonExp -> . basicExp relop basicExp
-    (43) comparisonExp -> . basicExp relop comparisonExp
-    (9) varDeclaration -> . LET IDVAR EQUAL IDVAR SEMCL
-    (10) varDeclaration -> . LET IDVAR EQUAL INTVR SEMCL
-    (11) varDeclaration -> . LET IDVAR EQUAL STRNG SEMCL
-    (12) varDeclaration -> . LET IDVAR EQUAL expression SEMCL
-    (13) constDeclaration -> . CONST IDVAR EQUAL IDVAR SEMCL
-    (14) staticDeclaration -> . STATIC IDVAR EQUAL IDVAR SEMCL
-    (15) funcDeclaration -> . FN function
-    (38) identifier -> . IDVAR
-    (39) identifier -> . INTVR
-
-    IF              shift and go to state 70
-    FOR             shift and go to state 71
-    WHILE           shift and go to state 72
-    STDIN           shift and go to state 73
-    PRINTLN         shift and go to state 74
-    IDVAR           shift and go to state 75
-    INTVR           shift and go to state 76
-    STRNG           shift and go to state 77
-    LET             shift and go to state 9
-    CONST           shift and go to state 10
-    STATIC          shift and go to state 11
-    FN              shift and go to state 12
-
-    stmt                           shift and go to state 99
-    expression                     shift and go to state 64
-    declaration                    shift and go to state 65
-    selectionStmt                  shift and go to state 66
-    iterationStmt                  shift and go to state 67
-    inputStmt                      shift and go to state 68
-    outputStmt                     shift and go to state 69
-    basicExp                       shift and go to state 28
-    assignmentExp                  shift and go to state 29
-    comparisonExp                  shift and go to state 30
-    varDeclaration                 shift and go to state 5
-    constDeclaration               shift and go to state 6
-    staticDeclaration              shift and go to state 7
-    funcDeclaration                shift and go to state 8
-    identifier                     shift and go to state 31
-
 state 92
 
-    (63) outputStmt -> PRINTLN OPENP . stmt CLOSP
+    (58) selectionStmt -> IF expression . EQUAL block
+    (59) selectionStmt -> IF expression . EQUAL block ELSE
+
+    EQUAL           shift and go to state 98
+
+
+state 93
+
+    (60) iterationStmt -> FOR expression . IN expression
+
+    IN              shift and go to state 99
+
+
+state 94
+
+    (61) iterationStmt -> WHILE expression . EQUAL expression
+    (62) iterationStmt -> WHILE expression . LESST expression
+    (63) iterationStmt -> WHILE expression . GREAT expression
+
+    EQUAL           shift and go to state 100
+    LESST           shift and go to state 101
+    GREAT           shift and go to state 102
+
+
+state 95
+
+    (64) inputStmt -> STDIN OPENP . stmt CLOSP
     (26) stmt -> . expression
     (27) stmt -> . declaration
     (28) stmt -> . selectionStmt
@@ -1829,25 +1939,28 @@ state 92
     (32) expression -> . basicExp
     (33) expression -> . assignmentExp SEMCL
     (34) expression -> . comparisonExp
+    (35) expression -> . boolExp
     (5) declaration -> . varDeclaration
     (6) declaration -> . constDeclaration
     (7) declaration -> . staticDeclaration
     (8) declaration -> . funcDeclaration
-    (56) selectionStmt -> . IF expression EQUAL block
-    (57) selectionStmt -> . IF expression EQUAL block ELSE
-    (58) iterationStmt -> . FOR expression IN expression
-    (59) iterationStmt -> . WHILE expression EQUAL expression
-    (60) iterationStmt -> . WHILE expression LESST expression
-    (61) iterationStmt -> . WHILE expression GREAT expression
-    (62) inputStmt -> . STDIN OPENP stmt CLOSP
-    (63) outputStmt -> . PRINTLN OPENP stmt CLOSP
-    (35) basicExp -> . IDVAR
-    (36) basicExp -> . INTVR
-    (37) basicExp -> . STRNG
-    (40) assignmentExp -> . identifier sumOp basicExp
-    (41) assignmentExp -> . identifier sumOp assignmentExp
-    (42) comparisonExp -> . basicExp relop basicExp
-    (43) comparisonExp -> . basicExp relop comparisonExp
+    (58) selectionStmt -> . IF expression EQUAL block
+    (59) selectionStmt -> . IF expression EQUAL block ELSE
+    (60) iterationStmt -> . FOR expression IN expression
+    (61) iterationStmt -> . WHILE expression EQUAL expression
+    (62) iterationStmt -> . WHILE expression LESST expression
+    (63) iterationStmt -> . WHILE expression GREAT expression
+    (64) inputStmt -> . STDIN OPENP stmt CLOSP
+    (65) outputStmt -> . PRINTLN OPENP stmt CLOSP
+    (36) basicExp -> . IDVAR
+    (37) basicExp -> . INTVR
+    (38) basicExp -> . STRNG
+    (41) assignmentExp -> . identifier sumOp basicExp
+    (42) assignmentExp -> . identifier sumOp assignmentExp
+    (43) comparisonExp -> . basicExp relop basicExp
+    (44) comparisonExp -> . basicExp relop comparisonExp
+    (66) boolExp -> . TRUE
+    (67) boolExp -> . FALSE
     (9) varDeclaration -> . LET IDVAR EQUAL IDVAR SEMCL
     (10) varDeclaration -> . LET IDVAR EQUAL INTVR SEMCL
     (11) varDeclaration -> . LET IDVAR EQUAL STRNG SEMCL
@@ -1855,334 +1968,453 @@ state 92
     (13) constDeclaration -> . CONST IDVAR EQUAL IDVAR SEMCL
     (14) staticDeclaration -> . STATIC IDVAR EQUAL IDVAR SEMCL
     (15) funcDeclaration -> . FN function
-    (38) identifier -> . IDVAR
-    (39) identifier -> . INTVR
+    (39) identifier -> . IDVAR
+    (40) identifier -> . INTVR
 
-    IF              shift and go to state 70
-    FOR             shift and go to state 71
-    WHILE           shift and go to state 72
-    STDIN           shift and go to state 73
-    PRINTLN         shift and go to state 74
-    IDVAR           shift and go to state 75
-    INTVR           shift and go to state 76
-    STRNG           shift and go to state 77
+    IF              shift and go to state 74
+    FOR             shift and go to state 75
+    WHILE           shift and go to state 76
+    STDIN           shift and go to state 77
+    PRINTLN         shift and go to state 78
+    IDVAR           shift and go to state 79
+    INTVR           shift and go to state 80
+    STRNG           shift and go to state 81
+    TRUE            shift and go to state 33
+    FALSE           shift and go to state 34
     LET             shift and go to state 9
     CONST           shift and go to state 10
     STATIC          shift and go to state 11
     FN              shift and go to state 12
 
-    stmt                           shift and go to state 100
-    expression                     shift and go to state 64
-    declaration                    shift and go to state 65
-    selectionStmt                  shift and go to state 66
-    iterationStmt                  shift and go to state 67
-    inputStmt                      shift and go to state 68
-    outputStmt                     shift and go to state 69
+    stmt                           shift and go to state 103
+    expression                     shift and go to state 68
+    declaration                    shift and go to state 69
+    selectionStmt                  shift and go to state 70
+    iterationStmt                  shift and go to state 71
+    inputStmt                      shift and go to state 72
+    outputStmt                     shift and go to state 73
     basicExp                       shift and go to state 28
     assignmentExp                  shift and go to state 29
     comparisonExp                  shift and go to state 30
+    boolExp                        shift and go to state 31
     varDeclaration                 shift and go to state 5
     constDeclaration               shift and go to state 6
     staticDeclaration              shift and go to state 7
     funcDeclaration                shift and go to state 8
-    identifier                     shift and go to state 31
+    identifier                     shift and go to state 32
 
-state 93
+state 96
+
+    (65) outputStmt -> PRINTLN OPENP . stmt CLOSP
+    (26) stmt -> . expression
+    (27) stmt -> . declaration
+    (28) stmt -> . selectionStmt
+    (29) stmt -> . iterationStmt
+    (30) stmt -> . inputStmt
+    (31) stmt -> . outputStmt
+    (32) expression -> . basicExp
+    (33) expression -> . assignmentExp SEMCL
+    (34) expression -> . comparisonExp
+    (35) expression -> . boolExp
+    (5) declaration -> . varDeclaration
+    (6) declaration -> . constDeclaration
+    (7) declaration -> . staticDeclaration
+    (8) declaration -> . funcDeclaration
+    (58) selectionStmt -> . IF expression EQUAL block
+    (59) selectionStmt -> . IF expression EQUAL block ELSE
+    (60) iterationStmt -> . FOR expression IN expression
+    (61) iterationStmt -> . WHILE expression EQUAL expression
+    (62) iterationStmt -> . WHILE expression LESST expression
+    (63) iterationStmt -> . WHILE expression GREAT expression
+    (64) inputStmt -> . STDIN OPENP stmt CLOSP
+    (65) outputStmt -> . PRINTLN OPENP stmt CLOSP
+    (36) basicExp -> . IDVAR
+    (37) basicExp -> . INTVR
+    (38) basicExp -> . STRNG
+    (41) assignmentExp -> . identifier sumOp basicExp
+    (42) assignmentExp -> . identifier sumOp assignmentExp
+    (43) comparisonExp -> . basicExp relop basicExp
+    (44) comparisonExp -> . basicExp relop comparisonExp
+    (66) boolExp -> . TRUE
+    (67) boolExp -> . FALSE
+    (9) varDeclaration -> . LET IDVAR EQUAL IDVAR SEMCL
+    (10) varDeclaration -> . LET IDVAR EQUAL INTVR SEMCL
+    (11) varDeclaration -> . LET IDVAR EQUAL STRNG SEMCL
+    (12) varDeclaration -> . LET IDVAR EQUAL expression SEMCL
+    (13) constDeclaration -> . CONST IDVAR EQUAL IDVAR SEMCL
+    (14) staticDeclaration -> . STATIC IDVAR EQUAL IDVAR SEMCL
+    (15) funcDeclaration -> . FN function
+    (39) identifier -> . IDVAR
+    (40) identifier -> . INTVR
+
+    IF              shift and go to state 74
+    FOR             shift and go to state 75
+    WHILE           shift and go to state 76
+    STDIN           shift and go to state 77
+    PRINTLN         shift and go to state 78
+    IDVAR           shift and go to state 79
+    INTVR           shift and go to state 80
+    STRNG           shift and go to state 81
+    TRUE            shift and go to state 33
+    FALSE           shift and go to state 34
+    LET             shift and go to state 9
+    CONST           shift and go to state 10
+    STATIC          shift and go to state 11
+    FN              shift and go to state 12
+
+    stmt                           shift and go to state 104
+    expression                     shift and go to state 68
+    declaration                    shift and go to state 69
+    selectionStmt                  shift and go to state 70
+    iterationStmt                  shift and go to state 71
+    inputStmt                      shift and go to state 72
+    outputStmt                     shift and go to state 73
+    basicExp                       shift and go to state 28
+    assignmentExp                  shift and go to state 29
+    comparisonExp                  shift and go to state 30
+    boolExp                        shift and go to state 31
+    varDeclaration                 shift and go to state 5
+    constDeclaration               shift and go to state 6
+    staticDeclaration              shift and go to state 7
+    funcDeclaration                shift and go to state 8
+    identifier                     shift and go to state 32
+
+state 97
 
     (20) paramList -> parameter COMMA paramList .
 
     CLOSP           reduce using rule 20 (paramList -> parameter COMMA paramList .)
 
 
-state 94
+state 98
 
-    (56) selectionStmt -> IF expression EQUAL . block
-    (57) selectionStmt -> IF expression EQUAL . block ELSE
+    (58) selectionStmt -> IF expression EQUAL . block
+    (59) selectionStmt -> IF expression EQUAL . block ELSE
     (22) block -> . LBCKT RBCKT
     (23) block -> . LBCKT statement-list RBCKT
 
-    LBCKT           shift and go to state 35
+    LBCKT           shift and go to state 38
 
-    block                          shift and go to state 101
-
-state 95
-
-    (58) iterationStmt -> FOR expression IN . expression
-    (32) expression -> . basicExp
-    (33) expression -> . assignmentExp SEMCL
-    (34) expression -> . comparisonExp
-    (35) basicExp -> . IDVAR
-    (36) basicExp -> . INTVR
-    (37) basicExp -> . STRNG
-    (40) assignmentExp -> . identifier sumOp basicExp
-    (41) assignmentExp -> . identifier sumOp assignmentExp
-    (42) comparisonExp -> . basicExp relop basicExp
-    (43) comparisonExp -> . basicExp relop comparisonExp
-    (38) identifier -> . IDVAR
-    (39) identifier -> . INTVR
-
-    IDVAR           shift and go to state 75
-    INTVR           shift and go to state 76
-    STRNG           shift and go to state 77
-
-    expression                     shift and go to state 102
-    basicExp                       shift and go to state 28
-    assignmentExp                  shift and go to state 29
-    comparisonExp                  shift and go to state 30
-    identifier                     shift and go to state 31
-
-state 96
-
-    (59) iterationStmt -> WHILE expression EQUAL . expression
-    (32) expression -> . basicExp
-    (33) expression -> . assignmentExp SEMCL
-    (34) expression -> . comparisonExp
-    (35) basicExp -> . IDVAR
-    (36) basicExp -> . INTVR
-    (37) basicExp -> . STRNG
-    (40) assignmentExp -> . identifier sumOp basicExp
-    (41) assignmentExp -> . identifier sumOp assignmentExp
-    (42) comparisonExp -> . basicExp relop basicExp
-    (43) comparisonExp -> . basicExp relop comparisonExp
-    (38) identifier -> . IDVAR
-    (39) identifier -> . INTVR
-
-    IDVAR           shift and go to state 75
-    INTVR           shift and go to state 76
-    STRNG           shift and go to state 77
-
-    expression                     shift and go to state 103
-    basicExp                       shift and go to state 28
-    assignmentExp                  shift and go to state 29
-    comparisonExp                  shift and go to state 30
-    identifier                     shift and go to state 31
-
-state 97
-
-    (60) iterationStmt -> WHILE expression LESST . expression
-    (32) expression -> . basicExp
-    (33) expression -> . assignmentExp SEMCL
-    (34) expression -> . comparisonExp
-    (35) basicExp -> . IDVAR
-    (36) basicExp -> . INTVR
-    (37) basicExp -> . STRNG
-    (40) assignmentExp -> . identifier sumOp basicExp
-    (41) assignmentExp -> . identifier sumOp assignmentExp
-    (42) comparisonExp -> . basicExp relop basicExp
-    (43) comparisonExp -> . basicExp relop comparisonExp
-    (38) identifier -> . IDVAR
-    (39) identifier -> . INTVR
-
-    IDVAR           shift and go to state 75
-    INTVR           shift and go to state 76
-    STRNG           shift and go to state 77
-
-    expression                     shift and go to state 104
-    basicExp                       shift and go to state 28
-    assignmentExp                  shift and go to state 29
-    comparisonExp                  shift and go to state 30
-    identifier                     shift and go to state 31
-
-state 98
-
-    (61) iterationStmt -> WHILE expression GREAT . expression
-    (32) expression -> . basicExp
-    (33) expression -> . assignmentExp SEMCL
-    (34) expression -> . comparisonExp
-    (35) basicExp -> . IDVAR
-    (36) basicExp -> . INTVR
-    (37) basicExp -> . STRNG
-    (40) assignmentExp -> . identifier sumOp basicExp
-    (41) assignmentExp -> . identifier sumOp assignmentExp
-    (42) comparisonExp -> . basicExp relop basicExp
-    (43) comparisonExp -> . basicExp relop comparisonExp
-    (38) identifier -> . IDVAR
-    (39) identifier -> . INTVR
-
-    IDVAR           shift and go to state 75
-    INTVR           shift and go to state 76
-    STRNG           shift and go to state 77
-
-    expression                     shift and go to state 105
-    basicExp                       shift and go to state 28
-    assignmentExp                  shift and go to state 29
-    comparisonExp                  shift and go to state 30
-    identifier                     shift and go to state 31
+    block                          shift and go to state 105
 
 state 99
 
-    (62) inputStmt -> STDIN OPENP stmt . CLOSP
+    (60) iterationStmt -> FOR expression IN . expression
+    (32) expression -> . basicExp
+    (33) expression -> . assignmentExp SEMCL
+    (34) expression -> . comparisonExp
+    (35) expression -> . boolExp
+    (36) basicExp -> . IDVAR
+    (37) basicExp -> . INTVR
+    (38) basicExp -> . STRNG
+    (41) assignmentExp -> . identifier sumOp basicExp
+    (42) assignmentExp -> . identifier sumOp assignmentExp
+    (43) comparisonExp -> . basicExp relop basicExp
+    (44) comparisonExp -> . basicExp relop comparisonExp
+    (66) boolExp -> . TRUE
+    (67) boolExp -> . FALSE
+    (39) identifier -> . IDVAR
+    (40) identifier -> . INTVR
 
-    CLOSP           shift and go to state 106
+    IDVAR           shift and go to state 79
+    INTVR           shift and go to state 80
+    STRNG           shift and go to state 81
+    TRUE            shift and go to state 33
+    FALSE           shift and go to state 34
 
+    expression                     shift and go to state 106
+    basicExp                       shift and go to state 28
+    assignmentExp                  shift and go to state 29
+    comparisonExp                  shift and go to state 30
+    boolExp                        shift and go to state 31
+    identifier                     shift and go to state 32
 
 state 100
 
-    (63) outputStmt -> PRINTLN OPENP stmt . CLOSP
+    (61) iterationStmt -> WHILE expression EQUAL . expression
+    (32) expression -> . basicExp
+    (33) expression -> . assignmentExp SEMCL
+    (34) expression -> . comparisonExp
+    (35) expression -> . boolExp
+    (36) basicExp -> . IDVAR
+    (37) basicExp -> . INTVR
+    (38) basicExp -> . STRNG
+    (41) assignmentExp -> . identifier sumOp basicExp
+    (42) assignmentExp -> . identifier sumOp assignmentExp
+    (43) comparisonExp -> . basicExp relop basicExp
+    (44) comparisonExp -> . basicExp relop comparisonExp
+    (66) boolExp -> . TRUE
+    (67) boolExp -> . FALSE
+    (39) identifier -> . IDVAR
+    (40) identifier -> . INTVR
 
-    CLOSP           shift and go to state 107
+    IDVAR           shift and go to state 79
+    INTVR           shift and go to state 80
+    STRNG           shift and go to state 81
+    TRUE            shift and go to state 33
+    FALSE           shift and go to state 34
 
+    expression                     shift and go to state 107
+    basicExp                       shift and go to state 28
+    assignmentExp                  shift and go to state 29
+    comparisonExp                  shift and go to state 30
+    boolExp                        shift and go to state 31
+    identifier                     shift and go to state 32
 
 state 101
 
-    (56) selectionStmt -> IF expression EQUAL block .
-    (57) selectionStmt -> IF expression EQUAL block . ELSE
+    (62) iterationStmt -> WHILE expression LESST . expression
+    (32) expression -> . basicExp
+    (33) expression -> . assignmentExp SEMCL
+    (34) expression -> . comparisonExp
+    (35) expression -> . boolExp
+    (36) basicExp -> . IDVAR
+    (37) basicExp -> . INTVR
+    (38) basicExp -> . STRNG
+    (41) assignmentExp -> . identifier sumOp basicExp
+    (42) assignmentExp -> . identifier sumOp assignmentExp
+    (43) comparisonExp -> . basicExp relop basicExp
+    (44) comparisonExp -> . basicExp relop comparisonExp
+    (66) boolExp -> . TRUE
+    (67) boolExp -> . FALSE
+    (39) identifier -> . IDVAR
+    (40) identifier -> . INTVR
 
-    IF              reduce using rule 56 (selectionStmt -> IF expression EQUAL block .)
-    FOR             reduce using rule 56 (selectionStmt -> IF expression EQUAL block .)
-    WHILE           reduce using rule 56 (selectionStmt -> IF expression EQUAL block .)
-    STDIN           reduce using rule 56 (selectionStmt -> IF expression EQUAL block .)
-    PRINTLN         reduce using rule 56 (selectionStmt -> IF expression EQUAL block .)
-    IDVAR           reduce using rule 56 (selectionStmt -> IF expression EQUAL block .)
-    INTVR           reduce using rule 56 (selectionStmt -> IF expression EQUAL block .)
-    STRNG           reduce using rule 56 (selectionStmt -> IF expression EQUAL block .)
-    LET             reduce using rule 56 (selectionStmt -> IF expression EQUAL block .)
-    CONST           reduce using rule 56 (selectionStmt -> IF expression EQUAL block .)
-    STATIC          reduce using rule 56 (selectionStmt -> IF expression EQUAL block .)
-    FN              reduce using rule 56 (selectionStmt -> IF expression EQUAL block .)
-    RBCKT           reduce using rule 56 (selectionStmt -> IF expression EQUAL block .)
-    CLOSP           reduce using rule 56 (selectionStmt -> IF expression EQUAL block .)
-    ELSE            shift and go to state 108
+    IDVAR           shift and go to state 79
+    INTVR           shift and go to state 80
+    STRNG           shift and go to state 81
+    TRUE            shift and go to state 33
+    FALSE           shift and go to state 34
 
+    expression                     shift and go to state 108
+    basicExp                       shift and go to state 28
+    assignmentExp                  shift and go to state 29
+    comparisonExp                  shift and go to state 30
+    boolExp                        shift and go to state 31
+    identifier                     shift and go to state 32
 
 state 102
 
-    (58) iterationStmt -> FOR expression IN expression .
+    (63) iterationStmt -> WHILE expression GREAT . expression
+    (32) expression -> . basicExp
+    (33) expression -> . assignmentExp SEMCL
+    (34) expression -> . comparisonExp
+    (35) expression -> . boolExp
+    (36) basicExp -> . IDVAR
+    (37) basicExp -> . INTVR
+    (38) basicExp -> . STRNG
+    (41) assignmentExp -> . identifier sumOp basicExp
+    (42) assignmentExp -> . identifier sumOp assignmentExp
+    (43) comparisonExp -> . basicExp relop basicExp
+    (44) comparisonExp -> . basicExp relop comparisonExp
+    (66) boolExp -> . TRUE
+    (67) boolExp -> . FALSE
+    (39) identifier -> . IDVAR
+    (40) identifier -> . INTVR
 
-    IF              reduce using rule 58 (iterationStmt -> FOR expression IN expression .)
-    FOR             reduce using rule 58 (iterationStmt -> FOR expression IN expression .)
-    WHILE           reduce using rule 58 (iterationStmt -> FOR expression IN expression .)
-    STDIN           reduce using rule 58 (iterationStmt -> FOR expression IN expression .)
-    PRINTLN         reduce using rule 58 (iterationStmt -> FOR expression IN expression .)
-    IDVAR           reduce using rule 58 (iterationStmt -> FOR expression IN expression .)
-    INTVR           reduce using rule 58 (iterationStmt -> FOR expression IN expression .)
-    STRNG           reduce using rule 58 (iterationStmt -> FOR expression IN expression .)
-    LET             reduce using rule 58 (iterationStmt -> FOR expression IN expression .)
-    CONST           reduce using rule 58 (iterationStmt -> FOR expression IN expression .)
-    STATIC          reduce using rule 58 (iterationStmt -> FOR expression IN expression .)
-    FN              reduce using rule 58 (iterationStmt -> FOR expression IN expression .)
-    RBCKT           reduce using rule 58 (iterationStmt -> FOR expression IN expression .)
-    CLOSP           reduce using rule 58 (iterationStmt -> FOR expression IN expression .)
+    IDVAR           shift and go to state 79
+    INTVR           shift and go to state 80
+    STRNG           shift and go to state 81
+    TRUE            shift and go to state 33
+    FALSE           shift and go to state 34
 
+    expression                     shift and go to state 109
+    basicExp                       shift and go to state 28
+    assignmentExp                  shift and go to state 29
+    comparisonExp                  shift and go to state 30
+    boolExp                        shift and go to state 31
+    identifier                     shift and go to state 32
 
 state 103
 
-    (59) iterationStmt -> WHILE expression EQUAL expression .
+    (64) inputStmt -> STDIN OPENP stmt . CLOSP
 
-    IF              reduce using rule 59 (iterationStmt -> WHILE expression EQUAL expression .)
-    FOR             reduce using rule 59 (iterationStmt -> WHILE expression EQUAL expression .)
-    WHILE           reduce using rule 59 (iterationStmt -> WHILE expression EQUAL expression .)
-    STDIN           reduce using rule 59 (iterationStmt -> WHILE expression EQUAL expression .)
-    PRINTLN         reduce using rule 59 (iterationStmt -> WHILE expression EQUAL expression .)
-    IDVAR           reduce using rule 59 (iterationStmt -> WHILE expression EQUAL expression .)
-    INTVR           reduce using rule 59 (iterationStmt -> WHILE expression EQUAL expression .)
-    STRNG           reduce using rule 59 (iterationStmt -> WHILE expression EQUAL expression .)
-    LET             reduce using rule 59 (iterationStmt -> WHILE expression EQUAL expression .)
-    CONST           reduce using rule 59 (iterationStmt -> WHILE expression EQUAL expression .)
-    STATIC          reduce using rule 59 (iterationStmt -> WHILE expression EQUAL expression .)
-    FN              reduce using rule 59 (iterationStmt -> WHILE expression EQUAL expression .)
-    RBCKT           reduce using rule 59 (iterationStmt -> WHILE expression EQUAL expression .)
-    CLOSP           reduce using rule 59 (iterationStmt -> WHILE expression EQUAL expression .)
+    CLOSP           shift and go to state 110
 
 
 state 104
 
-    (60) iterationStmt -> WHILE expression LESST expression .
+    (65) outputStmt -> PRINTLN OPENP stmt . CLOSP
 
-    IF              reduce using rule 60 (iterationStmt -> WHILE expression LESST expression .)
-    FOR             reduce using rule 60 (iterationStmt -> WHILE expression LESST expression .)
-    WHILE           reduce using rule 60 (iterationStmt -> WHILE expression LESST expression .)
-    STDIN           reduce using rule 60 (iterationStmt -> WHILE expression LESST expression .)
-    PRINTLN         reduce using rule 60 (iterationStmt -> WHILE expression LESST expression .)
-    IDVAR           reduce using rule 60 (iterationStmt -> WHILE expression LESST expression .)
-    INTVR           reduce using rule 60 (iterationStmt -> WHILE expression LESST expression .)
-    STRNG           reduce using rule 60 (iterationStmt -> WHILE expression LESST expression .)
-    LET             reduce using rule 60 (iterationStmt -> WHILE expression LESST expression .)
-    CONST           reduce using rule 60 (iterationStmt -> WHILE expression LESST expression .)
-    STATIC          reduce using rule 60 (iterationStmt -> WHILE expression LESST expression .)
-    FN              reduce using rule 60 (iterationStmt -> WHILE expression LESST expression .)
-    RBCKT           reduce using rule 60 (iterationStmt -> WHILE expression LESST expression .)
-    CLOSP           reduce using rule 60 (iterationStmt -> WHILE expression LESST expression .)
+    CLOSP           shift and go to state 111
 
 
 state 105
 
-    (61) iterationStmt -> WHILE expression GREAT expression .
+    (58) selectionStmt -> IF expression EQUAL block .
+    (59) selectionStmt -> IF expression EQUAL block . ELSE
 
-    IF              reduce using rule 61 (iterationStmt -> WHILE expression GREAT expression .)
-    FOR             reduce using rule 61 (iterationStmt -> WHILE expression GREAT expression .)
-    WHILE           reduce using rule 61 (iterationStmt -> WHILE expression GREAT expression .)
-    STDIN           reduce using rule 61 (iterationStmt -> WHILE expression GREAT expression .)
-    PRINTLN         reduce using rule 61 (iterationStmt -> WHILE expression GREAT expression .)
-    IDVAR           reduce using rule 61 (iterationStmt -> WHILE expression GREAT expression .)
-    INTVR           reduce using rule 61 (iterationStmt -> WHILE expression GREAT expression .)
-    STRNG           reduce using rule 61 (iterationStmt -> WHILE expression GREAT expression .)
-    LET             reduce using rule 61 (iterationStmt -> WHILE expression GREAT expression .)
-    CONST           reduce using rule 61 (iterationStmt -> WHILE expression GREAT expression .)
-    STATIC          reduce using rule 61 (iterationStmt -> WHILE expression GREAT expression .)
-    FN              reduce using rule 61 (iterationStmt -> WHILE expression GREAT expression .)
-    RBCKT           reduce using rule 61 (iterationStmt -> WHILE expression GREAT expression .)
-    CLOSP           reduce using rule 61 (iterationStmt -> WHILE expression GREAT expression .)
+    IF              reduce using rule 58 (selectionStmt -> IF expression EQUAL block .)
+    FOR             reduce using rule 58 (selectionStmt -> IF expression EQUAL block .)
+    WHILE           reduce using rule 58 (selectionStmt -> IF expression EQUAL block .)
+    STDIN           reduce using rule 58 (selectionStmt -> IF expression EQUAL block .)
+    PRINTLN         reduce using rule 58 (selectionStmt -> IF expression EQUAL block .)
+    IDVAR           reduce using rule 58 (selectionStmt -> IF expression EQUAL block .)
+    INTVR           reduce using rule 58 (selectionStmt -> IF expression EQUAL block .)
+    STRNG           reduce using rule 58 (selectionStmt -> IF expression EQUAL block .)
+    TRUE            reduce using rule 58 (selectionStmt -> IF expression EQUAL block .)
+    FALSE           reduce using rule 58 (selectionStmt -> IF expression EQUAL block .)
+    LET             reduce using rule 58 (selectionStmt -> IF expression EQUAL block .)
+    CONST           reduce using rule 58 (selectionStmt -> IF expression EQUAL block .)
+    STATIC          reduce using rule 58 (selectionStmt -> IF expression EQUAL block .)
+    FN              reduce using rule 58 (selectionStmt -> IF expression EQUAL block .)
+    RBCKT           reduce using rule 58 (selectionStmt -> IF expression EQUAL block .)
+    CLOSP           reduce using rule 58 (selectionStmt -> IF expression EQUAL block .)
+    ELSE            shift and go to state 112
 
 
 state 106
 
-    (62) inputStmt -> STDIN OPENP stmt CLOSP .
+    (60) iterationStmt -> FOR expression IN expression .
 
-    IF              reduce using rule 62 (inputStmt -> STDIN OPENP stmt CLOSP .)
-    FOR             reduce using rule 62 (inputStmt -> STDIN OPENP stmt CLOSP .)
-    WHILE           reduce using rule 62 (inputStmt -> STDIN OPENP stmt CLOSP .)
-    STDIN           reduce using rule 62 (inputStmt -> STDIN OPENP stmt CLOSP .)
-    PRINTLN         reduce using rule 62 (inputStmt -> STDIN OPENP stmt CLOSP .)
-    IDVAR           reduce using rule 62 (inputStmt -> STDIN OPENP stmt CLOSP .)
-    INTVR           reduce using rule 62 (inputStmt -> STDIN OPENP stmt CLOSP .)
-    STRNG           reduce using rule 62 (inputStmt -> STDIN OPENP stmt CLOSP .)
-    LET             reduce using rule 62 (inputStmt -> STDIN OPENP stmt CLOSP .)
-    CONST           reduce using rule 62 (inputStmt -> STDIN OPENP stmt CLOSP .)
-    STATIC          reduce using rule 62 (inputStmt -> STDIN OPENP stmt CLOSP .)
-    FN              reduce using rule 62 (inputStmt -> STDIN OPENP stmt CLOSP .)
-    RBCKT           reduce using rule 62 (inputStmt -> STDIN OPENP stmt CLOSP .)
-    CLOSP           reduce using rule 62 (inputStmt -> STDIN OPENP stmt CLOSP .)
+    IF              reduce using rule 60 (iterationStmt -> FOR expression IN expression .)
+    FOR             reduce using rule 60 (iterationStmt -> FOR expression IN expression .)
+    WHILE           reduce using rule 60 (iterationStmt -> FOR expression IN expression .)
+    STDIN           reduce using rule 60 (iterationStmt -> FOR expression IN expression .)
+    PRINTLN         reduce using rule 60 (iterationStmt -> FOR expression IN expression .)
+    IDVAR           reduce using rule 60 (iterationStmt -> FOR expression IN expression .)
+    INTVR           reduce using rule 60 (iterationStmt -> FOR expression IN expression .)
+    STRNG           reduce using rule 60 (iterationStmt -> FOR expression IN expression .)
+    TRUE            reduce using rule 60 (iterationStmt -> FOR expression IN expression .)
+    FALSE           reduce using rule 60 (iterationStmt -> FOR expression IN expression .)
+    LET             reduce using rule 60 (iterationStmt -> FOR expression IN expression .)
+    CONST           reduce using rule 60 (iterationStmt -> FOR expression IN expression .)
+    STATIC          reduce using rule 60 (iterationStmt -> FOR expression IN expression .)
+    FN              reduce using rule 60 (iterationStmt -> FOR expression IN expression .)
+    RBCKT           reduce using rule 60 (iterationStmt -> FOR expression IN expression .)
+    CLOSP           reduce using rule 60 (iterationStmt -> FOR expression IN expression .)
 
 
 state 107
 
-    (63) outputStmt -> PRINTLN OPENP stmt CLOSP .
+    (61) iterationStmt -> WHILE expression EQUAL expression .
 
-    IF              reduce using rule 63 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
-    FOR             reduce using rule 63 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
-    WHILE           reduce using rule 63 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
-    STDIN           reduce using rule 63 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
-    PRINTLN         reduce using rule 63 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
-    IDVAR           reduce using rule 63 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
-    INTVR           reduce using rule 63 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
-    STRNG           reduce using rule 63 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
-    LET             reduce using rule 63 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
-    CONST           reduce using rule 63 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
-    STATIC          reduce using rule 63 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
-    FN              reduce using rule 63 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
-    RBCKT           reduce using rule 63 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
-    CLOSP           reduce using rule 63 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+    IF              reduce using rule 61 (iterationStmt -> WHILE expression EQUAL expression .)
+    FOR             reduce using rule 61 (iterationStmt -> WHILE expression EQUAL expression .)
+    WHILE           reduce using rule 61 (iterationStmt -> WHILE expression EQUAL expression .)
+    STDIN           reduce using rule 61 (iterationStmt -> WHILE expression EQUAL expression .)
+    PRINTLN         reduce using rule 61 (iterationStmt -> WHILE expression EQUAL expression .)
+    IDVAR           reduce using rule 61 (iterationStmt -> WHILE expression EQUAL expression .)
+    INTVR           reduce using rule 61 (iterationStmt -> WHILE expression EQUAL expression .)
+    STRNG           reduce using rule 61 (iterationStmt -> WHILE expression EQUAL expression .)
+    TRUE            reduce using rule 61 (iterationStmt -> WHILE expression EQUAL expression .)
+    FALSE           reduce using rule 61 (iterationStmt -> WHILE expression EQUAL expression .)
+    LET             reduce using rule 61 (iterationStmt -> WHILE expression EQUAL expression .)
+    CONST           reduce using rule 61 (iterationStmt -> WHILE expression EQUAL expression .)
+    STATIC          reduce using rule 61 (iterationStmt -> WHILE expression EQUAL expression .)
+    FN              reduce using rule 61 (iterationStmt -> WHILE expression EQUAL expression .)
+    RBCKT           reduce using rule 61 (iterationStmt -> WHILE expression EQUAL expression .)
+    CLOSP           reduce using rule 61 (iterationStmt -> WHILE expression EQUAL expression .)
 
 
 state 108
 
-    (57) selectionStmt -> IF expression EQUAL block ELSE .
+    (62) iterationStmt -> WHILE expression LESST expression .
 
-    IF              reduce using rule 57 (selectionStmt -> IF expression EQUAL block ELSE .)
-    FOR             reduce using rule 57 (selectionStmt -> IF expression EQUAL block ELSE .)
-    WHILE           reduce using rule 57 (selectionStmt -> IF expression EQUAL block ELSE .)
-    STDIN           reduce using rule 57 (selectionStmt -> IF expression EQUAL block ELSE .)
-    PRINTLN         reduce using rule 57 (selectionStmt -> IF expression EQUAL block ELSE .)
-    IDVAR           reduce using rule 57 (selectionStmt -> IF expression EQUAL block ELSE .)
-    INTVR           reduce using rule 57 (selectionStmt -> IF expression EQUAL block ELSE .)
-    STRNG           reduce using rule 57 (selectionStmt -> IF expression EQUAL block ELSE .)
-    LET             reduce using rule 57 (selectionStmt -> IF expression EQUAL block ELSE .)
-    CONST           reduce using rule 57 (selectionStmt -> IF expression EQUAL block ELSE .)
-    STATIC          reduce using rule 57 (selectionStmt -> IF expression EQUAL block ELSE .)
-    FN              reduce using rule 57 (selectionStmt -> IF expression EQUAL block ELSE .)
-    RBCKT           reduce using rule 57 (selectionStmt -> IF expression EQUAL block ELSE .)
-    CLOSP           reduce using rule 57 (selectionStmt -> IF expression EQUAL block ELSE .)
+    IF              reduce using rule 62 (iterationStmt -> WHILE expression LESST expression .)
+    FOR             reduce using rule 62 (iterationStmt -> WHILE expression LESST expression .)
+    WHILE           reduce using rule 62 (iterationStmt -> WHILE expression LESST expression .)
+    STDIN           reduce using rule 62 (iterationStmt -> WHILE expression LESST expression .)
+    PRINTLN         reduce using rule 62 (iterationStmt -> WHILE expression LESST expression .)
+    IDVAR           reduce using rule 62 (iterationStmt -> WHILE expression LESST expression .)
+    INTVR           reduce using rule 62 (iterationStmt -> WHILE expression LESST expression .)
+    STRNG           reduce using rule 62 (iterationStmt -> WHILE expression LESST expression .)
+    TRUE            reduce using rule 62 (iterationStmt -> WHILE expression LESST expression .)
+    FALSE           reduce using rule 62 (iterationStmt -> WHILE expression LESST expression .)
+    LET             reduce using rule 62 (iterationStmt -> WHILE expression LESST expression .)
+    CONST           reduce using rule 62 (iterationStmt -> WHILE expression LESST expression .)
+    STATIC          reduce using rule 62 (iterationStmt -> WHILE expression LESST expression .)
+    FN              reduce using rule 62 (iterationStmt -> WHILE expression LESST expression .)
+    RBCKT           reduce using rule 62 (iterationStmt -> WHILE expression LESST expression .)
+    CLOSP           reduce using rule 62 (iterationStmt -> WHILE expression LESST expression .)
+
+
+state 109
+
+    (63) iterationStmt -> WHILE expression GREAT expression .
+
+    IF              reduce using rule 63 (iterationStmt -> WHILE expression GREAT expression .)
+    FOR             reduce using rule 63 (iterationStmt -> WHILE expression GREAT expression .)
+    WHILE           reduce using rule 63 (iterationStmt -> WHILE expression GREAT expression .)
+    STDIN           reduce using rule 63 (iterationStmt -> WHILE expression GREAT expression .)
+    PRINTLN         reduce using rule 63 (iterationStmt -> WHILE expression GREAT expression .)
+    IDVAR           reduce using rule 63 (iterationStmt -> WHILE expression GREAT expression .)
+    INTVR           reduce using rule 63 (iterationStmt -> WHILE expression GREAT expression .)
+    STRNG           reduce using rule 63 (iterationStmt -> WHILE expression GREAT expression .)
+    TRUE            reduce using rule 63 (iterationStmt -> WHILE expression GREAT expression .)
+    FALSE           reduce using rule 63 (iterationStmt -> WHILE expression GREAT expression .)
+    LET             reduce using rule 63 (iterationStmt -> WHILE expression GREAT expression .)
+    CONST           reduce using rule 63 (iterationStmt -> WHILE expression GREAT expression .)
+    STATIC          reduce using rule 63 (iterationStmt -> WHILE expression GREAT expression .)
+    FN              reduce using rule 63 (iterationStmt -> WHILE expression GREAT expression .)
+    RBCKT           reduce using rule 63 (iterationStmt -> WHILE expression GREAT expression .)
+    CLOSP           reduce using rule 63 (iterationStmt -> WHILE expression GREAT expression .)
+
+
+state 110
+
+    (64) inputStmt -> STDIN OPENP stmt CLOSP .
+
+    IF              reduce using rule 64 (inputStmt -> STDIN OPENP stmt CLOSP .)
+    FOR             reduce using rule 64 (inputStmt -> STDIN OPENP stmt CLOSP .)
+    WHILE           reduce using rule 64 (inputStmt -> STDIN OPENP stmt CLOSP .)
+    STDIN           reduce using rule 64 (inputStmt -> STDIN OPENP stmt CLOSP .)
+    PRINTLN         reduce using rule 64 (inputStmt -> STDIN OPENP stmt CLOSP .)
+    IDVAR           reduce using rule 64 (inputStmt -> STDIN OPENP stmt CLOSP .)
+    INTVR           reduce using rule 64 (inputStmt -> STDIN OPENP stmt CLOSP .)
+    STRNG           reduce using rule 64 (inputStmt -> STDIN OPENP stmt CLOSP .)
+    TRUE            reduce using rule 64 (inputStmt -> STDIN OPENP stmt CLOSP .)
+    FALSE           reduce using rule 64 (inputStmt -> STDIN OPENP stmt CLOSP .)
+    LET             reduce using rule 64 (inputStmt -> STDIN OPENP stmt CLOSP .)
+    CONST           reduce using rule 64 (inputStmt -> STDIN OPENP stmt CLOSP .)
+    STATIC          reduce using rule 64 (inputStmt -> STDIN OPENP stmt CLOSP .)
+    FN              reduce using rule 64 (inputStmt -> STDIN OPENP stmt CLOSP .)
+    RBCKT           reduce using rule 64 (inputStmt -> STDIN OPENP stmt CLOSP .)
+    CLOSP           reduce using rule 64 (inputStmt -> STDIN OPENP stmt CLOSP .)
+
+
+state 111
+
+    (65) outputStmt -> PRINTLN OPENP stmt CLOSP .
+
+    IF              reduce using rule 65 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+    FOR             reduce using rule 65 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+    WHILE           reduce using rule 65 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+    STDIN           reduce using rule 65 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+    PRINTLN         reduce using rule 65 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+    IDVAR           reduce using rule 65 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+    INTVR           reduce using rule 65 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+    STRNG           reduce using rule 65 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+    TRUE            reduce using rule 65 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+    FALSE           reduce using rule 65 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+    LET             reduce using rule 65 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+    CONST           reduce using rule 65 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+    STATIC          reduce using rule 65 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+    FN              reduce using rule 65 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+    RBCKT           reduce using rule 65 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+    CLOSP           reduce using rule 65 (outputStmt -> PRINTLN OPENP stmt CLOSP .)
+
+
+state 112
+
+    (59) selectionStmt -> IF expression EQUAL block ELSE .
+
+    IF              reduce using rule 59 (selectionStmt -> IF expression EQUAL block ELSE .)
+    FOR             reduce using rule 59 (selectionStmt -> IF expression EQUAL block ELSE .)
+    WHILE           reduce using rule 59 (selectionStmt -> IF expression EQUAL block ELSE .)
+    STDIN           reduce using rule 59 (selectionStmt -> IF expression EQUAL block ELSE .)
+    PRINTLN         reduce using rule 59 (selectionStmt -> IF expression EQUAL block ELSE .)
+    IDVAR           reduce using rule 59 (selectionStmt -> IF expression EQUAL block ELSE .)
+    INTVR           reduce using rule 59 (selectionStmt -> IF expression EQUAL block ELSE .)
+    STRNG           reduce using rule 59 (selectionStmt -> IF expression EQUAL block ELSE .)
+    TRUE            reduce using rule 59 (selectionStmt -> IF expression EQUAL block ELSE .)
+    FALSE           reduce using rule 59 (selectionStmt -> IF expression EQUAL block ELSE .)
+    LET             reduce using rule 59 (selectionStmt -> IF expression EQUAL block ELSE .)
+    CONST           reduce using rule 59 (selectionStmt -> IF expression EQUAL block ELSE .)
+    STATIC          reduce using rule 59 (selectionStmt -> IF expression EQUAL block ELSE .)
+    FN              reduce using rule 59 (selectionStmt -> IF expression EQUAL block ELSE .)
+    RBCKT           reduce using rule 59 (selectionStmt -> IF expression EQUAL block ELSE .)
+    CLOSP           reduce using rule 59 (selectionStmt -> IF expression EQUAL block ELSE .)
 
 WARNING: 
 WARNING: Conflicts:
@@ -2193,14 +2425,14 @@ WARNING: shift/reduce conflict for SEMCL in state 26 resolved as shift
 WARNING: shift/reduce conflict for LESST in state 28 resolved as shift
 WARNING: shift/reduce conflict for GREAT in state 28 resolved as shift
 WARNING: shift/reduce conflict for EQUAL in state 28 resolved as shift
-WARNING: shift/reduce conflict for LESST in state 80 resolved as shift
-WARNING: shift/reduce conflict for GREAT in state 80 resolved as shift
-WARNING: shift/reduce conflict for EQUAL in state 80 resolved as shift
+WARNING: shift/reduce conflict for LESST in state 84 resolved as shift
+WARNING: shift/reduce conflict for GREAT in state 84 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 84 resolved as shift
 WARNING: reduce/reduce conflict in state 24 resolved using rule (basicExp -> IDVAR)
 WARNING: rejected rule (identifier -> IDVAR) in state 24
 WARNING: reduce/reduce conflict in state 25 resolved using rule (basicExp -> INTVR)
 WARNING: rejected rule (identifier -> INTVR) in state 25
-WARNING: reduce/reduce conflict in state 75 resolved using rule (basicExp -> IDVAR)
-WARNING: rejected rule (identifier -> IDVAR) in state 75
-WARNING: reduce/reduce conflict in state 76 resolved using rule (basicExp -> INTVR)
-WARNING: rejected rule (identifier -> INTVR) in state 76
+WARNING: reduce/reduce conflict in state 79 resolved using rule (basicExp -> IDVAR)
+WARNING: rejected rule (identifier -> IDVAR) in state 79
+WARNING: reduce/reduce conflict in state 80 resolved using rule (basicExp -> INTVR)
+WARNING: rejected rule (identifier -> INTVR) in state 80

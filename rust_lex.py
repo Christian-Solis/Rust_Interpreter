@@ -19,13 +19,14 @@ reserved = {
     'const' : 'CONST',
     'stdin' : 'STDIN',
     'println!' : 'PRINTLN',
+    #'iter' : 'ITER',
     'true' : 'TRUE',
     'false' : 'FALSE',
-    'concat' : 'CONCAT',
-    'String' : 'STRING',
-    'new' : 'NEW',
+    #'concat' : 'CONCAT',
+    #'String' : 'STRING',
+    #'new' : 'NEW',
     'if' : 'IF',
-    'then' : 'THEN',
+    #'then' : 'THEN',
     'else' : 'ELSE',
     'loop' : 'LOOP',
     'while' : 'WHILE',
@@ -36,9 +37,9 @@ reserved = {
 
 tokens = list(reserved.values()) + [
     'DOTOP',
-    'LOOPC','WHILE','FORCN','INCON',
     'ADDOP','SUBOP','QUOOP','DEROP','REMOP',
-    'ANDOP','OROPE','EQUAL','EQLTO','UNEQL',
+    'EQUAL','EQLTO','UNEQL',
+    'ANDOP','OROPE',
     'LESST','GREAT','LSSEQ','GRTEQ',
     #'SCOPE',
     'STRNG',
@@ -48,6 +49,7 @@ tokens = list(reserved.values()) + [
     'LBCKT','RBCKT',
     'SEMCL',
     'COMMA',
+    'COLON'
     ]
 
 # Tokens
@@ -75,6 +77,7 @@ t_LBCKT = r'{'
 t_RBCKT = r'}'
 t_SEMCL = r';'
 t_COMMA = r','
+t_COLON = r':'
 
 # -----------------------------------------------------------------------------
 # Lexer Rules
