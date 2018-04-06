@@ -78,8 +78,9 @@ x.method1().method2()
 
 # Variable outside the scope
 TestNo11 = '''
-def function1(): variable2 = 2; variable2 x;
+fn function1(){variable2 = 2; variable2 x;
 variable2;
+}
 '''
 
 # -----------------------------------------------------------------------------

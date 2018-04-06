@@ -90,8 +90,12 @@ def t_IDVAR(t):
     # Look up symbol table information and return a tuple
     #t.value = (t.value, symbol_lookup(t.value))
     # Check for reserved words
-    t.type = reserved.get(t.value,'IDVAR')
+    #t.type = reserved.get(t.value,'IDVAR')
     return t
+
+# def t_ID(t):
+#     r'[a-zA-Z_][a-zA-Z_0-9]*'
+#     return t
 
 # Ignored characters
 t_ignore = " \t"
@@ -344,6 +348,14 @@ import profile
 # import ply.yacc as yacc
 # parser = yacc.yacc(start='foo')
 
+def lexer(data):
+    lex.input(data)
+
+    while True:
+        tok = lex.token()
+        print(tok)
+        if not tok:
+            break
 #while True:
 #    try:
 #        s = input('Interpreter Rust (^-^) ')
