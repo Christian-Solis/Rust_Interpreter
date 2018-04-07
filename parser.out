@@ -30,7 +30,7 @@ Rule 11    varDeclaration -> LET IDVAR EQUAL identifier SEMCL
 Rule 12    constDeclaration -> CONST IDVAR EQUAL expression SEMCL
 Rule 13    staticDeclaration -> STATIC IDVAR EQUAL expression SEMCL
 Rule 14    funcDeclaration -> FN function
-Rule 15    function -> FN parameters block
+Rule 15    function -> IDVAR parameters block
 Rule 16    parameters -> OPENP CLOSP
 Rule 17    parameters -> OPENP paramList CLOSP
 Rule 18    parameters -> OPENP expression CLOSP
@@ -100,11 +100,11 @@ ELSE                 : 63
 EQLTO                : 55
 EQUAL                : 10 11 12 13 53 60
 FALSE                : 67
-FN                   : 14 15
+FN                   : 14
 FOR                  : 64
 GREAT                : 51
 GRTEQ                : 52
-IDVAR                : 10 11 12 13 21 42 45
+IDVAR                : 10 11 12 13 15 21 42 45
 IF                   : 62 63
 IN                   : 64
 INPUT                : 
@@ -696,11 +696,11 @@ state 20
 state 21
 
     (14) funcDeclaration -> FN . function
-    (15) function -> . FN parameters block
+    (15) function -> . IDVAR parameters block
 
-    FN              shift and go to state 49
+    IDVAR           shift and go to state 50
 
-    function                       shift and go to state 50
+    function                       shift and go to state 49
 
 state 22
 
@@ -1154,17 +1154,6 @@ state 48
 
 state 49
 
-    (15) function -> FN . parameters block
-    (16) parameters -> . OPENP CLOSP
-    (17) parameters -> . OPENP paramList CLOSP
-    (18) parameters -> . OPENP expression CLOSP
-
-    OPENP           shift and go to state 63
-
-    parameters                     shift and go to state 71
-
-state 50
-
     (14) funcDeclaration -> FN function .
 
     LET             reduce using rule 14 (funcDeclaration -> FN function .)
@@ -1185,6 +1174,17 @@ state 50
     RBCKT           reduce using rule 14 (funcDeclaration -> FN function .)
     CLOSP           reduce using rule 14 (funcDeclaration -> FN function .)
 
+
+state 50
+
+    (15) function -> IDVAR . parameters block
+    (16) parameters -> . OPENP CLOSP
+    (17) parameters -> . OPENP paramList CLOSP
+    (18) parameters -> . OPENP expression CLOSP
+
+    OPENP           shift and go to state 63
+
+    parameters                     shift and go to state 71
 
 state 51
 
@@ -1640,7 +1640,7 @@ state 70
 
 state 71
 
-    (15) function -> FN parameters . block
+    (15) function -> IDVAR parameters . block
     (24) block -> . LBCKT RBCKT
     (25) block -> . LBCKT statement-list RBCKT
 
@@ -2131,25 +2131,25 @@ state 94
 
 state 95
 
-    (15) function -> FN parameters block .
+    (15) function -> IDVAR parameters block .
 
-    LET             reduce using rule 15 (function -> FN parameters block .)
-    CONST           reduce using rule 15 (function -> FN parameters block .)
-    STATIC          reduce using rule 15 (function -> FN parameters block .)
-    FN              reduce using rule 15 (function -> FN parameters block .)
-    $end            reduce using rule 15 (function -> FN parameters block .)
-    IF              reduce using rule 15 (function -> FN parameters block .)
-    FOR             reduce using rule 15 (function -> FN parameters block .)
-    WHILE           reduce using rule 15 (function -> FN parameters block .)
-    STDIN           reduce using rule 15 (function -> FN parameters block .)
-    PRINTLN         reduce using rule 15 (function -> FN parameters block .)
-    INTVR           reduce using rule 15 (function -> FN parameters block .)
-    STRNG           reduce using rule 15 (function -> FN parameters block .)
-    IDVAR           reduce using rule 15 (function -> FN parameters block .)
-    TRUE            reduce using rule 15 (function -> FN parameters block .)
-    FALSE           reduce using rule 15 (function -> FN parameters block .)
-    RBCKT           reduce using rule 15 (function -> FN parameters block .)
-    CLOSP           reduce using rule 15 (function -> FN parameters block .)
+    LET             reduce using rule 15 (function -> IDVAR parameters block .)
+    CONST           reduce using rule 15 (function -> IDVAR parameters block .)
+    STATIC          reduce using rule 15 (function -> IDVAR parameters block .)
+    FN              reduce using rule 15 (function -> IDVAR parameters block .)
+    $end            reduce using rule 15 (function -> IDVAR parameters block .)
+    IF              reduce using rule 15 (function -> IDVAR parameters block .)
+    FOR             reduce using rule 15 (function -> IDVAR parameters block .)
+    WHILE           reduce using rule 15 (function -> IDVAR parameters block .)
+    STDIN           reduce using rule 15 (function -> IDVAR parameters block .)
+    PRINTLN         reduce using rule 15 (function -> IDVAR parameters block .)
+    INTVR           reduce using rule 15 (function -> IDVAR parameters block .)
+    STRNG           reduce using rule 15 (function -> IDVAR parameters block .)
+    IDVAR           reduce using rule 15 (function -> IDVAR parameters block .)
+    TRUE            reduce using rule 15 (function -> IDVAR parameters block .)
+    FALSE           reduce using rule 15 (function -> IDVAR parameters block .)
+    RBCKT           reduce using rule 15 (function -> IDVAR parameters block .)
+    CLOSP           reduce using rule 15 (function -> IDVAR parameters block .)
 
 
 state 96

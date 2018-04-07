@@ -9,6 +9,8 @@ from rust_parser import *
 # Variable definition
 TestNo1 = '''
 let FIVE = 5;
+let FOUR = a + b - c * d / e;
+
 '''
 
 # Constants definition
@@ -41,6 +43,8 @@ let FIVE = 5;
 while (i <= 10) {
 }
 if (true) {
+if (i <= 10){
+}
 }
 else{
 }
@@ -78,10 +82,9 @@ x.method1().method2()
 
 # Variable outside the scope
 TestNo11 = '''
-fn function1(){
-variable2 = 2;
-variable2 x;
-variable2;
+fn function1(5){
+let variable2 = 2;
+let variable2 = x;
 }
 '''
 

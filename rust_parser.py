@@ -2,7 +2,7 @@
 # Christian Ricardo Solís Cortés
 # A01063685
 # Compilers Design
-# Lexical Specification of Project:
+# Parser Specification of Project:
 # Rust interpreter with Python
 # -----------------------------------------------------------------------------
 
@@ -53,8 +53,8 @@ names = {}
 def p_error(p):
     if p:
         print("Syntax error at '%s'" % p.value)
-    else:
-        print("Syntax error at EOF")
+    # else:
+    #     print("Syntax error at EOF")
 
 def p_foo(p):
     """
@@ -141,7 +141,7 @@ def p_funcDeclaration(p):
 # Rule to implement functions
 def p_function(p):
     """
-    function : FN parameters block
+    function : IDVAR parameters block
     """
     # pass
     T = Node("FN", p[1])
@@ -360,6 +360,7 @@ def p_boolExp(p):
             | FALSE
     """
     p[0] = Node("boolean", None, None, [p[1]])
+
 
 # Import yacc
 import ply.yacc as yacc
