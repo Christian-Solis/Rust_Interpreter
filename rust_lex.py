@@ -13,71 +13,143 @@ if sys.version_info[0] >= 3:
 
 # Reserved words
 # 'reserved word' :'given name'
-reserved = {
-    'let' : 'LET',
-    'static' : 'STATIC',
-    'const' : 'CONST',
-    'stdin' : 'STDIN',
-    'println!' : 'PRINTLN',
-    #'iter' : 'ITER',
+keywords = {
+    'if' : 'IF',
+    'else' : 'ELSE',
+    'for' : 'FOR',
+    'while' : 'WHILE',
     'true' : 'TRUE',
     'false' : 'FALSE',
-    #'concat' : 'CONCAT',
-    #'String' : 'STRING',
-    #'new' : 'NEW',
-    'if' : 'IF',
-    #'then' : 'THEN',
-    'else' : 'ELSE',
-    'loop' : 'LOOP',
-    'while' : 'WHILE',
-    'for' : 'FOR',
+    'static' : 'STATIC',
+    'const' : 'CONST',
+    'let' : 'LET',
+    'stdin' : 'STDIN',
+    'println!' : 'PRINTLN',
     'in' : 'IN',
     'fn' : 'FN',
+
 }
 
-tokens = list(reserved.values()) + [
-    'DOTOP',
-    'ADDOP','SUBOP','QUOOP','DEROP','REMOP',
-    'EQUAL','EQLTO','UNEQL',
-    'ANDOP','OROPE',
-    'LESST','GREAT','LSSEQ','GRTEQ',
-    #'SCOPE',
-    'STRNG',
-    'SLCOM','BLCOM',
-    'IDVAR','INTVR',
-    'OPENP','CLOSP',
-    'LBCKT','RBCKT',
-    'SEMCL',
-    'COMMA',
-    'COLON'
+# Reserved words
+# 'reserved word' :'given name'
+# reserved = {
+#     'let' : 'LET',
+#     'static' : 'STATIC',
+#     'const' : 'CONST',
+#     'stdin' : 'STDIN',
+#     'println!' : 'PRINTLN',
+#     #'iter' : 'ITER',
+#     'true' : 'TRUE',
+#     'false' : 'FALSE',
+#     #'concat' : 'CONCAT',
+#     #'String' : 'STRING',
+#     #'new' : 'NEW',
+#     'if' : 'IF',
+#     #'then' : 'THEN',
+#     'else' : 'ELSE',
+#     #'loop' : 'LOOP',
+#     'while' : 'WHILE',
+#     'for' : 'FOR',
+#     'in' : 'IN',
+#     'fn' : 'FN',
+# }
+
+# Token Class Names
+tokens = list(keywords.values()) + [
+    # Math symbols
+    'ADDOP', 'SUBOP', 'DEROP', 'POWER', 'QUOOP', 'REMOP',
+    # Operators
+    'COMPA', 'EQLTO', 'UNEQL', 'LESST', 'GREAT', 'LSSEQ', 'GRTEQ', 'ANDOP', 'OROPE', 'SEMCL',
+    # Other symbols
+    'OPENP', 'CLOSP', 'LBCKT', 'RBCKT', 'EQUAL', 'SLCOM', 'BLCOM', 'DOTOP', 'COMMA', 'COLON',
+    # Variables
+    'STRNG', 'INTVR', 'IDVAR',
+    # Input and Output
+    'INPUT', 'OUTPT',
     ]
 
-# Tokens
-t_DOTOP = r'\.'
+# tokens = list(reserved.values()) + [
+#     'DOTOP',
+#     'ADDOP','SUBOP','QUOOP','DEROP','REMOP',
+#     'EQUAL','EQLTO','UNEQL','COMPA',
+#     'ANDOP','OROPE',
+#     'LESST','GREAT','LSSEQ','GRTEQ',
+#     #'SCOPE',
+#     'STRNG',
+#     'SLCOM','BLCOM',
+#     'IDVAR','INTVR',
+#     'OPENP','CLOSP',
+#     'LBCKT','RBCKT',
+#     'SEMCL',
+#     'COMMA',
+#     'COLON',
+#     'INPUT', 'OUTPT',
+#     ]
+
+# Tokens with regexps
 t_ADDOP = r'\+'
 t_SUBOP = r'-'
-t_QUOOP = r'/'
 t_DEROP = r'\*'
+t_POWER = r'\^'
+t_QUOOP = r'/'
 t_REMOP = r'%'
-t_ANDOP = r'&'
-t_OROPE = r'\|\|'
-t_EQUAL = r'='
+
+t_COMPA = r'=\=\='
 t_EQLTO = r'\=\='
 t_UNEQL = r'\=\!'
 t_LESST = r'<'
 t_GREAT = r'>'
 t_LSSEQ = r'\<\='
 t_GRTEQ = r'\>\='
-#t_SCOPE = r'\[::]'
-t_STRNG = r'"[ a-zA-Z_][ a-zA-Z0-9_][ a-zA-Z0-9_~?!@#$%^&-]*"'
-t_INTVR = r'[-+]?[0-9]+'
+t_ANDOP = r'&'
+t_OROPE = r'\|\|'
+t_SEMCL = r';'
+
 t_OPENP = r'\('
 t_CLOSP = r'\)'
 t_LBCKT = r'{'
 t_RBCKT = r'}'
-t_SEMCL = r';'
+t_EQUAL = r'='
+t_DOTOP = r'\.'
 t_COMMA = r','
 t_COLON = r':'
+
+#t_SCOPE = r'\[::]'
+t_STRNG = r'"[ a-zA-Z_][ a-zA-Z0-9_][ a-zA-Z0-9_~?!@#$%^&-]*"'
+t_INTVR = r'[-+]?[0-9]+'
+
+t_INPUT = r'stdin'
+t_OUTPT = r'println!'
+
+# # Tokens
+# t_DOTOP = r'\.'
+# t_ADDOP = r'\+'
+# t_SUBOP = r'-'
+# t_QUOOP = r'/'
+# t_DEROP = r'\*'
+# t_REMOP = r'%'
+# t_ANDOP = r'&'
+# t_OROPE = r'\|\|'
+# t_EQUAL = r'='
+# t_EQLTO = r'\=\='
+# t_COMPA = r'=\=\='
+# t_UNEQL = r'\=\!'
+# t_LESST = r'<'
+# t_GREAT = r'>'
+# t_LSSEQ = r'\<\='
+# t_GRTEQ = r'\>\='
+# #t_SCOPE = r'\[::]'
+# t_STRNG = r'"[ a-zA-Z_][ a-zA-Z0-9_][ a-zA-Z0-9_~?!@#$%^&-]*"'
+# t_INTVR = r'[-+]?[0-9]+'
+# t_OPENP = r'\('
+# t_CLOSP = r'\)'
+# t_LBCKT = r'{'
+# t_RBCKT = r'}'
+# t_SEMCL = r';'
+# t_COMMA = r','
+# t_COLON = r':'
+# t_INPUT = r'stdin'
+# t_OUTPT = r'println!'
 
 # -----------------------------------------------------------------------------
 # Lexer Rules
@@ -85,12 +157,12 @@ t_COLON = r':'
 
 # Rule for ID's
 def t_IDVAR(t):
-    r'[a-zA-Z_!.][a-zA-Z0-9_!.]*'
+    r'[a-zA-Z][a-zA-Z0-9_!]*'
     #r'[a-zA-Z_:.][a-zA-Z_:0-9]*'
     # Look up symbol table information and return a tuple
     #t.value = (t.value, symbol_lookup(t.value))
     # Check for reserved words
-    #t.type = reserved.get(t.value,'IDVAR')
+    t.type = keywords.get(t.value,'IDVAR')
     return t
 
 # def t_ID(t):

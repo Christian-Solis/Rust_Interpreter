@@ -4,7 +4,8 @@
 
 from rust_parser import *
 
-# Success
+# Test cases
+
 # Variable definition
 TestNo1 = '''
 let FIVE = 5;
@@ -18,34 +19,33 @@ const TEN = 10;
 
 # Loop and conditional
 TestNo3 = '''
-for var in expression {
-    code
+while (i <= 10){
 }
-if n < 10 {
- code
+if (true) {
 }
-else {
- code
+else{
 }
 '''
 
 # Input and output
 TestNo4 = '''
-for line in stdin {
-}
+stdin("Christian");
 println!("I just printed this!");
 '''
 
 # All the rules
 TestNo5 = '''
-while FIVE > 5:
-    stdin()
-    println!("Yes")
-    FIVE = FIVE - 1
-    if FIVE == 3:
-        print("FIVE is now 3")
-    else:
-        print("Value is not 3");
+// This
+// This is a test
+let FIVE = 5;
+while (i <= 10) {
+}
+if (true) {
+}
+else{
+}
+stdin("Christian");
+println!("I just printed this!");
 '''
 
 # Failure
@@ -56,19 +56,19 @@ TestNo6 = '''
 
 # Using a string in a not allowed way
 TestNo7 = '''
-"Esto es un string" = si;
+"This is a string" = let = five;
 '''
 
 # Loop with wrong wrammar
 TestNo8 = '''
-while:
-    print("No")
+while (i <= 10){
+    1abc = 3;
+}
 '''
 
 # Incorrect inputs but with success for now
 TestNo9 = '''
-x = 5
-x = "String"
+stdin(let x = 10);
 '''
 
 # Method using a class that does not contain such a method
@@ -78,7 +78,9 @@ x.method1().method2()
 
 # Variable outside the scope
 TestNo11 = '''
-fn function1(){variable2 = 2; variable2 x;
+fn function1(){
+variable2 = 2;
+variable2 x;
 variable2;
 }
 '''

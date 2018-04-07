@@ -6,14 +6,15 @@
 # Rust interpreter with Python
 # -----------------------------------------------------------------------------
 
-import rust_lex as lexer
+import sys
+import rust_lex
 
 # Node class to manage the nodes and children
 class Node:
-    def __init__(self, token, value=None, node_type=None, children=None):
+    def __init__(self, token, value=None, ntype=None, children=None):
             self.token = token
             self.value = value
-            self.node_type = ntype
+            self.ntype = ntype
             if children:
                 self.children = children
             else:
@@ -21,7 +22,7 @@ class Node:
 
     def get_values(self):
         return '"' + self.token + ':' + str(self.value) + ':' + \
-                str(self.node_type) + '"'
+                str(self.ntype) + '"'
 
     def debug(self):
 
@@ -31,7 +32,7 @@ class Node:
                 child.debug()
 
 # Bring the tokens from the lexer
-tokens = lexer.tokens
+tokens = rust_lex.tokens
 
 # -----------------------------------------------------------------------------
 # Parsing Rules
@@ -65,9 +66,10 @@ def p_foo(p):
 def p_program(p):
     """
     program : declarationList
+            | statement-list
     """
     p[0] = Node("program", None, None, [p[1]])
-    p[0].debug()
+    #p[0].debug()
     print("\n")
 
 # # Rule for general statement
@@ -104,10 +106,8 @@ def p_declaration(p):
 # Rule to implement variable declaration
 def p_varDeclaration(p):
     """
-    varDeclaration : LET IDVAR EQUAL IDVAR SEMCL
-                   | LET IDVAR EQUAL INTVR SEMCL
-                   | LET IDVAR EQUAL STRNG SEMCL
-                   | LET IDVAR EQUAL expression SEMCL
+    varDeclaration : LET IDVAR EQUAL expression SEMCL
+                   | LET IDVAR EQUAL identifier SEMCL
     """
     # pass
     if len(p) == 6:
@@ -118,14 +118,14 @@ def p_varDeclaration(p):
 # Rule to implement constant declaration
 def p_constDeclaration(p):
     """
-    constDeclaration : CONST IDVAR EQUAL IDVAR SEMCL
+    constDeclaration : CONST IDVAR EQUAL expression SEMCL
     """
     p[0] = Node("constant-declaration", None, None, [p[2], p[3], p[4]])
 
 # Rule to implement static declaration
 def p_staticDeclaration(p):
     """
-    staticDeclaration : STATIC IDVAR EQUAL IDVAR SEMCL
+    staticDeclaration : STATIC IDVAR EQUAL expression SEMCL
     """
     p[0] = Node("static-declaration", None, None, [p[2], p[3], p[4]])
 
@@ -152,6 +152,7 @@ def p_parameters(p):
     """
     parameters : OPENP CLOSP
                | OPENP paramList CLOSP
+               | OPENP expression CLOSP
     """
     # pass
     T1 = Node("OPENP", p[1])
@@ -179,6 +180,8 @@ def p_paramList(p):
 def p_parameter(p):
     """
     parameter : IDVAR
+              | INTVR
+              | STRNG
     """
     # pass
     T = Node('IDVAR', p[1])
@@ -212,6 +215,20 @@ def p_statement_list(p):
     else:
         p[0] = Node('statement-list', None, None, [p[1], p[2]])
 
+# Rule for inputs
+def p_input_stmt(p):
+    """
+    inputStmt : STDIN OPENP stmt CLOSP SEMCL
+    """
+    p[0] = Node("input", None, None, [p[3]])
+
+# Rule for outputs
+def p_output_stmt(p):
+    """
+    outputStmt : PRINTLN OPENP stmt CLOSP SEMCL
+    """
+    p[0] = Node("output", None, None, [p[3]])
+
 # Rule to implement statements
 def p_stmt(p):
     """
@@ -239,22 +256,14 @@ def p_expression(p):
 # Rule for basic expressions
 def p_basic(p):
     """
-    basicExp : IDVAR
-             | INTVR
+    basicExp : INTVR
              | STRNG
+             | IDVAR
     """
     v = Node('BASIC', p[1])
     p[0] = Node('basicExp', None, None, [v])
 
-# Rule for general variables
-def p_id(p):
-    """
-    identifier : IDVAR
-               | INTVR
-    """
-    # pass
-    T = Node('ID', p[1])
-    p[0] = Node('intvariable', None, None, [T])
+
 
 # Rule to implement assignment expressions
 def p_assignment_expression(p):
@@ -267,6 +276,16 @@ def p_assignment_expression(p):
         p[0] = Node('assignment-expr', None, None, [p[1], p[2], p[3]])
     else:
         p[0] = Node('assignment-expr', None, None, [p[1], p[2]])
+
+# Rule for general variables
+def p_id(p):
+    """
+    identifier : IDVAR
+               | INTVR
+    """
+    # pass
+    T = Node('ID', p[1])
+    p[0] = Node('intvariable', None, None, [T])
 
 # Rule to implement comparison expressions
 def p_compExp(p):
@@ -309,8 +328,8 @@ def p_sumOp(p):
 # Rule to implement if statements
 def p_selectionStmt(p):
     """
-    selectionStmt : IF expression EQUAL block
-                  | IF expression EQUAL block ELSE
+    selectionStmt : IF OPENP expression CLOSP block
+                  | IF OPENP expression CLOSP block ELSE block
     """
     # pass
     T = Node('IF', p[1])
@@ -320,9 +339,7 @@ def p_selectionStmt(p):
 def p_iterationStmt(p):
     """
     iterationStmt : FOR expression IN expression
-                  | WHILE expression EQUAL expression
-                  | WHILE expression LESST expression
-                  | WHILE expression GREAT expression
+                  | WHILE parameters block
     """
     # pass
     T = Node('FOR', p[1])
@@ -336,20 +353,6 @@ def p_iterationStmt(p):
 #     pass
 #     # p[0] = Node('expression', None, None, [p[1]])
 
-# Rule for inputs
-def p_input_stmt(p):
-    """
-    inputStmt : STDIN OPENP stmt CLOSP
-    """
-    p[0] = Node("input", None, None, [p[3]])
-
-# Rule for outputs
-def p_output_stmt(p):
-    """
-    outputStmt : PRINTLN OPENP stmt CLOSP
-    """
-    p[0] = Node("output", None, None, [p[3]])
-
 # Rule for boolean expressions
 def p_boolExp(p):
     """
@@ -358,6 +361,10 @@ def p_boolExp(p):
     """
     p[0] = Node("boolean", None, None, [p[1]])
 
+# Import yacc
+import ply.yacc as yacc
+yacc.yacc(start='foo')
+
 # # Rule for booleans
 # def p_booleans(p):
 #     """
@@ -365,7 +372,3 @@ def p_boolExp(p):
 #              | LET IDVAR EQUAL FALSE
 #     """
 #     pass
-
-# Import yacc
-import ply.yacc as yacc
-parser = yacc.yacc(start='foo')
