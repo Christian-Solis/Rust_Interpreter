@@ -19,6 +19,10 @@ class Node:
                 self.children = children
             else:
                 self.children = []
+            print(self)
+
+    def __str__(self):
+        return "{0} - {1} - {2} - {3}".format(self.token, self.value, self.ntype, self.children)
 
     def get_values(self):
         return '"' + self.token + ':' + str(self.value) + ':' + \
