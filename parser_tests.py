@@ -3,6 +3,7 @@
 # -----------------------------------------------------------------------------
 
 from rust_parser import *
+from rust_interpreter_ast import *
 
 # Test cases
 
